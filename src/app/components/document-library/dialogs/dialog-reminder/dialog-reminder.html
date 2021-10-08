@@ -1,0 +1,50 @@
+<style>
+  .column {
+    display: flex;
+    flex-flow: column;
+    height: 105px ;
+  }
+  .mat-dialog-title {
+    margin: 10px 0px 0px;
+  }
+	.botonrojo-busqueda { background-color: #e10000;  width: 177px; height:35px; border-radius: 10px; font-weight: bold; color: white;margin:2%;}
+</style>
+<h1 mat-dialog-title>Fecha de vencimiento</h1>
+<!-- <mat-form-field >
+    <mat-label class="negrita">Vencimiento</mat-label>
+    <input matInput type="number" placeholder="Año" [(ngModel)]="ano" >
+</mat-form-field> -->
+<div fxLayout="row" >
+    <mat-form-field>
+        <mat-label style="font-weight:bold;">Fecha de Vencimiento</mat-label>
+        <input id="fechavencimiento" matInput [matDatepicker]="picker" [(ngModel)]="data.vencimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker"  ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>DD/MM/AAAA</mat-hint>
+    </mat-form-field>
+
+<!--     
+      <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label style="font-weight:bold;">HORA ENTRADA</mat-label>
+          <input matInput  >
+          <mat-hint>HH:MM (24 Horas)</mat-hint>
+        </mat-form-field> -->
+<!--         <mat-error *ngIf="horaEntradaControl.errors?.pattern">El campo tiene un error</mat-error> -->
+</div>
+<h1 mat-dialog-title>Recordatorios de vencimiento</h1>
+<div  fxLayout="column">
+
+  <mat-checkbox [(ngModel)]="data.recordatorio10Dias" >10 dias</mat-checkbox>
+  <mat-checkbox [(ngModel)]="data.recordatorio5Dias">5 dias</mat-checkbox>
+  <mat-checkbox [(ngModel)]="data.recordatorio1Dia">1 dia</mat-checkbox>
+  <mat-checkbox [(ngModel)]="data.recordatorioVencido">Vencido</mat-checkbox> 
+</div>
+<div style="text-align:center;">
+<button  mat-raised-button class="botonrojo-busqueda" (click)="limpiarVencimiento()" >
+Restablecer
+</button>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data"  (click)="updateReminder()" cdkFocusInitial>Aceptar</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+</div>

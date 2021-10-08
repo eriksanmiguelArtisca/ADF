@@ -1,0 +1,78 @@
+		<div *ngIf="nodeId1">
+			<ng-template let-node="node" #sidebarTemplate>
+				<adf-info-drawer [title]="'Metadatos'">
+					<adf-info-drawer-tab [label]="'Propiedades'">
+						<adf-content-metadata-card [node]="node"></adf-content-metadata-card>
+					</adf-info-drawer-tab>
+				</adf-info-drawer>
+			</ng-template>
+				<adf-viewer [overlayMode]="true" [nodeId]="nodeId1" [allowRightSidebar]="true" [overlayMode]="true" [sidebarRightTemplate]="sidebarTemplate" (showViewerChange)="show()" [(showViewer)]="showViewer"></adf-viewer>
+		   </div>
+<adf-datatable #dataTable [(rows)]="data" 
+actions="true"
+actionsPosition="right"
+contextMenu="true"
+(showRowActionsMenu)="onShowRowActionsMenu($event)"
+(executeRowAction)="onExecuteRowAction($event)">
+    <!-- <adf-custom-loading-content-template> -->
+	<!-- <mat-spinner style="margin:0  auto;"> -->
+						<!-- </mat-spinner> -->
+    <!-- </adf-custom-loading-content-template> -->
+    <data-columns>
+      <data-column
+      key="$thumbnail"
+      type="image"
+      [sortable]="false"
+      class="adf-image-table-cell">
+      <ng-template let-context="$implicit">
+          <div  class="img-wrp">
+              <img src="{{ context.row.getValue('isLink') ? 'assets/images/link.svg' : context.row.getValue('content.mimeType') | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+              <img class="top-right-icon" id="{{ context.row.getValue('id') }}" [hidden]="true" src="https://image.flaticon.com/icons/svg/45/45315.svg"  />
+          </div>
+      </ng-template>
+      
+    </data-column>
+    <data-column key="name" title="Nombre" type="text" class="name-column">
+
+    </data-column>
+    <data-column title="Tamaño" key="content.sizeInBytes" type="fileSize" class="adf-desktop-only"></data-column> 
+<!--     <data-column key="properties.regu:fecha_vencimiento" type="date" format="shortDate" title="Vencimiento" class="adf-desktop-only">
+    </data-column> -->
+    <data-column 
+    title="Envío"
+    key="properties.regu:enviado"
+    type="text"
+    [sortable]="false"
+    class="adf-desktop-only">
+    <ng-template let-context="$implicit">
+        <div  *ngIf="context.row.getValue('properties.regu:enviado') == 'SI' ">
+                <mat-icon >email</mat-icon>
+        </div>
+    </ng-template>
+  </data-column>
+    <data-column title="Vencimiento" key="properties.regu:fecha_vencimiento" type="date" format="shortDate" class="adf-desktop-only">
+        <ng-template let-context="$implicit">
+           <span> {{context.row.getValue('properties.regu:fecha_vencimiento') | date:'dd/MM/yyyy'}}</span>
+        </ng-template>
+    </data-column>
+
+  <!--   <data-column title="Vencimiento" key="modifiedAt" type="date" format="shortDate" >
+        <ng-template let-context="$implicit">
+           <span> {{context.row.getValue('modifiedAt.') | date:'dd/MM/yyyy HH:mm'}}</span>
+        </ng-template>
+    </data-column> -->
+    <data-column title="Última Modificación" key="modifiedAt" type="date" format="shortDate" class="adf-desktop-only">
+        <ng-template let-context="$implicit">
+           <span> {{context.row.getValue('modifiedAt') | date:'dd/MM/yyyy'}}</span>
+        </ng-template>
+    </data-column>
+    <data-column key="modifiedByUser.displayName" type="text" title="Modificado por" class="adf-desktop-only"></data-column>
+</data-columns>  
+
+<adf-no-content-template>
+    <!--Add your custom empty template here-->
+    <ng-template>
+        <h3>No se encontrarón resultados</h3>
+    </ng-template>
+</adf-no-content-template>
+</adf-datatable>

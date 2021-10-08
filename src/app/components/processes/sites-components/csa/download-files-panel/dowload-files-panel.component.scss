@@ -1,0 +1,212 @@
+
+.mat-form-field {
+	width: 80%;
+	margin-top: 2%;
+}
+/* #table-form-search > tbody > tr > td{
+	padding: 10px;
+} */
+.filtros-tabla {margin-bottom:10px;}
+.caja {
+margin-left:5%;
+margin-right:2%;
+}
+
+.divbottom {padding-bottom: 2%;}
+.labelnegra {font-weight:bold;margin-right:2%;}
+
+
+.botonrojo { background-color: #e10000; width:80px; height:30px; border-radius: 10px; font-weight: bold; color: white;}
+
+
+.botongris { background-color: #828285; width:80px; height:30px; border-radius: 10px; font-weight: bold; color: white;}
+
+.mat-tab-group {
+	display:inline;
+}
+.mat-tab-label-content{
+	font-size:16px;
+	font-weight:bold;
+	color: black;
+}
+
+/* .example-container1 {
+    width: 40%;
+    display: inline;
+    float: right;
+} */
+
+.buscador {
+  width: 30%;
+  margin-right: 2%;
+
+	
+}
+.negro {
+	font-weight:bold;
+}
+.rojo {
+	color:#e10000;
+	font-weight: bold; 
+}
+.enlacerojo {
+		color:#e10000;
+}
+
+.gris {
+	color:#828285;
+	font-weight: bold; 
+}
+.grisnone {
+	color:#828285;
+	font-size:15px;
+}
+
+.border1 {
+	border:1px;
+}
+
+.trheight {
+	height:150px;
+}
+.adf-empty_template {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.adf-no-result-message{
+  height: 32px;
+  opacity: 0.26;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: -1px;
+}
+
+
+#documentList{
+   width:80%;
+}
+   
+.buscar2 {
+	width:27% !important;
+	font-size:14px !important;
+}
+   
+.forumulario{
+	font-size: 13.3333px !important;
+	width: 180px !important;
+	height: 45px !important;
+	background: #eee !important;
+	border: none !important;
+	color: #000 !important;
+	padding-left: 15px !important;
+    font-weight: bold !important;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+   
+.forumulariofecha{
+	font-size: 13.3333px !important;
+	width: 166px !important;
+	height: 45px !important;
+	background: #eee !important;
+	border: none !important;
+	color: #000 !important;
+	padding-left: 15px !important;
+	font-weight: bold !important;
+}
+  
+select::-ms-expand {
+	border: none;
+	margin-right:3px;
+}
+  
+.container-4 input{
+	width: 303px;
+	height: 45px;
+	background: #eee;
+	border: none;
+	font-size: 10pt;
+	float: left;
+	color: #000;
+	margin-left: 15px;
+	padding-left: 15px;
+	font-weight: bold;
+}
+
+.container-4 button.icon{
+	height: 45px;
+	background: #eee;
+	border: none;
+}
+
+/* .selectipo {
+	padding-left: 19px;
+	width: 50px;
+	display: inline;
+} */
+
+.container-4 input:-webkit-input-placeholder {
+	color: #000;
+}
+ 
+.container-4 input:-moz-placeholder { /* Firefox 18- */
+	color: #000;  
+}
+ 
+.container-4 input:-moz-placeholder {  /* Firefox 19+ */
+	color: #000;  
+}
+ 
+.container-4 input:-ms-input-placeholder {  
+	color: #000;  
+}
+
+.lupa{
+	height: auto;
+	font-weight: bold;
+}
+
+
+.enlinea{
+	display:inline;
+}
+  
+.clearboth{
+  clear:both;
+  margin-top:20px;
+  margin-bottom:70px;
+}
+
+select[name="searchDataTable_length"]{
+	background: #eee;
+    border: none;
+    color: #000;
+    margin-left: 15px;
+    padding-left: 15px;
+    margin-right: 15px;
+    font-weight: bold;
+    height: 30px;
+	cursor: pointer;
+}
+
+.sorting_disabled{
+	background-image: none !important;
+    cursor: inherit !important;
+}
+
+.clearDropdown {
+	cursor: pointer; height: 45px; border: none; background: rgb(238, 238, 238); vertical-align: bottom;
+}
+.clearDropdown>i{font-size: 12px !important;}
+
+.clearDropdownfecha {
+	cursor: pointer; height: 45px; border: none; background: rgb(238, 238, 238); vertical-align: bottom;
+}
+.clearDropdownfecha >i{font-size: 12px !important;}
+
+p {
+  font-family: Lato;
+}
+

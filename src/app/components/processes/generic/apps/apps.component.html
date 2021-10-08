@@ -1,0 +1,19 @@
+<!-- <adf-apps id="apps-id" data-automation-id="activiti-menu" [layoutType]="'GRID'" (appClick)="onAppSelection($event)"></adf-apps> -->
+
+<div class="container" fxLayout="row wrap"   fxLayoutAlign="center stretch">
+<!--     <div fxFlex="25%" fxFlex.sm="48%" fxFlex.xs="85%"  fxLayoutAlign="center center"  style="border:solid 1px #828285 ;" >
+            <img  (click)="seleccionarApp('CSA')" class="img" style="max-width: 100px;" src="../../../assets/apps/CSA_48x48.png">
+    </div> -->
+    <div class="container-app" fxLayout="column"  fxLayoutAlign="center center" fxFlex="0 0 25%" fxFlex.sm="0 0 40%" fxFlex.xs="0 0 80%"  (click)="seleccionarApp({ name: 'Aplicacion de tareas', icon: 'task', id: 0 })" >
+        <div >
+            <img  class="app-img"  src="./assets/apps/task_32x32.png">
+        </div>
+        <span class="app-span">APLICACION DE TAREAS</span>
+    </div>
+    <div class="container-app" fxLayout="column"  fxLayoutAlign="center center" fxFlex="0 0 25%" fxFlex.sm="0 0 40%" fxFlex.xs="0 0 80%" *ngFor="let app of bpmUserService.get_apps()" (click)="seleccionarApp(app)" >
+        <div >
+            <img   class="app-img"  src="./assets/apps/{{app?.icon}}_32x32.png">
+        </div>
+        <span class="app-span">{{app?.name | uppercase }}</span>
+    </div>
+  </div>

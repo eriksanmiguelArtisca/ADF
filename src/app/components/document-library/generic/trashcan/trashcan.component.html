@@ -1,0 +1,46 @@
+<!-- <adf-toolbar>
+  <adf-toolbar-title>
+    <adf-breadcrumb
+      class="files-breadcrumb"
+      root="Personal Files"
+      [target]="documentList"
+      [folderNode]="documentList.folderNode">
+    </adf-breadcrumb>
+  </adf-toolbar-title>
+
+  <div class="adf-toolbar--spacer"></div>
+
+
+</adf-toolbar>
+
+<adf-document-list
+  #trashcan
+  currentFolderId="-root-"
+  (preview)="showPreview($event)">
+</adf-document-list>
+
+<adf-file-uploading-dialog></adf-file-uploading-dialog> -->
+
+<adf-document-list #trashcan
+    contentActions="true"
+    contentActionsPosition="right"
+    contextMenuActions="true"
+    currentFolderId="-trashcan-">
+
+    <content-actions>
+        <content-action
+          title="Restaurar"
+          [icon]="'restore'"
+          (execute)="restore($event)">
+        </content-action>
+     
+    </content-actions>
+
+    <adf-custom-empty-content-template>
+      <adf-empty-content
+          icon="delete"
+          title="La papelera esta vacia">
+      </adf-empty-content>
+  </adf-custom-empty-content-template>
+  
+</adf-document-list>

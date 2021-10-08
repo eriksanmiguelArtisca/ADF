@@ -1,0 +1,33 @@
+/****************************************************
+            START CUSTOM CSS
+*****************************************************/
+.container {
+    min-height: 100%;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.container-app {
+    padding: 2%;
+    box-shadow: #828285 0px 0px 5px 2px;
+    margin: 2%;
+}
+
+.container-app > div {
+    height: 80%;
+}
+.app-img {
+    max-width: 85px;
+}
+.app-span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e10000;
+}
+
+.container-app:hover {
+    cursor: pointer;
+}
+/****************************************************
+            END CUSTOM CSS
+*****************************************************/

@@ -1,0 +1,94 @@
+<div fxLayout="row" fxLayout.xs="column">
+    <div fxLayout="column" fxFlex="80%" fxFlex.xs="90%"
+        style="margin: 0 auto; margin-left: 0 auto; text-align: center;">
+        <h2 _ngcontent-ebq-c11="" style="text-align: center; color: gray; margin-top: 35px;">
+             {{ this.filterType == 'file' ? 'Extraccion por Fichero' : 'Búsqueda Avanzada' }}
+        </h2>
+        <fieldset id="fieldset-search" style="padding-top: 2%; padding-bottom: 2%;">
+            <table id="table-form-search" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <mat-form-field class="text" appearance="legacy" floatLabel="always">
+                                <mat-label class="negrita">Acreedor</mat-label>
+                                <input matInput [(ngModel)]="filters['fi:proveedor_sap_']" />
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="text" appearance="legacy" floatLabel="always">
+                                <mat-label class="negrita">Documento SAP</mat-label>
+                                <input matInput [(ngModel)]="filters['fi:numero_documento_sap']" />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="text" appearance="legacy" floatLabel="always">
+                                <mat-label class="negrita">Sociedad</mat-label>
+                                <input matInput [(ngModel)]="filters['fi:sociedad']" />
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="text" appearance="legacy" floatLabel="always">
+                                <mat-label class="negrita">Ejercicio</mat-label>
+                                <input matInput [(ngModel)]="filters['fi:ejercicio']" />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field appearance="legacy" class="date" floatLabel="always"
+                                style="margin-bottom: 5px;">
+                                <mat-label class="negrita">Fecha contabilización</mat-label>
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="filters['fi:fecha_contable_']" />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-hint>DD/MM/AAAA</mat-hint>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="text" appearance="legacy" floatLabel="always">
+                                <mat-label class="negrita">Referencia factura</mat-label>
+                                <input matInput [(ngModel)]="filters['fi:numero_factura_']" />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div style="display: none; text-align: start; margin-top: 30px; /* margin-left: 30px; */ ">
+                <label style="color: grey; margin: 0px; font-size: 12px;">* Acreedor,Documento,Sociedad y Ejercicio
+                    soportan valores
+                    multiples y rangos</label>
+            </div>
+        </fieldset>
+
+        <div id="buttons-bar" style="width: 80%; margin: 15px 0 0 0; align-self: flex-end;">
+            <div style="text-align: end;">
+
+                <button  id="btn-export-filters" mat-raised-button color="primary"
+                    style="margin-right: 1%; margin-bottom: 0;" [ngStyle.xs]="{ 'margin-bottom': '3%' }"
+                    (click)="exportarFicheros()">
+                    <span>Ejecutar</span>
+                </button>
+                <button  id="btn-reset-filters" mat-raised-button color="primary"
+                    style="margin-right: 1%; margin-bottom: 0;" [ngStyle.xs]="{ 'margin-bottom': '3%' }"
+                    (click)="limpiar()">
+                    <span>Limpiar Filtros</span>
+                </button>
+                <button  id="btn-export-file" mat-raised-button color="primary" (click)="exportarDeFichero()">
+                    <span>Ejecutar </span>
+                </button>
+                <div fxLayout="row" style="width: 70%; max-width: 70%;align-items: center; margin: 10px;"
+                    *ngIf="buscando">
+                    <mat-progress-spinner [color]="primary" [mode]="'indeterminate'">
+                    </mat-progress-spinner>
+                    <h3 style="margin-left: 30px;">Buscando Ficheros</h3>
+                </div>
+            </div>
+            
+        </div>
+
+        <app-upload-file  id="app-upload-file" #uploadFileComponent></app-upload-file>
+    </div>
+</div>

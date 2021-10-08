@@ -1,0 +1,157 @@
+<mat-card>
+
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+    <mat-select-autocomplete id="metadatos" class="grid-7-11"  *ngIf="site=='financiero'"
+    [placeholder]="'Seleccione Metadatos'"
+    [options]="financiero"
+    [display]="'display'"
+    [value]="'value'"
+    [multiple]='false'
+    [selectedOptions]="selectedOptions"
+    (selectionChange)="getSelectedOptions($event)">
+  </mat-select-autocomplete>
+ <!--<mat-select id="metadatos"  [placeholder]="'Seleccione Metadatos'" [(ngModel)]="selectedOptions" (selectionChange)="getSelectedOptions($event.value)">
+    <mat-option
+         *ngFor="let obj of financiero"
+                  [value]="obj.value">
+            {{ obj.display }}
+    </mat-option>
+</mat-select>--> 
+    <mat-card-content>
+        <div fxLayout="column" fxLayoutWrap fxLayoutGap="5px">
+            <div fxFlex="calc(70%-25px)" fxLayoutGap="2%">
+                <mat-form-field class="text" appearance="legacy" floatLabel="always" >         
+                        <mat-label class="negrita">Titulo</mat-label>
+                        <input matInput [(ngModel)]="formValues['cm:title']" >
+                    </mat-form-field>
+            </div>
+            <div fxFlex="calc(70%-25px)" fxLayoutGap="2%">
+                <mat-form-field class="text" appearance="legacy" floatLabel="always" >         
+                        <mat-label class="negrita">Descripcion</mat-label>
+                        <input matInput [(ngModel)]="formValues['cm:description']" >
+                    </mat-form-field>
+            </div>
+            <div fxFlex="calc(70%-25px)" fxLayoutGap="2%">
+                <mat-form-field class="text" appearance="legacy" floatLabel="always" >       
+                        <mat-label class="negrita">Autor</mat-label>
+                        <input matInput [(ngModel)]="formValues['cm:author']" >
+                    </mat-form-field> 
+                </div>
+            <h3 class="site-metadata-title" *ngIf=" site!='financiero'">Metadatos Site: </h3>
+            <ng-container *ngFor="let propertie of fields">
+             
+                <h3 class="site-metadata-title" *ngIf="propertie.dataType=='Titulo' && site=='financiero'">Metadatos :{{propertie.title }}  </h3>
+                <div fxFlex="calc(70%-25px)" fxLayoutGap="2%">
+                    <mat-form-field class="text" *ngIf="propertie.dataType=='d:text' && propertie.constraints[0]"
+                        appearance="legacy" floatLabel="always">
+                        <!-- <strong> {{propertie.title }}</strong> -->
+                        <mat-label class="negrita"> {{propertie.title }}</mat-label>
+                        <mat-select style="margin-top:8px;" [(ngModel)]="formValues[propertie.name]"
+                            panelClass="create-node-form-select">
+                            <mat-option
+                                *ngFor="let option of propertie.constraints[0].parameters[0].allowedValues"
+                                value="{{ option }}">{{ option }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="text" *ngIf=" propertie.dataType=='d:text' && !propertie.constraints[0] ||
+                                                         propertie.dataType=='d:mltext'  && !propertie.constraints[0]"
+                                        appearance="legacy" floatLabel="always">
+                                        
+                        <mat-label class="negrita"> {{propertie.title }}</mat-label>
+                        <!--  <strong> {{propertie.title }}</strong> -->
+                        <input matInput [(ngModel)]="formValues[propertie.name]" >
+                    </mat-form-field>
+
+                    <mat-form-field class="text" *ngIf="(propertie.dataType=='d:long' || propertie.dataType=='d:double') &&  !propertie.constraints[0]"
+                        appearance="legacy" floatLabel="always">
+                        
+                        <mat-label class="negrita"> {{propertie.title }}</mat-label>
+                        <!--  <strong> {{propertie.title }}</strong> -->
+                        <input (blur)="validate(propertie)" matInput [(ngModel)]="formValues[propertie.name]" >
+                        </mat-form-field>
+                        
+
+                    <mat-form-field *ngIf="propertie.dataType=='d:datetime'" appearance="legacy" class="date"
+                        floatLabel="always" style="margin-bottom: 5px;">
+                        <mat-label class="negrita">{{propertie.title }}</mat-label>
+                        <!-- <strong> {{propertie.title }}</strong> -->
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="formValues[propertie.name]">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint>DD/MM/AAAA</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="propertie.dataType=='d:datetime'" class="date">
+                        <mat-label class="negrita">HORA</mat-label>
+                        <input matInput type="time" [(ngModel)]="timeFieldValues[propertie.name]">
+                        <mat-hint>HH:MM (24 Horas)</mat-hint>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+
+            <div fxFlex="calc(70%-25px)" fxLayout="column">
+                <h3>Etiquetas :</h3>
+
+                <button mat-raised-button color="primary" style="width: 140px;" (click)="abrirTagsDialog()">
+                    <span>Seleccionar </span>
+                </button>
+            </div>
+
+            <div fxFlex="calc(70%-25px)" fxLayout="column" *ngIf="!updateNode">
+                <h3>Archivo Subida :</h3>
+
+                <adf-upload-button staticTitle="Subir archivo" (success)="onUploadSuccess($event)"
+                    [rootFolderId]="carpetaSubida" (permissionEvent)="onUploadPermissionFailed($event)" color="primary"
+                    style="width: 140px;">
+                </adf-upload-button>
+
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="uploadFile !== null">
+                    <img src="{{ uploadFile.content.mimeType | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+                    <h3>{{uploadFile.name }}</h3>
+                    <button mat-icon-button color="primary" (click)="quitarFicheroSubida(uploadFile)">
+                        <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">cancel</mat-icon>
+                    </button>
+
+                </div>
+            </div>
+
+
+            <div fxFlex="calc(70%-25px)" fxLayout="column" *ngIf="association['title']">
+                <h3>{{ association['title']}} :</h3>
+                <button mat-raised-button color="primary" style="width: 140px;" (click)="abrirBrowserDialog()">
+                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">file_upload</mat-icon>
+                    <span>Seleccionar </span>
+                </button>
+                <div class="related-documents-list" fxLayout="row" fxLayoutAlign="start center" *ngFor="let nodo of  this.nodoRelacionados">
+                    <img src="{{ nodo.content.mimeType | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+                    <h3>{{nodo.name }}</h3>
+                    <button mat-icon-button color="primary" (click)="quitarNodoRelacionado(nodo)">
+                        <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">cancel</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div fxFlex="calc(70%-25px)">
+            <button mat-raised-button color="primary" style="width: 140px;"
+                (click)="cancelarSubida();">Cancelar</button>
+            <button mat-raised-button color="primary"
+                style="width: 140px;" (click)="crearNodo();">{{updateNode ? 'Editar' : 'Crear'}}</button>
+        </div>
+    </mat-card-actions>
+
+    
+    <!--     <div class="row bottom">
+        <button mat-raised-button color="primary"
+            [disabled]="horaEntradaControl.errors?.pattern || horaSalidaControl.errors?.pattern || horaEscritoControl.errors?.pattern  "
+            style="width: 140px;" (click)="crearNodo();">
+            <span>Finalizar </span>
+        </button>
+        <button mat-raised-button color="primary" style="width: 140px;" (click)="cancelarSubida();">
+            <span>Cancelar </span>
+        </button>
+    </div> -->
+</mat-card>

@@ -1,0 +1,174 @@
+<button *ngIf="mostrarBusqueda==false" style="color: #828285;font-weight: bold; width: 9%;" mat-menu-item (click)="vistaFiltro()"><span>Filtros Avanzados</span></button>
+<button *ngIf="mostrarBusqueda==true && selectedapp!='Aplicacion de tareas'" style="color: #828285;font-weight: bold; width: 9%;" mat-menu-item (click)="vistaNormal()"><span>Volver a Tareas</span></button>
+<div  *ngIf="mostrarBusqueda==true">
+<div class="filtros-tabla">
+
+    <span>DEFINICIÓN DE PROCESOS</span>
+    <select  [(ngModel)]="definicionProceso" (ngModelChange)="filtrar($event)">
+        <option *ngFor="let data of dataprocesos"  [value]="data.key">
+            {{data.name}}
+          <option>
+     </select>  
+    <span  [hidden]="!definicionProceso"> NOMBRE</span>
+    <input [hidden]="!definicionProceso"  type="text" [(ngModel)]="nombreProceso" (ngModelChange)="filtrar($event)">
+
+    <span [hidden]="!definicionProceso" >ESTADO</span>
+    <select [hidden]="!definicionProceso" type="text" [(ngModel)]="estadoProceso" (ngModelChange)="filtrar($event)">
+    <option  value="open">Abierto</option>
+    <option value="completed">Completado</option>
+     </select> 
+
+     <span [hidden]="!definicionProceso">PARTICIPANTE</span>
+     <select [hidden]="!definicionProceso" type="text" name="nombre Fichero" [(ngModel)]="participanteProceso" (ngModelChange)="filtrar($event)">
+     <option value="involved">Participante</option>
+     <option value="assignee">Mis Tareas</option>
+     <option value="candidate">En Cola</option>
+      </select> 
+
+     <span [hidden]="!definicionProceso">CLASIFICAR</span>
+     <select [hidden]="!definicionProceso" type="text" name="nombre Fichero" [(ngModel)]="clasificarProceso" (ngModelChange)="filtrar($event)">
+     <option value="created-desc">Más Reciente</option>
+     <option value="created-asc">Más Antiguo</option>
+      </select> 
+      <button [hidden]="!definicionProceso" (click)="limpiarFiltros()">Limpiar Filtros</button>
+  </div>
+<!--Procesos vista busqueda-->
+
+
+    <adf-datatable #dataTable
+    [(rows)]="datasearch"
+    [columns]="schemaColumns">
+        <adf-no-content-template>
+            <!--Add your custom empty template here-->
+            <ng-template>
+                <p>No se encontrarón resultados</p>
+            </ng-template>
+        </adf-no-content-template>
+        <adf-loading-content-template>
+            <ng-template>
+                <!--Add your custom loading template here-->
+                <mat-progress-spinner
+                    class="adf-document-list-loading-margin"
+                    [color]="'primary'"
+                    [mode]="'indeterminate'">
+                </mat-progress-spinner>
+            </ng-template>
+        </adf-loading-content-template>
+        <data-columns>
+            <data-column key="name" title="ADF_PROCESS_LIST.PROPERTIES.NAME" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+                    <div title="{{entry.row.obj.name }}">{{entry.row.obj.name}}</div>
+                </ng-template>
+            </data-column>
+            <data-column key="created" title="ADF_TASK_LIST.PROPERTIES.CREATED" type="date" format="timeAgo" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+            </data-column>
+                <data-column key="processDefinitionName" type="location" [sortable]="false" title="ADF_PROCESS_LIST.PROPERTIES.PROCESS_NAME" class="desktop-only">
+                    <ng-template let-entry="$implicit">
+                        <a *ngIf="selectedapp!='IT' && definicionProceso != 'it_widarb'" title="{{entry.row.obj.processDefinitionName }}"> {{entry.row.obj.name.split('|')[0] + '|'}} {{entry.row.obj.name.split('|')[2]}}</a>
+                        <a *ngIf="selectedapp=='IT' || definicionProceso == 'it_widarb'" title="{{entry.row.obj.processDefinitionName }}"> {{entry.row.obj.processDefinitionName}}</a>
+
+                    </ng-template>
+                </data-column>
+            <data-column key="assignee" type="text" [sortable]="false" title="ADF_TASK_LIST.PROPERTIES.ASSIGNEE" class="desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+                   <div *ngIf="entry.row.obj.assignee!=null" title="{{entry.row.obj.assignee | fullName}}">{{entry.row.obj.assignee | fullName}}</div>
+                   <button *ngIf="entry.row.obj.assignee==null" mat-raised-button color="primary" (click)="asignarTarea(entry.row.obj.id)">
+                           <span>Asignar Tarea a Usuario</span>
+                    </button>
+                </ng-template>
+            </data-column>
+        <data-column key="id" [sortable]="false">
+        <ng-template let-entry="$implicit">
+            <button style="margin-right:2%;" *ngIf="entry.row.obj.assignee==null" mat-raised-button color="primary" (click)="claimTask(entry.row.obj.id)">
+            <span>Pedir y Ejecutar</span>
+            </button>
+            <!--<button *ngIf="entry.row.obj.assignee!=null" mat-raised-button color="primary" (click)="unclaimTask(entry.row.obj.id)">-->
+            <button *ngIf="ShowPedir(entry.row.obj.taskDefinitionKey)==true && entry.row.obj.assignee!=null && entry.row.obj.endDate==null" style="margin-right:2%;" mat-raised-button color="primary" (click)="unclaimTask(entry.row.obj.id)">
+            <span>Liberar</span>
+            </button>
+            <button *ngIf="entry.row.obj.assignee!=null"  mat-raised-button color="primary" (click)="viewTask(entry.row.obj.id)">
+                <span *ngIf="entry.row.obj.endDate!=null">Visualizar</span>
+                <span *ngIf="entry.row.obj.endDate==null">Ejecutar</span>
+            </button>
+        </ng-template>
+    </data-column>
+    <data-column key="id" [sortable]="false" class="adf-datatable-cell adf-datatable__actions-cell adf-datatable-center-actions-column-ie">
+        <ng-template let-entry="$implicit" style="float:right;">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                   <button mat-menu-item (click)="VerProceso(currentFilter.appId,entry.row.obj.processInstanceId)">Ver Diagrama</button>
+                   <button mat-menu-item (click)="onRowClick(entry.row.obj.id)">Ver Detalles</button>
+           </mat-menu>
+        </ng-template>
+    </data-column>
+        </data-columns>
+    </adf-datatable>
+
+    </div>
+    <!--Procesos vista normal-->
+<div *ngIf="currentFilter?.filter && currentFilter.appId && currentFilter.name && mostrarBusqueda==false"  fxLayout="column" fxLayoutAlign="space-between stretch" class="task-list-container">
+    <adf-tasklist #taskList data-automation-id="tasklist-table"
+        [appId]="currentFilter.appId"
+        [presetColumn]="presetColoum"
+        [size]="paginationPageSize"
+        [selectionMode]="selectionMode"
+        [processDefinitionId]="currentFilter.filter.processDefinitionKey"
+        [name]="currentFilter.filter.name"
+        [assignment]="currentFilter.filter.assignment"
+        [state]="currentFilter.filter.state"
+        [sort]="currentFilter.filter.sort"
+        [data]="dataTasks"
+        (success)="onSuccessTaskList($event)"
+        #taskList>
+            <data-columns>
+                    <data-column key="processDefinitionName" type="location" [sortable]="false" title="ADF_PROCESS_LIST.PROPERTIES.PROCESS_NAME" class="desktop-only">
+                            <ng-template let-entry="$implicit">
+                                <a *ngIf="selectedapp!='IT'" title="{{entry.row.obj.processDefinitionName }}"> {{entry.row.obj.name.split('|')[0] + '|'}} {{entry.row.obj.name.split('|')[2]}}</a>
+                                <a *ngIf="selectedapp=='IT'" title="{{entry.row.obj.processDefinitionName }}"> {{entry.row.obj.processDefinitionName}}</a>                            </ng-template>
+                        </data-column>
+                    <data-column key="assignee" type="text" [sortable]="false" title="ADF_TASK_LIST.PROPERTIES.ASSIGNEE" class="desktop-only adf-data-table-cell--ellipsis">
+                        <ng-template let-entry="$implicit">
+                           <div *ngIf="entry.row.obj.assignee!=null" title="{{entry.row.obj.assignee | fullName}}">{{entry.row.obj.assignee | fullName}}</div>
+						   <button *ngIf="entry.row.obj.assignee==null" mat-raised-button color="primary" (click)="asignarTarea(entry.row.obj.id)">
+						   		<span>Asignar Tarea a Usuario</span>
+							</button>
+                        </ng-template>
+                    </data-column>
+			    <data-column key="id" [sortable]="false">
+                <ng-template let-entry="$implicit">
+					<button style="margin-right:2%;" *ngIf="entry.row.obj.assignee==null" mat-raised-button color="primary" (click)="claimTask(entry.row.obj.id)">
+					<span>Pedir y Ejecutar</span>
+                    </button>
+                    <!--<button *ngIf="entry.row.obj.assignee!=null" mat-raised-button color="primary" (click)="unclaimTask(entry.row.obj.id)">-->
+					<button *ngIf="ShowPedir(entry.row.obj.taskDefinitionKey)==true && entry.row.obj.assignee!=null && entry.row.obj.endDate==null" style="margin-right:2%;" mat-raised-button color="primary" (click)="unclaimTask(entry.row.obj.id)">
+					<span>Liberar</span>
+					</button>
+					<button *ngIf="entry.row.obj.assignee!=null"  mat-raised-button color="primary" (click)="viewTask(entry.row.obj.id)">
+                    <span *ngIf="entry.row.obj.endDate!=null">Visualizar</span>
+                    <span *ngIf="entry.row.obj.endDate==null">Ejecutar</span>
+					</button>
+                </ng-template>
+            </data-column>
+			<data-column key="id" [sortable]="false" class="adf-datatable-cell adf-datatable__actions-cell adf-datatable-center-actions-column-ie">
+			    <ng-template let-entry="$implicit" style="float:right;">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                           <button mat-menu-item (click)="VerProceso(currentFilter.appId,entry.row.obj.processInstanceId)">Ver Diagrama</button>
+						   <button mat-menu-item (click)="onRowClick(entry.row.obj.id)">Ver Detalles</button>
+                   </mat-menu>
+                </ng-template>
+            </data-column>
+	</data-columns>
+    </adf-tasklist>
+    <adf-pagination
+        *ngIf="taskList"
+        [target]="taskList"
+        [supportedPageSizes]="supportedPageSizes"
+        (changePageSize)="onChangePageSize($event)"
+        #taskListPagination>
+    </adf-pagination>
+</div>

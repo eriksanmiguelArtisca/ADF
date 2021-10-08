@@ -1,0 +1,865 @@
+
+
+<div class="formPrueba column" >
+  <h2 >Nuevo Fichero</h2>
+  <h3 >Ruta subida : {{ ruta }}</h3>
+
+  <mat-form-field  id="tipologia-documento" >
+      <strong> TIPOLOGÍA DOCUMENTO </strong>
+      <mat-select style="margin-top:8px;" [(ngModel)]="nodoRegulacion.tipologia">
+        <mat-option value=""></mat-option>
+        <mat-option value="DOCUMENTO INTERNO" selected="selected">DOCUMENTO INTERNO</mat-option>
+        <mat-option value="LEY">LEY</mat-option>
+        <mat-option value="ENTRADA">ENTRADA</mat-option>
+        <mat-option value="SALIDA">SALIDA</mat-option>
+        <mat-option value="ORTOS">OTROS</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+      <mat-form-field  id="revisado">
+          <strong>REVISADO</strong>
+          <mat-select style="margin-top:8px;" [(ngModel)]="nodoRegulacion.revisado">
+            <mat-option value="" selected="selected"></mat-option>
+            <mat-option value="NO">NO</mat-option>
+            <mat-option value="SI">SI</mat-option>
+          </mat-select>
+        </mat-form-field>
+   
+        <mat-form-field  id="tipo-documento">
+          <strong>TIPO DOCUMENTO</strong>
+            <mat-select style="margin-top:8px;" [(ngModel)]="nodoRegulacion.tipoDocumento">
+                <mat-option value="" selected="selected"></mat-option>
+                <mat-option value="INFORME">INFORME</mat-option>
+                <mat-option value="OTROS">OTROS</mat-option>
+                <mat-option value="REAL DECRETO">REAL DECRETO</mat-option>
+                <mat-option value="LEY">LEY</mat-option>
+                <mat-option value="ALEGACIONES">ALEGACIONES</mat-option>
+                <mat-option value="CARTA">CARTA</mat-option>
+                <mat-option value="RESOLUCION">RESOLUCION</mat-option>
+                <mat-option value="SOLICITUD">SOLICITUD</mat-option>
+                <mat-option value="RECURSO">RECURSO</mat-option>
+                <mat-option value="OFICIO">OFICIO</mat-option>
+                <mat-option value="FORMULARIO">FORMULARIO</mat-option>
+                <mat-option value="REAL DECRETO - LEY">REAL DECRETO - LEY</mat-option>
+                <mat-option value="LIQUIDACION">LIQUIDACION</mat-option>
+                <mat-option value="ACTA">ACTA</mat-option>
+                <mat-option value="FAX">FAX</mat-option>
+                <mat-option value="AUTORIZACION">AUTORIZACION</mat-option>
+                <mat-option value="DICTAMEN">DICTAMEN</mat-option>
+                <mat-option value="ESTIMACION">ESTIMACION</mat-option>
+                <mat-option value="CONTRATO">CONTRATO</mat-option>
+                <mat-option value="FACTURA">FACTURA</mat-option>
+                <mat-option value="BOLETIN DE ENCUESTA">BOLETIN DE ENCUESTA</mat-option>
+                <mat-option value="ESCRITURA">ESCRITURA</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field  class="form-input-text">
+            <mat-label class="negrita" >NÚMERO DE PÁGINAS</mat-label>
+            <input matInput maxlength="50" type="number" [(ngModel)]="nodoRegulacion.numeroPaginas" >
+          </mat-form-field>
+          
+          <mat-form-field  id="organismo-destino">
+            <strong>ORGANISMO DESTINO</strong>
+              <mat-select style="margin-top:8px;"  [(ngModel)]="nodoRegulacion.organismoDestino" >
+                <mat-option value="" selected="selected"></mat-option>
+                <mat-option value="PÚBLICO">PÚBLICO</mat-option>
+                <mat-option value="OTROS">OTROS</mat-option>
+                <mat-option value="E.ON ESPAÑA">E.ON ESPAÑA</mat-option>
+                <mat-option value="UNESA">UNESA</mat-option>
+                <mat-option value="CNE">CNMC</mat-option>
+                <mat-option value="RED ELECTRICA DE ESPANA">RED ELECTRICA DE ESPANA</mat-option>
+                <mat-option value="E.ON DISTRIBUCION">E.ON DISTRIBUCION</mat-option>
+                <mat-option value="MINISTERIO DE MEDIO AMBIENTE">MINISTERIO DE MEDIO AMBIENTE</mat-option>
+                <mat-option value="MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO">MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO</mat-option>
+                <mat-option value="E.ON GENERACION">E.ON GENERACION</mat-option>
+                <mat-option value="E.ON ENERGIA">E.ON ENERGIA</mat-option>
+                <mat-option value="CONSEJO DE ESTADO">CONSEJO DE ESTADO</mat-option>
+                <mat-option value="MINISTERIO DE ECONOMIA Y HACIENDA">MINISTERIO DE ECONOMIA Y HACIENDA</mat-option>
+                <mat-option value="GOBIERNO DE CANTABRIA">GOBIERNO DE CANTABRIA</mat-option>
+                <mat-option value="JUNTA DE GALICIA">JUNTA DE GALICIA</mat-option>
+                <mat-option value="GOBIERNO DE ASTURIAS">GOBIERNO DE ASTURIAS</mat-option>
+                <mat-option value="JUNTA DE CASTILLA Y LEON">JUNTA DE CASTILLA Y LEON</mat-option>
+                <mat-option value="E.ON SERVICIOS">E.ON SERVICIOS</mat-option>
+                <mat-option value="COMISION EUROPEA. COMPETITION DG MARGER NETWORK">COMISION EUROPEA. COMPETITION DG MARGER NETWORK</mat-option>
+                <mat-option value="JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA">JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA</mat-option>
+                <mat-option value="CEM">CEM</mat-option>
+                <mat-option value="TRIBUNAL DE DEFENSA DE LA COMPETENCIA">TRIBUNAL DE DEFENSA DE LA COMPETENCIA</mat-option>
+                <mat-option value="OMEL">OMEL</mat-option>
+                <mat-option value="CAMARA CANTABRIA">CAMARA CANTABRIA</mat-option>
+                <mat-option value="INSTITUTO ARAGONES DE GESTION AMBIENTAL">INSTITUTO ARAGONES DE GESTION AMBIENTAL</mat-option>
+                <mat-option value="JUNTA DE ANDALUCIA">JUNTA DE ANDALUCIA</mat-option>
+                <mat-option value="GOBIERNO DE ARAGON">GOBIERNO DE ARAGON</mat-option>
+                <mat-option value="E.ON">E.ON</mat-option>
+                <mat-option value="BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA">BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA</mat-option>
+                <mat-option value="E.ON COMERCIALIZADORA ÚLTIMO RECURSO">E.ON COMERCIALIZADORA ÚLTIMO RECURSO</mat-option>
+                <mat-option value="ENAGAS">ENAGAS</mat-option>
+                <mat-option value="CONFEDERACIONES HIDROGRÁFICAS">CONFEDERACIONES HIDROGRÁFICAS</mat-option>
+                <mat-option value="GENERALITAT DE CATALUÑA">GENERALITAT DE CATALUÑA</mat-option>
+                <mat-option value="Corporación Reservas Estratégicas">Corporación Reservas Estratégicas</mat-option>
+                <mat-option value="ADMINISTRACIÓN GENERAL DEL ESTADO">ADMINISTRACIÓN GENERAL DEL ESTADO</mat-option>
+                <mat-option value="DELEGACIÓN DEL GOBIERNO">DELEGACIÓN DEL GOBIERNO</mat-option>
+                <mat-option value="VIESGO INFRAESTRUCTURAS ENERGÉTICAS">VIESGO INFRAESTRUCTURAS ENERGÉTICAS</mat-option>
+                <mat-option value="VIESGO DISTRIBUCIÓN ELÉCTRICA">VIESGO DISTRIBUCIÓN ELÉCTRICA</mat-option>
+                <mat-option value="VIESGO GENERACIÓN">VIESGO GENERACIÓN</mat-option>
+                <mat-option value="VIESGO PRODUCCIÓN">VIESGO PRODUCCIÓN</mat-option>
+                <mat-option value="VIESGO ENERGÍA">VIESGO ENERGÍA</mat-option>
+                <mat-option value="VIESGO COMERCIALIZADORA DE REFERENCIA">VIESGO COMERCIALIZADORA DE REFERENCIA</mat-option>
+                <mat-option value="VIESGO RENOVABLES">VIESGO RENOVABLES</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+              <mat-form-field  id="cargo-ejecutivo-destino">
+                <strong>CARGO EJECUTIVO DESTINO</strong>
+                  <mat-select style="margin-top:8px;"  [(ngModel)]="nodoRegulacion.cargoEjecutivoDestino">
+                      <mat-option value="" selected="selected"></mat-option>
+                         <mat-option value="DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                         <mat-option value="PRESIDENTE">PRESIDENTE</mat-option>
+                         <mat-option value="SECRETARIO GENERAL DE ENERGIA">SECRETARIO GENERAL DE ENERGIA</mat-option>
+                         <mat-option value="CONSEJERO DELEGADO">CONSEJERO DELEGADO</mat-option>
+                         <mat-option value="MINISTRO">MINISTRO</mat-option>
+                         <mat-option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO</mat-option>
+                         <mat-option value="DIRECTOR DE DESARROLLO DE PROYECTOS">DIRECTOR DE DESARROLLO DE PROYECTOS</mat-option>
+                         <mat-option value="DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO</mat-option>
+                         <mat-option value="DIRECTOR DE GENERACION">DIRECTOR DE GENERACION</mat-option>
+                         <mat-option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO</mat-option>
+                         <mat-option value="DIRECTOR FINANCIERO">DIRECTOR FINANCIERO</mat-option>
+                         <mat-option value="DIRECTOR DE COMPRAS">DIRECTOR DE COMPRAS</mat-option>
+                         <mat-option value="DIRECTOR GENERAL">DIRECTOR GENERAL</mat-option>
+                         <mat-option value="DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS">DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS</mat-option>
+                         <mat-option value="DIRECTOR DE RETAIL">DIRECTOR DE RETAIL</mat-option>
+                         <mat-option value="DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                         <mat-option value="DIRECTOR DE ENERGIA ELECTRICA">DIRECTOR DE ENERGIA ELECTRICA</mat-option>
+                         <mat-option value="SUBDIRECTOR GENERAL">SUBDIRECTOR GENERAL</mat-option>
+                         <mat-option value="CONSEJERA DE MEDIO AMBIENTE">CONSEJERA DE MEDIO AMBIENTE</mat-option>
+                         <mat-option value="JEFE DEL AREA DE ELECTRICIDAD">JEFE DEL AREA DE ELECTRICIDAD</mat-option>
+                         <mat-option value="DIRECTOR DE REGULACION Y COMPETENCIA">DIRECTOR DE REGULACION Y COMPETENCIA</mat-option>
+                         <mat-option value="SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA">SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA</mat-option>
+                         <mat-option value="PRESIDENTA">PRESIDENTA</mat-option>
+                         <mat-option value="VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA">VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA</mat-option>
+                         <mat-option value="PRESIDENTE DEL CONSEJO DE ADMINISTRACION">PRESIDENTE DEL CONSEJO DE ADMINISTRACION</mat-option>
+                         <mat-option value="SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL">SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL</mat-option>
+                         <mat-option value="SECRETARIO GENERAL">SECRETARIO GENERAL</mat-option>
+                         <mat-option value="SUBDIRECCION GENERAL PLANIFICACION ENERGETICA">SUBDIRECCION GENERAL PLANIFICACION ENERGETICA</mat-option>
+                         <mat-option value="JEFE DEL GABINETE DE MINISTRO">JEFE DEL GABINETE DE MINISTRO</mat-option>
+                         <mat-option value="DIRECTOR GENERAL DE CALIDAD AMBIENTAL">DIRECTOR GENERAL DE CALIDAD AMBIENTAL</mat-option>
+                         <mat-option value="DIRECTOR LIQUIDACION Y FACTURACION">DIRECTOR LIQUIDACION Y FACTURACION</mat-option>
+                         <mat-option value="AREA DE INDUSTRIA Y ENERGIA">AREA DE INDUSTRIA Y ENERGIA</mat-option>
+                         <mat-option value="DIRECTOR DE REDES">DIRECTOR DE REDES</mat-option>
+                         <mat-option value="JEFE DE LA CENTRAL">JEFE DE LA CENTRAL</mat-option>
+                         <mat-option value="DEPARTAMENTO JURIDICO">DEPARTAMENTO JURIDICO</mat-option>
+                         <mat-option value="DIRECTOR GENERAL DE INDUSTRIA">DIRECTOR GENERAL DE INDUSTRIA</mat-option>
+                         <mat-option value="DIREC.GRAL DE CALIDAD AMBIENTAL">DIREC.GRAL DE CALIDAD AMBIENTAL</mat-option>
+                         <mat-option value="DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL">DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL</mat-option>
+                         <mat-option value="CONSEJERO DE INDUSTRIA">CONSEJERO DE INDUSTRIA</mat-option>
+                         <mat-option value="CONSERJERIA MEDIO AMBIENTE">CONSERJERIA MEDIO AMBIENTE</mat-option>
+                         <mat-option value="SUBDELEGACIÓN CANTABRIA">SUBDELEGACIÓN CANTABRIA</mat-option>
+                         <mat-option value="CONFEDERACION HIDROGRÁFICA DEL NORTE">CONFEDERACION HIDROGRÁFICA DEL NORTE</mat-option>
+                         <mat-option value="CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR">CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR</mat-option>
+                         <mat-option value="CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA">CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA</mat-option>
+                         <mat-option value="CONFEDERACIÓN HIDROGRÁFICA DEL DUERO">CONFEDERACIÓN HIDROGRÁFICA DEL DUERO</mat-option>
+                         <mat-option value="DELGACIÓN GOBIERNO OVIEDO">DELGACIÓN GOBIERNO OVIEDO</mat-option>
+                         <mat-option value="SUBDELEGACIÓN LUGO">SUBDELEGACIÓN LUGO</mat-option>
+                         <mat-option value="DELEGACIÓN GOBIERNO CASTILLA-LEÓN">DELEGACIÓN GOBIERNO CASTILLA-LEÓN</mat-option>
+                         <mat-option value="DELEGACIÓN GOBIERNO CANTABRIA">DELEGACIÓN GOBIERNO CANTABRIA</mat-option>
+                         <mat-option value="DIREC.GRAL DE POLITICA ENERGETICA Y MINAS">DIREC.GRAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                         <mat-option value="DIRECTOR DE INSPECCION">DIRECTOR DE INSPECCION</mat-option>
+                         <mat-option value="DIR.GRAL DE POLITICA ENERGETICA Y MINAS">DIR.GRAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                 
+                  </mat-select>
+                </mat-form-field>
+                
+                <mat-form-field  class="form-input-text">
+                    <mat-label class="negrita" >DESTINATARIO</mat-label>
+                    <input matInput  maxlength="50" [(ngModel)]="nodoRegulacion.destinatario">
+                  </mat-form-field>
+
+  <div class="row">
+      <mat-form-field >
+          <mat-label class="negrita">FECHA ENTRADA</mat-label>
+          <input id="fechaentrada" matInput [matDatepicker]="picker" [(ngModel)]="nodoRegulacion.fechaEntrada">
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint>DD/MM/AAAA</mat-hint>
+        </mat-form-field>
+      
+        <mat-form-field >
+            <mat-label class="negrita">HORA ENTRADA</mat-label>
+            <input matInput type="time" [(ngModel)]="nodoRegulacion.horaEntrada" [formControl]="horaEntradaControl">
+            <mat-hint>HH:MM (24 Horas)</mat-hint>
+          </mat-form-field>
+          <mat-error *ngIf="horaEntradaControl.errors?.pattern">El campo tiene un error</mat-error>
+  </div>
+
+  <mat-form-field  class="form-input-text">
+      <mat-label class="negrita" maxlength="50">REMITENTE</mat-label>
+      <input matInput [(ngModel)]="nodoRegulacion.remitente">
+    </mat-form-field>
+
+    <mat-form-field  class="form-input-text">
+        <mat-label class="negrita" maxlength="50">MODO ENVÍO</mat-label>
+        <input matInput [(ngModel)]="nodoRegulacion.modoEnvio">
+      </mat-form-field>
+
+      <mat-form-field  id="organismo-origen">
+        <strong>ORGANISMO ORIGEN</strong>
+          <mat-select style="margin-top:8px;" [(ngModel)]="nodoRegulacion.organismoOrigen" >
+              <mat-option value="" selected="selected"></mat-option>
+              <mat-option value="OTROS">OTROS</mat-option>
+              <mat-option value="MINISTERIO DE MEDIO AMBIENTE">MINISTERIO DE MEDIO AMBIENTE</mat-option>
+              <mat-option value="UNESA">UNESA</mat-option>
+              <mat-option value="E.ON ESPAÑA">E.ON ESPAÑA</mat-option>
+              <mat-option value="CNE">CNMC</mat-option>
+              <mat-option value="E.ON GENERACION">E.ON GENERACION</mat-option>
+              <mat-option value="E.ON DISTRIBUCION">E.ON DISTRIBUCION</mat-option>
+              <mat-option value="GOBIERNO DE CANTABRIA">GOBIERNO DE CANTABRIA</mat-option>
+              <mat-option value="MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO">MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO</mat-option>
+              <mat-option value="E.ON ENERGIA">E.ON ENERGIA</mat-option>
+              <mat-option value="TRIBUNAL DE DEFENSA DE LA COMPETENCIA">TRIBUNAL DE DEFENSA DE LA COMPETENCIA</mat-option>
+              <mat-option value="BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA">BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA</mat-option>
+              <mat-option value="E.ON SERVICIOS">E.ON SERVICIOS</mat-option>
+              <mat-option value="E.ON">E.ON</mat-option>
+              <mat-option value="COMISION EUROPEA. COMPETITION DG MARGER NETWORK">COMISION EUROPEA. COMPETITION DG MARGER NETWORK</mat-option>
+              <mat-option value="INSTITUTO ARAGONES DE GESTION AMBIENTAL">INSTITUTO ARAGONES DE GESTION AMBIENTAL</mat-option>
+              <mat-option value="GENERALITAT DE CATALUÑA">GENERALITAT DE CATALUÑA</mat-option>
+              <mat-option value="MINISTERIO DE ECONOMIA Y HACIENDA">MINISTERIO DE ECONOMIA Y HACIENDA</mat-option>
+              <mat-option value="JUNTA DE ANDALUCIA">JUNTA DE ANDALUCIA</mat-option>
+              <mat-option value="JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA">JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA</mat-option>
+              <mat-option value="GOBIERNO DE ARAGON">GOBIERNO DE ARAGON</mat-option>
+              <mat-option value="AYUNTAMIENTO DE STA.PERPETUA DE MOGODA">AYUNTAMIENTO DE STA.PERPETUA DE MOGODA</mat-option>
+              <mat-option value="JUNTA DE GALICIA">JUNTA DE GALICIA</mat-option>
+              <mat-option value="CAMARA CANTABRIA">CAMARA CANTABRIA</mat-option>
+              <mat-option value="CEM">CEM</mat-option>
+              <mat-option value="OMEL">OMEL</mat-option>
+              <mat-option value="AYUNTAMIENTO DE ALCOBENDAS">AYUNTAMIENTO DE ALCOBENDAS</mat-option>
+              <mat-option value="JUNTA DE CASTILLA Y LEON">JUNTA DE CASTILLA Y LEON</mat-option>
+              <mat-option value="GOBIERNO DE ASTURIAS">GOBIERNO DE ASTURIAS</mat-option>
+              <mat-option value="PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA">PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA</mat-option>
+              <mat-option value="PÚBLICO">PÚBLICO</mat-option>
+              <mat-option value="E.ON COMERCIALIZADORA ÚLTIMO RECURSO">E.ON COMERCIALIZADORA ÚLTIMO RECURSO</mat-option>
+              <mat-option value="Corporación Reservas Estratégicas">Corporación Reservas Estratégicas</mat-option>
+              <mat-option value="ADMINISTRACIÓN GENERAL DEL ESTADO">ADMINISTRACIÓN GENERAL DEL ESTADO</mat-option>
+              <mat-option value="DELEGACIÓN DEL GOBIERNO">DELEGACIÓN DEL GOBIERNO</mat-option>
+              <mat-option value="CONSEJO DE ESTADO">CONSEJO DE ESTADO</mat-option>
+              <mat-option value="CONFEDERACIONES HIDROGRÁFICAS">CONFEDERACIONES HIDROGRÁFICAS</mat-option>
+              <mat-option value="ENAGAS">ENAGAS</mat-option>
+              <mat-option value="AYUNTAMIENTO DE SAGUNTO">AYUNTAMIENTO DE SAGUNTO</mat-option>
+              <mat-option value="RED ELECTRICA DE ESPANA">RED ELECTRICA DE ESPANA</mat-option>
+              <mat-option value="VIESGO INFRAESTRUCTURAS ENERGÉTICAS">VIESGO INFRAESTRUCTURAS ENERGÉTICAS</mat-option>
+              <mat-option value="VIESGO DISTRIBUCIÓN ELÉCTRICA">VIESGO DISTRIBUCIÓN ELÉCTRICA</mat-option>
+              <mat-option value="VIESGO GENERACIÓN">VIESGO GENERACIÓN</mat-option>
+              <mat-option value="VIESGO PRODUCCIÓN">VIESGO PRODUCCIÓN</mat-option>
+              <mat-option value="VIESGO ENERGÍA">VIESGO ENERGÍA</mat-option>
+              <mat-option value="VIESGO COMERCIALIZADORA DE REFERENCIA">VIESGO COMERCIALIZADORA DE REFERENCIA</mat-option>
+              <mat-option value="VIESGO RENOVABLES">VIESGO RENOVABLES</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field  id="cargo-ejecutivo-destino">
+            <strong class="negrita">CARGO EJECUTIVO ORIGEN</strong>
+            <mat-select style="margin-top:8px;" [(ngModel)]="nodoRegulacion.cargoEjecutivoOrigen">
+                <mat-option value="" selected="selected"></mat-option>
+                <mat-option value="DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS">DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS</mat-option>
+                <mat-option value="PRESIDENTE">PRESIDENTE</mat-option>
+                <mat-option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO</mat-option>
+                <mat-option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO</mat-option>
+                <mat-option value="SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA">SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA</mat-option>
+                <mat-option value="DIRECTOR DE ENERGIA ELECTRICA">DIRECTOR DE ENERGIA ELECTRICA</mat-option>
+                <mat-option value="SECRETARIO DEL CONSEJO DE ADMINISTRACION">SECRETARIO DEL CONSEJO DE ADMINISTRACION</mat-option>
+                <mat-option value="JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE">JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE</mat-option>
+                <mat-option value="DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                <mat-option value="VICEPRESIDENTE">VICEPRESIDENTE</mat-option>
+                <mat-option value="SUBDIRECTORA ECONOMICO-FINANCIERA">SUBDIRECTORA ECONOMICO-FINANCIERA</mat-option>
+                <mat-option value="SECRETARIO GENERAL">SECRETARIO GENERAL</mat-option>
+                <mat-option value="VICESECRETARIA">VICESECRETARIA</mat-option>
+                <mat-option value="JEFE PROVINCIAL DE INSPECCION">JEFE PROVINCIAL DE INSPECCION</mat-option>
+                <mat-option value="VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA">VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA</mat-option>
+                <mat-option value="DIRECTOR GENERAL DE INDUSTRIA">DIRECTOR GENERAL DE INDUSTRIA</mat-option>
+                <mat-option value="DELEGADA PROVINCIAL">DELEGADA PROVINCIAL</mat-option>
+                <mat-option value="DIRECTOR GENERAL DE CALIDAD AMBIENTAL">DIRECTOR GENERAL DE CALIDAD AMBIENTAL</mat-option>
+                <mat-option value="SUBDIRECTOR GENERAL">SUBDIRECTOR GENERAL</mat-option>
+                <mat-option value="DIRECTORA GENERAL DE CALIDAD AMBIENTAL">DIRECTORA GENERAL DE CALIDAD AMBIENTAL</mat-option>
+                <mat-option value="TECNICO DE INSPECCION">TECNICO DE INSPECCION</mat-option>
+                <mat-option value="SECRETARIA GENERAL TECNICA">SECRETARIA GENERAL TECNICA</mat-option>
+                <mat-option value="DIRECTOR DE INSPECCION">DIRECTOR DE INSPECCION</mat-option>
+                <mat-option value="DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL">DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL</mat-option>
+                <mat-option value="JEFE SECCION DE INSPECCION INDUSTRIAL">JEFE SECCION DE INSPECCION INDUSTRIAL</mat-option>
+                <mat-option value="JEFE DE LA CENTRAL">JEFE DE LA CENTRAL</mat-option>
+                <mat-option value="SUBDIRECTOR GENERAL TECNICA">SUBDIRECTOR GENERAL TECNICA</mat-option>
+                <mat-option value="JEFE DE AREA">JEFE DE AREA</mat-option>
+                <mat-option value="DIRECTOR DE REGULACION Y COMPETENCIA">DIRECTOR DE REGULACION Y COMPETENCIA</mat-option>
+                <mat-option value="SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL">SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL</mat-option>
+                <mat-option value="DIRECTOR LIQUIDACION Y FACTURACION">DIRECTOR LIQUIDACION Y FACTURACION</mat-option>
+                <mat-option value="SUBDIRECTOR DE INSPECCION">SUBDIRECTOR DE INSPECCION</mat-option>
+                <mat-option value="SUBDIRECCION GENERAL PLANIFICACION ENERGETICA">SUBDIRECCION GENERAL PLANIFICACION ENERGETICA</mat-option>
+                <mat-option value="DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION">DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION</mat-option>
+                <mat-option value="DIRECTOR DE GAS">DIRECTOR DE GAS</mat-option>
+                <mat-option value="DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA">DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA</mat-option>
+                <mat-option value="DIRECTOR DEL AREA">DIRECTOR DEL AREA</mat-option>
+                <mat-option value="DIRECTOR GENERAL">DIRECTOR GENERAL</mat-option>
+                <mat-option value="DIRECTORA DE CAMBIO CLIMATICO">DIRECTORA DE CAMBIO CLIMATICO</mat-option>
+                <mat-option value="CONSEJERO DE INDUSTRIA">CONSEJERO DE INDUSTRIA</mat-option>
+                <mat-option value="SECRETARIO GENERAL DE ENERGIA">SECRETARIO GENERAL DE ENERGIA</mat-option>
+                <mat-option value="DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO</mat-option>
+                <mat-option value="CONSEJERO DELEGADO">CONSEJERO DELEGADO</mat-option>
+                <mat-option value="DIRECTOR DE REDES">DIRECTOR DE REDES</mat-option>
+                <mat-option value="DIRECTOR DE COMPRAS">DIRECTOR DE COMPRAS</mat-option>
+                <mat-option value="DIRECTOR GERENTE">DIRECTOR GERENTE</mat-option>
+                <mat-option value="DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                <mat-option value="SUBDELEGACIÓN CANTABRIA">SUBDELEGACIÓN CANTABRIA</mat-option>
+                <mat-option value="SUBDELEGACIÓN VALLADOLID">SUBDELEGACIÓN VALLADOLID</mat-option>
+                <mat-option value="SUBDIRECCION ECONOMICO FINANCIERA">SUBDIRECCION ECONOMICO FINANCIERA</mat-option>
+                <mat-option value="DIREC. DE ENERGIA ELECTRICA">DIREC. DE ENERGIA ELECTRICA</mat-option>
+                <mat-option value="PRESIDENTA">PRESIDENTA</mat-option>
+                <mat-option value="DIREC.GRAL DE POLITICA ENERGETICA Y MINAS">DIREC.GRAL DE POLITICA ENERGETICA Y MINAS</mat-option>
+                <mat-option value="SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES">SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES</mat-option>
+                <mat-option value="CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA">CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA</mat-option>
+                <mat-option value="CONFEDERACION HIDROGRÁFICA DEL NORTE">CONFEDERACION HIDROGRÁFICA DEL NORTE</mat-option>
+                <mat-option value="CONFEDERACIÓN HIDROGRÁFICA DEL DUERO">CONFEDERACIÓN HIDROGRÁFICA DEL DUERO</mat-option>
+                <mat-option value="CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR">CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR</mat-option>
+                <mat-option value="DIRECTOR DE GENERACION">DIRECTOR DE GENERACION</mat-option>
+                <mat-option value="DEPARTAMENTO JURIDICO">DEPARTAMENTO JURIDICO</mat-option>
+                <mat-option value="JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL">JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL</mat-option>
+                <mat-option value="DIRECTOR DEL MERCADO IBERICO">DIRECTOR DEL MERCADO IBERICO</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="row">
+              <mat-form-field >
+                  <mat-label class="negrita">FECHA ESCRITO</mat-label>
+                  <input id="fechaescrito" matInput [matDatepicker]="pickerFechaEscrito" [(ngModel)]="nodoRegulacion.fechaEscrito" >
+                  <mat-datepicker-toggle matSuffix [for]="pickerFechaEscrito"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFechaEscrito></mat-datepicker>
+                  <mat-hint>DD/MM/AAAA</mat-hint>
+                </mat-form-field>
+              
+                <mat-form-field  >
+                    <mat-label class="negrita" >HORA ESCRITO</mat-label>
+                    <input matInput type="time" [(ngModel)]="nodoRegulacion.horaEscrito"  [formControl]="horaEscritoControl">
+                    <mat-hint>HH:MM (24 Horas)</mat-hint>
+                </mat-form-field>
+                <mat-error *ngIf="horaEscritoControl.errors?.pattern">El campo tiene un error</mat-error>
+          </div>
+          
+          <div class="row">
+              <mat-form-field  style="align-items:center;" >
+                  <mat-label class="negrita">FECHA SALIDA</mat-label>
+                  <input id="fechasalida" matInput [matDatepicker]="pickerFechaSalida"  [(ngModel)]="nodoRegulacion.fechaSalida">
+                  <mat-datepicker-toggle matSuffix style="align-self: center;" [for]="pickerFechaSalida"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFechaSalida></mat-datepicker>
+                  <mat-hint>DD/MM/AAAA</mat-hint>
+                </mat-form-field>
+              
+                <mat-form-field >
+                    <mat-label class="negrita">HORA SALIDA</mat-label>
+                    <input matInput type="time" [(ngModel)]="nodoRegulacion.horaSalida"  [formControl]="horaSalidaControl">
+                    <mat-hint>HH:MM (24 Horas)</mat-hint>
+                </mat-form-field>
+                <mat-error *ngIf="horaSalidaControl.errors?.pattern">El campo tiene un error</mat-error>
+          </div>
+
+          <mat-form-field  class="form-input-text">
+              <mat-label class="negrita" maxlength="50">SEGUIMIENTO</mat-label>
+              <input matInput [(ngModel)]="nodoRegulacion.seguimiento">
+            </mat-form-field>
+
+          <h3>Archivo Regulación</h3>
+            <adf-upload-button
+              staticTitle="Subir archivo" 
+              (success)="onUploadSuccess($event)" 
+              [rootFolderId]="carpetaSubida"
+              (permissionEvent)="onUploadPermissionFailed($event)"
+              color="primary"
+              style="width: 140px;">
+          </adf-upload-button >
+
+          <div *ngIf="archivoRegulacion !== null">
+            <div class="row" >
+               <img src="{{ archivoRegulacion.content.mimeType | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+               <h3>{{archivoRegulacion.name }}</h3>
+                <button mat-icon-button color="primary" (click)="quitarFicheroRegulacion(archivoRegulacion)">
+                   <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">cancel</mat-icon>
+                 </button>
+               
+            </div>
+          </div>
+
+          <h3>Ficheros Relacionados</h3>
+          <button mat-raised-button  color="primary" style="width: 140px;" (click)="abrirBrowserDialog()" >
+            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">file_upload</mat-icon>
+            <span>Seleccionar </span>
+           </button>
+           <div *ngFor="let nodo of  this.nodoRelacionados">
+             <div class="row" >
+                <img src="{{ nodo.content.mimeType | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+                <h3>{{nodo.name }}</h3>
+                 <button mat-icon-button color="primary" (click)="quitarNodoRelacionado(nodo)">
+                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">cancel</mat-icon>
+                  </button>
+                
+             </div>
+              
+
+           </div>
+
+        <div class="row bottom">
+            <button mat-raised-button color="primary"  [disabled]="horaEntradaControl.errors?.pattern || horaSalidaControl.errors?.pattern || horaEscritoControl.errors?.pattern  " style="width: 140px;"  (click)="crearNodo();">
+              <!-- <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">file_upload</mat-icon> -->
+              <span>Finalizar </span>
+             </button>
+             <button mat-raised-button color="primary" style="width: 140px;" (click)="cancelarSubida();" >
+             <!--  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">file_upload</mat-icon> -->
+              <span>Cancelar </span>
+             </button>
+
+        </div>
+<!--   <input type="text" value="" maxlength="5" placeholder="00:00" style="width:50px;margin-right:5px">
+        <input [matDatepicker]="myDatepicker"  style="float:left;" placeholder="1/01/1999">
+        <mat-datepicker-toggle [for]="myDatepicker" >
+            <mat-icon style="height:30px;width: 25px;line-height:15px;float:left;"  matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker  style="float:left;"></mat-datepicker> -->
+
+
+
+
+</div>
+
+
+<!-- 
+<div class="form">
+  
+  <h2  >Formulario Datos Fichero Regulacion</h2>
+    <div class="form-field">
+          <label for="doc-tipologia">TIPOLOGIA DOCUMENTO:</label>
+             <select id="tipologia-doc" name="prop_regu_tipologia_doc" tabindex="0" class="" title="" alf-validation-msg="">
+                         <option value=""></option>
+                         <option value="DOCUMENTO INTERNO" selected="selected">DOCUMENTO INTERNO</option>
+                         <option value="LEY">LEY</option>
+                         <option value="ENTRADA">ENTRADA</option>
+                         <option value="SALIDA">SALIDA</option>
+                         <option value="ORTOS">OTROS</option>
+             </select>
+    </div>
+    
+    
+    
+    <div class="form-field">
+          <label for="doc-revisado">REVISADO:</label>
+             <select id="doc-revisado" name="prop_regu_revisado" tabindex="0" class="" title="" alf-validation-msg="">
+                         <option value="" selected="selected"></option>
+                         <option value="NO">NO</option>
+                         <option value="SI">SI</option>
+             </select>
+    </div>
+    
+    
+    
+    <div class="form-field">
+          <label for="doc-tipo">TIPO DOCUMENTO:</label>
+             <select id="template_x002e_edit-metadata_x002e_edit-metadata_x0023_default_prop_regu_tipo_doc" name="prop_regu_tipo_doc" tabindex="0" class="" title="" alf-validation-msg="">
+                         <option value="" selected="selected"></option>
+                         <option value="INFORME">INFORME</option>
+                         <option value="OTROS">OTROS</option>
+                         <option value="REAL DECRETO">REAL DECRETO</option>
+                         <option value="LEY">LEY</option>
+                         <option value="ALEGACIONES">ALEGACIONES</option>
+                         <option value="CARTA">CARTA</option>
+                         <option value="RESOLUCION">RESOLUCION</option>
+                         <option value="SOLICITUD">SOLICITUD</option>
+                         <option value="RECURSO">RECURSO</option>
+                         <option value="OFICIO">OFICIO</option>
+                         <option value="FORMULARIO">FORMULARIO</option>
+                         <option value="REAL DECRETO - LEY">REAL DECRETO - LEY</option>
+                         <option value="LIQUIDACION">LIQUIDACION</option>
+                         <option value="ACTA">ACTA</option>
+                         <option value="FAX">FAX</option>
+                         <option value="AUTORIZACION">AUTORIZACION</option>
+                         <option value="DICTAMEN">DICTAMEN</option>
+                         <option value="ESTIMACION">ESTIMACION</option>
+                         <option value="CONTRATO">CONTRATO</option>
+                         <option value="FACTURA">FACTURA</option>
+                         <option value="BOLETIN DE ENCUESTA">BOLETIN DE ENCUESTA</option>
+                         <option value="ESCRITURA">ESCRITURA</option>
+             </select>
+    </div><div class="form-field">
+             <label for="doc-paginas">NUMERO PAGINAS:</label>
+          <input id="doc-paginas" name="prop_regu_numero_paginas" tabindex="0" type="text" value="" maxlength="1024">
+    </div>
+    
+    
+    
+    <div class="form-field">
+          <label for="doc-organismo-destino">ORGANISMO DESTINO:</label>
+             <select id="doc-organismo-destino" name="prop_regu_org_destino" tabindex="0" class="" title="" alf-validation-msg="">
+                         <option value="" selected="selected"></option>
+                         <option value="PÚBLICO">PÚBLICO</option>
+                         <option value="OTROS">OTROS</option>
+                         <option value="E.ON ESPAÑA">E.ON ESPAÑA</option>
+                         <option value="UNESA">UNESA</option>
+                         <option value="CNE">CNMC</option>
+                         <option value="RED ELECTRICA DE ESPANA">RED ELECTRICA DE ESPANA</option>
+                         <option value="E.ON DISTRIBUCION">E.ON DISTRIBUCION</option>
+                         <option value="MINISTERIO DE MEDIO AMBIENTE">MINISTERIO DE MEDIO AMBIENTE</option>
+                         <option value="MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO">MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO</option>
+                         <option value="E.ON GENERACION">E.ON GENERACION</option>
+                         <option value="E.ON ENERGIA">E.ON ENERGIA</option>
+                         <option value="CONSEJO DE ESTADO">CONSEJO DE ESTADO</option>
+                         <option value="MINISTERIO DE ECONOMIA Y HACIENDA">MINISTERIO DE ECONOMIA Y HACIENDA</option>
+                         <option value="GOBIERNO DE CANTABRIA">GOBIERNO DE CANTABRIA</option>
+                         <option value="JUNTA DE GALICIA">JUNTA DE GALICIA</option>
+                         <option value="GOBIERNO DE ASTURIAS">GOBIERNO DE ASTURIAS</option>
+                         <option value="JUNTA DE CASTILLA Y LEON">JUNTA DE CASTILLA Y LEON</option>
+                         <option value="E.ON SERVICIOS">E.ON SERVICIOS</option>
+                         <option value="COMISION EUROPEA. COMPETITION DG MARGER NETWORK">COMISION EUROPEA. COMPETITION DG MARGER NETWORK</option>
+                         <option value="JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA">JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA</option>
+                         <option value="CEM">CEM</option>
+                         <option value="TRIBUNAL DE DEFENSA DE LA COMPETENCIA">TRIBUNAL DE DEFENSA DE LA COMPETENCIA</option>
+                         <option value="OMEL">OMEL</option>
+                         <option value="CAMARA CANTABRIA">CAMARA CANTABRIA</option>
+                         <option value="INSTITUTO ARAGONES DE GESTION AMBIENTAL">INSTITUTO ARAGONES DE GESTION AMBIENTAL</option>
+                         <option value="JUNTA DE ANDALUCIA">JUNTA DE ANDALUCIA</option>
+                         <option value="GOBIERNO DE ARAGON">GOBIERNO DE ARAGON</option>
+                         <option value="E.ON">E.ON</option>
+                         <option value="BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA">BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA</option>
+                         <option value="E.ON COMERCIALIZADORA ÚLTIMO RECURSO">E.ON COMERCIALIZADORA ÚLTIMO RECURSO</option>
+                         <option value="ENAGAS">ENAGAS</option>
+                         <option value="CONFEDERACIONES HIDROGRÁFICAS">CONFEDERACIONES HIDROGRÁFICAS</option>
+                         <option value="GENERALITAT DE CATALUÑA">GENERALITAT DE CATALUÑA</option>
+                         <option value="Corporación Reservas Estratégicas">Corporación Reservas Estratégicas</option>
+                         <option value="ADMINISTRACIÓN GENERAL DEL ESTADO">ADMINISTRACIÓN GENERAL DEL ESTADO</option>
+                         <option value="DELEGACIÓN DEL GOBIERNO">DELEGACIÓN DEL GOBIERNO</option>
+                         <option value="VIESGO INFRAESTRUCTURAS ENERGÉTICAS">VIESGO INFRAESTRUCTURAS ENERGÉTICAS</option>
+                         <option value="VIESGO DISTRIBUCIÓN ELÉCTRICA">VIESGO DISTRIBUCIÓN ELÉCTRICA</option>
+                         <option value="VIESGO GENERACIÓN">VIESGO GENERACIÓN</option>
+                         <option value="VIESGO PRODUCCIÓN">VIESGO PRODUCCIÓN</option>
+                         <option value="VIESGO ENERGÍA">VIESGO ENERGÍA</option>
+                         <option value="VIESGO COMERCIALIZADORA DE REFERENCIA">VIESGO COMERCIALIZADORA DE REFERENCIA</option>
+                         <option value="VIESGO RENOVABLES">VIESGO RENOVABLES</option>
+             </select>
+    </div>
+    
+    
+    
+    <div class="form-field">
+          <label for="doc-cargo-ejecutivo-destino">CARGO EJECUTIVO DESTINO:</label>
+             <select id="doc-cargo-ejecutivo-destino" name="prop_regu_cargo_ejec_destino" tabindex="0" class="" title="" alf-validation-msg="">
+                         <option value="" selected="selected"></option>
+                         <option value="DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS</option>
+                         <option value="PRESIDENTE">PRESIDENTE</option>
+                         <option value="SECRETARIO GENERAL DE ENERGIA">SECRETARIO GENERAL DE ENERGIA</option>
+                         <option value="CONSEJERO DELEGADO">CONSEJERO DELEGADO</option>
+                         <option value="MINISTRO">MINISTRO</option>
+                         <option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO</option>
+                         <option value="DIRECTOR DE DESARROLLO DE PROYECTOS">DIRECTOR DE DESARROLLO DE PROYECTOS</option>
+                         <option value="DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO</option>
+                         <option value="DIRECTOR DE GENERACION">DIRECTOR DE GENERACION</option>
+                         <option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO</option>
+                         <option value="DIRECTOR FINANCIERO">DIRECTOR FINANCIERO</option>
+                         <option value="DIRECTOR DE COMPRAS">DIRECTOR DE COMPRAS</option>
+                         <option value="DIRECTOR GENERAL">DIRECTOR GENERAL</option>
+                         <option value="DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS">DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS</option>
+                         <option value="DIRECTOR DE RETAIL">DIRECTOR DE RETAIL</option>
+                         <option value="DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS</option>
+                         <option value="DIRECTOR DE ENERGIA ELECTRICA">DIRECTOR DE ENERGIA ELECTRICA</option>
+                         <option value="SUBDIRECTOR GENERAL">SUBDIRECTOR GENERAL</option>
+                         <option value="CONSEJERA DE MEDIO AMBIENTE">CONSEJERA DE MEDIO AMBIENTE</option>
+                         <option value="JEFE DEL AREA DE ELECTRICIDAD">JEFE DEL AREA DE ELECTRICIDAD</option>
+                         <option value="DIRECTOR DE REGULACION Y COMPETENCIA">DIRECTOR DE REGULACION Y COMPETENCIA</option>
+                         <option value="SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA">SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA</option>
+                         <option value="PRESIDENTA">PRESIDENTA</option>
+                         <option value="VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA">VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA</option>
+                         <option value="PRESIDENTE DEL CONSEJO DE ADMINISTRACION">PRESIDENTE DEL CONSEJO DE ADMINISTRACION</option>
+                         <option value="SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL">SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL</option>
+                         <option value="SECRETARIO GENERAL">SECRETARIO GENERAL</option>
+                         <option value="SUBDIRECCION GENERAL PLANIFICACION ENERGETICA">SUBDIRECCION GENERAL PLANIFICACION ENERGETICA</option>
+                         <option value="JEFE DEL GABINETE DE MINISTRO">JEFE DEL GABINETE DE MINISTRO</option>
+                         <option value="DIRECTOR GENERAL DE CALIDAD AMBIENTAL">DIRECTOR GENERAL DE CALIDAD AMBIENTAL</option>
+                         <option value="DIRECTOR LIQUIDACION Y FACTURACION">DIRECTOR LIQUIDACION Y FACTURACION</option>
+                         <option value="AREA DE INDUSTRIA Y ENERGIA">AREA DE INDUSTRIA Y ENERGIA</option>
+                         <option value="DIRECTOR DE REDES">DIRECTOR DE REDES</option>
+                         <option value="JEFE DE LA CENTRAL">JEFE DE LA CENTRAL</option>
+                         <option value="DEPARTAMENTO JURIDICO">DEPARTAMENTO JURIDICO</option>
+                         <option value="DIRECTOR GENERAL DE INDUSTRIA">DIRECTOR GENERAL DE INDUSTRIA</option>
+                         <option value="DIREC.GRAL DE CALIDAD AMBIENTAL">DIREC.GRAL DE CALIDAD AMBIENTAL</option>
+                         <option value="DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL">DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL</option>
+                         <option value="CONSEJERO DE INDUSTRIA">CONSEJERO DE INDUSTRIA</option>
+                         <option value="CONSERJERIA MEDIO AMBIENTE">CONSERJERIA MEDIO AMBIENTE</option>
+                         <option value="SUBDELEGACIÓN CANTABRIA">SUBDELEGACIÓN CANTABRIA</option>
+                         <option value="CONFEDERACION HIDROGRÁFICA DEL NORTE">CONFEDERACION HIDROGRÁFICA DEL NORTE</option>
+                         <option value="CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR">CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR</option>
+                         <option value="CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA">CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA</option>
+                         <option value="CONFEDERACIÓN HIDROGRÁFICA DEL DUERO">CONFEDERACIÓN HIDROGRÁFICA DEL DUERO</option>
+                         <option value="DELGACIÓN GOBIERNO OVIEDO">DELGACIÓN GOBIERNO OVIEDO</option>
+                         <option value="SUBDELEGACIÓN LUGO">SUBDELEGACIÓN LUGO</option>
+                         <option value="DELEGACIÓN GOBIERNO CASTILLA-LEÓN">DELEGACIÓN GOBIERNO CASTILLA-LEÓN</option>
+                         <option value="DELEGACIÓN GOBIERNO CANTABRIA">DELEGACIÓN GOBIERNO CANTABRIA</option>
+                         <option value="DIREC.GRAL DE POLITICA ENERGETICA Y MINAS">DIREC.GRAL DE POLITICA ENERGETICA Y MINAS</option>
+                         <option value="DIRECTOR DE INSPECCION">DIRECTOR DE INSPECCION</option>
+                         <option value="DIR.GRAL DE POLITICA ENERGETICA Y MINAS">DIR.GRAL DE POLITICA ENERGETICA Y MINAS</option>
+             </select>
+    </div><div class="form-field">
+             <label for="doc-destinatario">DESTINATARIO:</label>
+          <input id="doc-destinatario" name="prop_regu_destinatario" tabindex="0" type="text" value="" maxlength="1024">
+    </div>
+
+    <div class="form-field">
+      <label for="doc-destinatario">FECHA SALIDA:</label>
+      <div >
+        <input type="text" value="" maxlength="5" placeholder="00:00" style="width:50px;margin-right:5px">
+        <input [matDatepicker]="myDatepicker"  style="float:left;" placeholder="1/01/1999">
+        <mat-datepicker-toggle [for]="myDatepicker" >
+            <mat-icon style="height:30px;width: 25px;line-height:15px;float:left;"  matDatepickerToggleIcon>today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker  style="float:left;"></mat-datepicker> 
+        
+      </div>
+      
+
+
+     
+   
+  </div>
+    
+
+    <div class="form-field">
+        <label for="doc-remitente">REMITENTE:</label>
+     <input id="doc-remitente" name="prop_regu_remitente" tabindex="0" type="text" value="" maxlength="1024">
+</div><div class="form-field">
+        <label for="doc-modo-envio">MODO ENVIO:</label>
+     <input id="doc-modo-envio" name="prop_regu_modo_envio" tabindex="0" type="text" value="" maxlength="1024">
+</div>
+
+
+
+<div class="form-field">
+     <label for="doc-organismo-origen">ORGANISMO ORIGEN:</label>
+        <select id="doc-organismo-origen" name="prop_regu_org_origen" tabindex="0" class="" title="" alf-validation-msg="">
+                    <option value="" selected="selected"></option>
+                    <option value="OTROS">OTROS</option>
+                    <option value="MINISTERIO DE MEDIO AMBIENTE">MINISTERIO DE MEDIO AMBIENTE</option>
+                    <option value="UNESA">UNESA</option>
+                    <option value="E.ON ESPAÑA">E.ON ESPAÑA</option>
+                    <option value="CNE">CNMC</option>
+                    <option value="E.ON GENERACION">E.ON GENERACION</option>
+                    <option value="E.ON DISTRIBUCION">E.ON DISTRIBUCION</option>
+                    <option value="GOBIERNO DE CANTABRIA">GOBIERNO DE CANTABRIA</option>
+                    <option value="MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO">MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO</option>
+                    <option value="E.ON ENERGIA">E.ON ENERGIA</option>
+                    <option value="TRIBUNAL DE DEFENSA DE LA COMPETENCIA">TRIBUNAL DE DEFENSA DE LA COMPETENCIA</option>
+                    <option value="BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA">BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA</option>
+                    <option value="E.ON SERVICIOS">E.ON SERVICIOS</option>
+                    <option value="E.ON">E.ON</option>
+                    <option value="COMISION EUROPEA. COMPETITION DG MARGER NETWORK">COMISION EUROPEA. COMPETITION DG MARGER NETWORK</option>
+                    <option value="INSTITUTO ARAGONES DE GESTION AMBIENTAL">INSTITUTO ARAGONES DE GESTION AMBIENTAL</option>
+                    <option value="GENERALITAT DE CATALUÑA">GENERALITAT DE CATALUÑA</option>
+                    <option value="MINISTERIO DE ECONOMIA Y HACIENDA">MINISTERIO DE ECONOMIA Y HACIENDA</option>
+                    <option value="JUNTA DE ANDALUCIA">JUNTA DE ANDALUCIA</option>
+                    <option value="JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA">JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA</option>
+                    <option value="GOBIERNO DE ARAGON">GOBIERNO DE ARAGON</option>
+                    <option value="AYUNTAMIENTO DE STA.PERPETUA DE MOGODA">AYUNTAMIENTO DE STA.PERPETUA DE MOGODA</option>
+                    <option value="JUNTA DE GALICIA">JUNTA DE GALICIA</option>
+                    <option value="CAMARA CANTABRIA">CAMARA CANTABRIA</option>
+                    <option value="CEM">CEM</option>
+                    <option value="OMEL">OMEL</option>
+                    <option value="AYUNTAMIENTO DE ALCOBENDAS">AYUNTAMIENTO DE ALCOBENDAS</option>
+                    <option value="JUNTA DE CASTILLA Y LEON">JUNTA DE CASTILLA Y LEON</option>
+                    <option value="GOBIERNO DE ASTURIAS">GOBIERNO DE ASTURIAS</option>
+                    <option value="PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA">PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA</option>
+                    <option value="PÚBLICO">PÚBLICO</option>
+                    <option value="E.ON COMERCIALIZADORA ÚLTIMO RECURSO">E.ON COMERCIALIZADORA ÚLTIMO RECURSO</option>
+                    <option value="Corporación Reservas Estratégicas">Corporación Reservas Estratégicas</option>
+                    <option value="ADMINISTRACIÓN GENERAL DEL ESTADO">ADMINISTRACIÓN GENERAL DEL ESTADO</option>
+                    <option value="DELEGACIÓN DEL GOBIERNO">DELEGACIÓN DEL GOBIERNO</option>
+                    <option value="CONSEJO DE ESTADO">CONSEJO DE ESTADO</option>
+                    <option value="CONFEDERACIONES HIDROGRÁFICAS">CONFEDERACIONES HIDROGRÁFICAS</option>
+                    <option value="ENAGAS">ENAGAS</option>
+                    <option value="AYUNTAMIENTO DE SAGUNTO">AYUNTAMIENTO DE SAGUNTO</option>
+                    <option value="RED ELECTRICA DE ESPANA">RED ELECTRICA DE ESPANA</option>
+                    <option value="VIESGO INFRAESTRUCTURAS ENERGÉTICAS">VIESGO INFRAESTRUCTURAS ENERGÉTICAS</option>
+                    <option value="VIESGO DISTRIBUCIÓN ELÉCTRICA">VIESGO DISTRIBUCIÓN ELÉCTRICA</option>
+                    <option value="VIESGO GENERACIÓN">VIESGO GENERACIÓN</option>
+                    <option value="VIESGO PRODUCCIÓN">VIESGO PRODUCCIÓN</option>
+                    <option value="VIESGO ENERGÍA">VIESGO ENERGÍA</option>
+                    <option value="VIESGO COMERCIALIZADORA DE REFERENCIA">VIESGO COMERCIALIZADORA DE REFERENCIA</option>
+                    <option value="VIESGO RENOVABLES">VIESGO RENOVABLES</option>
+        </select>
+</div>
+
+
+
+<div class="form-field">
+     <label for="doc-cargo-ejecutivo-origen">CARGO EJECUTIVO ORIGEN:</label>
+        <select id="doc-cargo-ejecutivo-origen" name="prop_regu_cargo_ejec_origen" tabindex="0" class="" title="" alf-validation-msg="">
+                    <option value="" selected="selected"></option>
+                    <option value="DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS">DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS</option>
+                    <option value="PRESIDENTE">PRESIDENTE</option>
+                    <option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO</option>
+                    <option value="DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO</option>
+                    <option value="SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA">SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA</option>
+                    <option value="DIRECTOR DE ENERGIA ELECTRICA">DIRECTOR DE ENERGIA ELECTRICA</option>
+                    <option value="SECRETARIO DEL CONSEJO DE ADMINISTRACION">SECRETARIO DEL CONSEJO DE ADMINISTRACION</option>
+                    <option value="JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE">JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE</option>
+                    <option value="DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS</option>
+                    <option value="VICEPRESIDENTE">VICEPRESIDENTE</option>
+                    <option value="SUBDIRECTORA ECONOMICO-FINANCIERA">SUBDIRECTORA ECONOMICO-FINANCIERA</option>
+                    <option value="SECRETARIO GENERAL">SECRETARIO GENERAL</option>
+                    <option value="VICESECRETARIA">VICESECRETARIA</option>
+                    <option value="JEFE PROVINCIAL DE INSPECCION">JEFE PROVINCIAL DE INSPECCION</option>
+                    <option value="VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA">VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA</option>
+                    <option value="DIRECTOR GENERAL DE INDUSTRIA">DIRECTOR GENERAL DE INDUSTRIA</option>
+                    <option value="DELEGADA PROVINCIAL">DELEGADA PROVINCIAL</option>
+                    <option value="DIRECTOR GENERAL DE CALIDAD AMBIENTAL">DIRECTOR GENERAL DE CALIDAD AMBIENTAL</option>
+                    <option value="SUBDIRECTOR GENERAL">SUBDIRECTOR GENERAL</option>
+                    <option value="DIRECTORA GENERAL DE CALIDAD AMBIENTAL">DIRECTORA GENERAL DE CALIDAD AMBIENTAL</option>
+                    <option value="TECNICO DE INSPECCION">TECNICO DE INSPECCION</option>
+                    <option value="SECRETARIA GENERAL TECNICA">SECRETARIA GENERAL TECNICA</option>
+                    <option value="DIRECTOR DE INSPECCION">DIRECTOR DE INSPECCION</option>
+                    <option value="DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL">DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL</option>
+                    <option value="JEFE SECCION DE INSPECCION INDUSTRIAL">JEFE SECCION DE INSPECCION INDUSTRIAL</option>
+                    <option value="JEFE DE LA CENTRAL">JEFE DE LA CENTRAL</option>
+                    <option value="SUBDIRECTOR GENERAL TECNICA">SUBDIRECTOR GENERAL TECNICA</option>
+                    <option value="JEFE DE AREA">JEFE DE AREA</option>
+                    <option value="DIRECTOR DE REGULACION Y COMPETENCIA">DIRECTOR DE REGULACION Y COMPETENCIA</option>
+                    <option value="SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL">SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL</option>
+                    <option value="DIRECTOR LIQUIDACION Y FACTURACION">DIRECTOR LIQUIDACION Y FACTURACION</option>
+                    <option value="SUBDIRECTOR DE INSPECCION">SUBDIRECTOR DE INSPECCION</option>
+                    <option value="SUBDIRECCION GENERAL PLANIFICACION ENERGETICA">SUBDIRECCION GENERAL PLANIFICACION ENERGETICA</option>
+                    <option value="DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION">DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION</option>
+                    <option value="DIRECTOR DE GAS">DIRECTOR DE GAS</option>
+                    <option value="DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA">DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA</option>
+                    <option value="DIRECTOR DEL AREA">DIRECTOR DEL AREA</option>
+                    <option value="DIRECTOR GENERAL">DIRECTOR GENERAL</option>
+                    <option value="DIRECTORA DE CAMBIO CLIMATICO">DIRECTORA DE CAMBIO CLIMATICO</option>
+                    <option value="CONSEJERO DE INDUSTRIA">CONSEJERO DE INDUSTRIA</option>
+                    <option value="SECRETARIO GENERAL DE ENERGIA">SECRETARIO GENERAL DE ENERGIA</option>
+                    <option value="DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO">DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO</option>
+                    <option value="CONSEJERO DELEGADO">CONSEJERO DELEGADO</option>
+                    <option value="DIRECTOR DE REDES">DIRECTOR DE REDES</option>
+                    <option value="DIRECTOR DE COMPRAS">DIRECTOR DE COMPRAS</option>
+                    <option value="DIRECTOR GERENTE">DIRECTOR GERENTE</option>
+                    <option value="DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS">DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS</option>
+                    <option value="SUBDELEGACIÓN CANTABRIA">SUBDELEGACIÓN CANTABRIA</option>
+                    <option value="SUBDELEGACIÓN VALLADOLID">SUBDELEGACIÓN VALLADOLID</option>
+                    <option value="SUBDIRECCION ECONOMICO FINANCIERA">SUBDIRECCION ECONOMICO FINANCIERA</option>
+                    <option value="DIREC. DE ENERGIA ELECTRICA">DIREC. DE ENERGIA ELECTRICA</option>
+                    <option value="PRESIDENTA">PRESIDENTA</option>
+                    <option value="DIREC.GRAL DE POLITICA ENERGETICA Y MINAS">DIREC.GRAL DE POLITICA ENERGETICA Y MINAS</option>
+                    <option value="SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES">SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES</option>
+                    <option value="CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA">CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA</option>
+                    <option value="CONFEDERACION HIDROGRÁFICA DEL NORTE">CONFEDERACION HIDROGRÁFICA DEL NORTE</option>
+                    <option value="CONFEDERACIÓN HIDROGRÁFICA DEL DUERO">CONFEDERACIÓN HIDROGRÁFICA DEL DUERO</option>
+                    <option value="CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR">CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR</option>
+                    <option value="DIRECTOR DE GENERACION">DIRECTOR DE GENERACION</option>
+                    <option value="DEPARTAMENTO JURIDICO">DEPARTAMENTO JURIDICO</option>
+                    <option value="JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL">JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL</option>
+                    <option value="DIRECTOR DEL MERCADO IBERICO">DIRECTOR DEL MERCADO IBERICO</option>
+        </select>
+</div>
+<div class="form-field">
+    <label for="doc-seguimiento">SEGUIMIENTO:</label>
+ <input id="doc-seguimiento" name="prop_regu_valoracion_inicial" tabindex="0" type="text" value="" maxlength="1024">
+</div> 
+<adf-upload-button
+    staticTitle="Subir archivo">
+</adf-upload-button>
+
+
+</div> -->
+<!-- 
+    
+    Mi codigo
+ 
+<div class="divbottom">
+    <button routerLink="/home" class="botonrojo btn">Volver</button> 
+    </div>
+    
+    <div class="form">
+
+
+
+    <h2 class="espacioh2">Añadir Fichero</h2>
+    
+    
+      <mat-form-field >
+        <mat-label class="negrita">Título de Proyecto</mat-label>
+        <input matInput placeholder="Título"  [(ngModel)]="titulo" required>
+         <mat-hint >Título requerido</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field >
+        <mat-label class="negrita">Responsable de Proyecto</mat-label>
+        <input matInput placeholder="Autor" [(ngModel)]="autor" required>
+        <mat-hint >Responsable de proyecto requerido</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field >
+        <mat-label class="negrita">Autor</mat-label>
+        <input matInput placeholder="Autor" [(ngModel)]="autor">
+      </mat-form-field>
+      
+        <mat-form-field >
+        <mat-label  class="negrita">Año Cierre Proyecto</mat-label>
+            <input matInput type="number" placeholder="Año" [(ngModel)]="ano" required>
+        <mat-hint *ngIf="ano==''">Año cierre proyecto requerido</mat-hint>
+        </mat-form-field>
+        <mat-form-field >
+        <mat-label class="negrita">Año</mat-label>
+        <input matInput type="number" placeholder="Año" [(ngModel)]="ano" >
+         </mat-form-field>
+    
+          <mat-form-field><strong>Categoría Estratégica</strong>
+            <mat-select style="margin-top:8px;"  id="categorialibro" [(ngModel)]="categoria" multiple>
+                <mat-option value="Tecnología">Tecnología</mat-option>
+                <mat-option value="Sostenibilidad">Sostenibilidad</mat-option>
+                <mat-option value="Digitalización">Digitalización</mat-option>
+                <mat-option value="Seguridad y Salud">Seguridad y Salud</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+          <mat-form-field><strong>Área Tecnológica</strong> 
+            <mat-select style="margin-top:8px;" id="arealibro" [(ngModel)]="area" multiple >
+                <mat-option value="Movilidad eléctrica">Movilidad eléctrica</mat-option>
+                <mat-option value="Generación distribuida y almacenamiento">Generación distribuida y almacenamiento</mat-option>
+                <mat-option value="Gestión dinámica de red">Gestión dinámica de red</mat-option>
+                <mat-option value="Smart Meter. Clientes">Smart Meter. Clientes</mat-option>
+                <mat-option value="Smart Grids">Smart Grids</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+          <mat-form-field><strong>Idioma</strong>
+            <mat-select style="margin-top:8px;" id="idioma" [(ngModel)]="idioma" >
+                <mat-option value="Ingles">Inglés</mat-option>
+                <mat-option value="Espanol">Español</mat-option>
+                <mat-option value="Frances">Francés</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field >
+            <mat-label class="negrita">Resumen</mat-label>
+                <textarea matInput placeholder="Resumen" [(ngModel)]="resumen" required></textarea>
+                <mat-hint *ngIf="resumen==''">Resumen de proyecto requerido</mat-hint>
+        </mat-form-field><br>
+
+    </div>
+        
+    
+    <label  for="file-upload" class="subir">
+        <i class="botonrojo btn" ></i> Subir imagen
+    </label>
+    <input  id="file-upload"  type="file" style='display: none;'/>
+    <div  id="info"></div>
+    <br>
+    <div id="inforesu"></div>
+    
+    <div class="divbottom" >
+        <button   class="botonrojo btn">Crear Proyecto</button> 
+    </div>
+    
+      <adf-upload-button      
+      [rootFolderId]="myStartFolder"
+        [multipleFiles]="false" >
+    </adf-upload-button>
+    <adf-file-uploading-dialog class="zindex"></adf-file-uploading-dialog>
+    -->

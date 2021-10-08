@@ -1,0 +1,97 @@
+.row-editor {
+    padding: 8px;
+}
+
+.row-editor__validation-summary {
+    visibility: hidden;
+}
+
+.row-editor__invalid .row-editor__validation-summary {
+    padding: 8px 16px;
+    color: #d50000;
+    visibility: visible;
+}
+
+:host {
+	
+    .adf-text-editor  .mat-form-field {
+        width:100%;
+    }
+
+    ::ng-deep {
+        .adf-error-text-container {
+            margin-top: 0px;
+            margin-bottom: 7px;
+        }
+        .adf-error-text {
+            font-size: 15px;
+        }
+    }
+
+}
+
+.row-editor.mdl-shadow--2dp
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#buttons{
+    width:100% !important;
+}
+
+
+[data-tip] {
+    position:relative;
+    font: 400 17px/1.25 Muli, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: bold;
+
+}
+[data-tip]:before {
+	content:'';
+	/* hides the tooltip when not hovered */
+	display:none;
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #666666;	
+	position:absolute;
+	top:-7px;
+	left:35px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:-21px;
+	left:0px;
+	padding:5px 8px;
+	background:#666666;
+	color:#fff;
+	z-index:9;
+	font-size: 0.75em;
+	height:18px;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 15px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+
+
+
+
+
+
+

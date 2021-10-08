@@ -1,0 +1,100 @@
+{
+    "prueba": 1,
+    "categories": [
+        {
+            "id": "n_documento",
+            "name": "Documento",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "fi:numero_documento_sap:'(.*?)'",
+                    "field": "fi:numero_documento_sap",
+                    "placeholder": "Nº de documento FI"
+                }
+            }
+        },
+        {
+            "id": "sociedad",
+            "name": "Sociedad",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "fi:sociedad:'(.*?)'",
+                    "field": "fi:sociedad",
+                    "placeholder": "Sociedad"
+                }
+            }
+        },
+        {
+            "id": "ejercicio",
+            "name": "Ejercicio",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "fi:ejercicio:(.*?)",
+                    "field": "fi:ejercicio",
+                    "placeholder": "Ejercicio"
+                }
+            }
+        },
+        {
+            "id": "fechaContabilizacion",
+            "name": "Fechas de contabilización",
+            "enabled": true,
+            "component": {
+                "selector": "fi-contabilizacion-filter",
+                "settings": {
+                    "fields": [
+                        "fi:fecha_contable_mm",
+                        "fi:fecha_contable_sd",
+                        "fi:fecha_contable_ap",
+                        "fi:fecha_contable_ad",
+                        "fi:fecha_contable_an",
+                        "fi:fecha_contable_pdp"
+                    ]
+                    
+                }
+            }
+        },
+        {
+            "id": "acreedor",
+            "name": "Acreedor",
+            "enabled": true,
+            "component": {
+                "selector": "fi-acreedor_referencia-filter",
+                "settings": {
+                    "fields": [
+                        "fi:proveedor_sap_pdp",
+                        "fi:proveedor_sap_an",
+                        "fi:proveedor_sap_mm",
+                        "fi:proveedor_sap_ap"
+                        
+                    ],
+                    "placeholder": "Proveedor SAP",
+                    "pattern": "fi:proveedor_sap_pdp:[A-Z] OR fi:proveedor_sap_an:[A-Z] OR fi:fi:proveedor_sap_mm:[A-Z] OR fi:proveedor_sap_ap:[A-Z]"
+                }
+            }
+        },
+        {
+            "id": "referencia",
+            "name": "Referencia",
+            "enabled": true,
+            "component": {
+                "selector": "fi-acreedor_referencia-filter",
+                "settings": {
+                    "fields": [
+                        "fi:numero_factura_pdp",
+                        "fi:numero_factura_an",
+                        "fi:numero_factura_mm",
+                        "fi:numero_factura_sd"
+                    ],
+                    "placeholder": "Numero de factura",
+                    "pattern": "fi:numero_factura_pdp:(.*?) OR fi:numero_factura_an:(.*?) OR fi:fi:numero_factura_mm:(.*?) OR fi:numero_factura_sd:(.*?)"
+                }
+            }
+        }
+    ]
+}

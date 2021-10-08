@@ -1,0 +1,29 @@
+
+<style>
+  .column {
+    display: flex;
+    flex-flow: column;
+    height: 105px ;
+  }
+  mat-selection-list {
+    display: flex !important;
+    flex-flow: row wrap;
+  }
+  mat-selection-list > *{
+    width: 50% !important;
+  }
+
+</style>
+
+<h1 mat-dialog-title>Campos de exportación</h1>
+
+<mat-selection-list #fields>
+  <mat-list-option [selected]=true *ngFor="let campo of camposExport">
+    {{campo}}
+  </mat-list-option>
+</mat-selection-list>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="exportFile()" cdkFocusInitial>Exportar</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+</div>

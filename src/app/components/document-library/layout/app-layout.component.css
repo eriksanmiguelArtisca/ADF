@@ -1,0 +1,12 @@
+adf-sidenav-layout {
+    height: 100%;
+}
+
+.create-folder-button {
+    margin: 15px 16px 0px;
+    height: 35px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+
+}

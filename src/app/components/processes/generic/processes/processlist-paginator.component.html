@@ -1,0 +1,135 @@
+<button *ngIf="mostrarBusqueda==false" style="color: #828285;font-weight: bold; width: 9%;" mat-menu-item (click)="vistaFiltro()"><span>Filtros Avanzados</span></button>
+<button *ngIf="mostrarBusqueda==true && selectedapp!='Aplicacion de tareas'" style="color: #828285;font-weight: bold;width: 9%;" mat-menu-item (click)="vistaNormal()"><span>Volver a Procesos</span></button>
+<div  *ngIf="mostrarBusqueda==true">
+<div class="filtros-tabla">
+
+    <span>DEFINICIÓN DE PROCESOS</span>
+    <select  [(ngModel)]="definicionProceso" (ngModelChange)="filtrar($event)">
+        <option *ngFor="let data of dataprocesos"  [value]="data.key">
+            {{data.name}}
+          <option>
+     </select>   
+ 
+    <span  [hidden]="!definicionProceso && definicionProceso !='' "> NOMBRE</span>
+    <input [hidden]="!definicionProceso  && definicionProceso !='' "  type="text" [(ngModel)]="nombreProceso" (ngModelChange)="filtrar($event)">
+
+    <span [hidden]="!definicionProceso  && definicionProceso !='' " >ESTADO</span>
+    <select [hidden]="!definicionProceso  && definicionProceso !='' " type="text" [(ngModel)]="estadoProceso" (ngModelChange)="filtrar($event)">
+    <option value="running">Ejecutándose</option>
+    <option value="completed">Completado</option>
+    <option value="all">Todos</option>
+     </select> 
+
+     <span [hidden]="!definicionProceso  && definicionProceso !='' ">CLASIFICAR</span>
+     <select [hidden]="!definicionProceso  && definicionProceso !='' " type="text" name="nombre Fichero" [(ngModel)]="clasificarProceso" (ngModelChange)="filtrar($event)">
+     <option value="created-desc">Más Reciente</option>
+     <option value="created-asc">Más Antiguo</option>
+      </select> 
+      <button [hidden]="!definicionProceso  && definicionProceso !='' " (click)="limpiarFiltros()">Limpiar Filtros</button>
+  </div>
+<!--Procesos vista busqueda-->
+
+
+    <adf-datatable #dataTable
+    [(rows)]="datasearch"
+    [columns]="schemaColumns">
+        <adf-no-content-template>
+            <!--Add your custom empty template here-->
+            <ng-template>
+                <p>No se encontrarón resultados</p>
+            </ng-template>
+        </adf-no-content-template>
+        <adf-loading-content-template>
+            <ng-template>
+                <!--Add your custom loading template here-->
+                <mat-progress-spinner
+                    class="adf-document-list-loading-margin"
+                    [color]="'primary'"
+                    [mode]="'indeterminate'">
+                </mat-progress-spinner>
+            </ng-template>
+        </adf-loading-content-template>
+        <data-columns>
+            <data-column key="name" title="ADF_PROCESS_LIST.PROPERTIES.NAME" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+                    <div title="{{entry.row.obj.name }}">{{entry.row.obj.name}}</div>
+                </ng-template>
+            </data-column>
+            <data-column key="started" title="ADF_PROCESS_LIST.PROPERTIES.CREATED" type="date" format="timeAgo" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+            </data-column>
+            <data-column key="ended" title="ADF_PROCESS_LIST.PROPERTIES.END_DATE" type="date" format="timeAgo" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+            </data-column>
+                <data-column key="startedBy" title="ADF_PROCESS_LIST.PROPERTIES.CREATED_BY" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+                    <ng-template let-entry="$implicit">
+                        <div title="{{entry.row.obj.startedBy  | fullName}}">{{entry.row.obj.startedBy  | fullName}}</div>
+                    </ng-template>
+                </data-column>
+				<data-column key="id" [sortable]="false">
+                <ng-template let-entry="$implicit">
+					<button  mat-raised-button color="primary" (click)="onRowDoubleClick(entry.row.obj.id,'si')">
+					<span>Ver Tareas</span>
+					</button>
+                </ng-template>
+            </data-column>
+			<data-column key="id" [sortable]="false" class="adf-datatable-cell adf-datatable__actions-cell adf-datatable-center-actions-column-ie">
+			    <ng-template let-entry="$implicit" style="float:right;">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                           <button mat-menu-item (click)="onRowDoubleClick(entry.row.obj.id,'no')">Ver Diagrama</button>
+						   <button mat-menu-item (click)="onRowClick(entry.row.obj.id)">Ver Detalles</button>
+                   </mat-menu>
+                </ng-template>
+            </data-column>
+        </data-columns>
+    </adf-datatable>
+
+    </div>
+    <!--Procesos vista normal-->
+
+<div fxLayout="column" *ngIf="mostrarBusqueda==false" fxLayoutAlign="space-between stretch" class="process-list-container">
+    <adf-process-instance-list #processInstanceList id="apw-process-list-id" data-automation-id="process-list"
+        [appId]="currentFilter?.appId"
+        [presetColumn]="getProcessListSchema()"
+        [processDefinitionId]="currentFilter?.filter?.processDefinitionKey"
+        [state]="currentFilter?.filter?.state"
+        [sort]="currentFilter?.filter?.sort"
+        [data]="dataProcesses"
+        [size]="paginationPageSize"
+        (success)="onSuccessProcessList($event)">
+
+        <data-columns>
+            <data-column key="startedBy" title="ADF_PROCESS_LIST.PROPERTIES.CREATED_BY" [sortable]="false" class="desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+                    <div title="{{entry.row.obj.startedBy  | fullName}}">{{entry.row.obj.startedBy  | fullName}}</div>
+                </ng-template>
+            </data-column>
+					    <data-column key="id" [sortable]="false">
+                <ng-template let-entry="$implicit">
+					<button  mat-raised-button color="primary" (click)="onRowDoubleClick(entry.row.obj.id,'si')">
+					<span>Ver Tareas</span>
+					</button>
+                </ng-template>
+            </data-column>
+			<data-column key="id" [sortable]="false" class="adf-datatable-cell adf-datatable__actions-cell adf-datatable-center-actions-column-ie">
+			    <ng-template let-entry="$implicit" style="float:right;">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                           <button mat-menu-item (click)="onRowDoubleClick(entry.row.obj.id,'no')">Ver Diagrama</button>
+						   <button mat-menu-item (click)="onRowClick(entry.row.obj.id)">Ver Detalles</button>
+                   </mat-menu>
+                </ng-template>
+            </data-column>
+        </data-columns>
+    </adf-process-instance-list>
+    <adf-pagination
+        *ngIf="processInstanceList"
+        [target]="processInstanceList"
+        [supportedPageSizes]="supportedPageSizes"
+        (changePageSize)="onChangePageSize($event)"
+        #processListPagination>
+    </adf-pagination>
+</div>

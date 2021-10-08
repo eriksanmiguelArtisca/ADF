@@ -1,0 +1,28 @@
+
+<adf-layout-header  id="adf-header"
+                    [color]="color"
+                    placeholder="firstSite"
+                    [showSidenavToggle]="true"
+                    [logo]="logoPath"
+                    position="start"
+                    (clicked)=toggleMenu()>
+
+  <!--   <button mat-raised-button   fxHide.xs style="margin-left:3%;border: 2px solid white" color="primary" (click)="getSiteContent('-my-')">Mis Ficheros</button> -->
+    <adf-sites-dropdown #sitesDropdownModule (change)="getSiteContent($event)" [relations]="'members'" [siteList]="this.sitePaging" [hideMyFiles]="true"	 style="width: 180px;margin-top:8px;margin-left:3%;">
+    </adf-sites-dropdown>
+
+    <button [fxHide.xs]="true" [fxHide.sm]="true" style="margin-left:1%;"  mat-menu-item class="white-element-header" routerLink="/apps">
+      <mat-icon matListIcon class="sidenav-menu-icon" style="color: white;">assignment</mat-icon>
+      <span [fxHide.xs]="true" [fxHide.sm]="true" > Panel de Procesos</span>
+    </button>
+    <div class="adf-app-layout-menu-spacer"></div>
+
+    <adf-userinfo fxHide.xs
+        class="adf-app-layout-user-profile"
+        [menuPositionX]="'before'"
+        [menuPositionY]="'above'">
+    </adf-userinfo> 
+
+    <apw-user-profile-menu (onMenuClick)="onUserMenuSelect($event)"></apw-user-profile-menu>
+</adf-layout-header>
+    

@@ -1,0 +1,81 @@
+<style>
+	input[type="search"]::-webkit-search-cancel-button {
+		display: none;
+	}
+
+	input[type="search"]::-ms-clear {
+		display: none;
+	}
+
+	tbody.ng-star-inserted>tr {
+		cursor: pointer;
+	}
+</style>
+<div class="filtros-tabla">
+ 
+	<div class="box">
+		<div class="container-4">
+			<input type="search" id="nombre2" placeholder="Buscar destinatario..." />
+			<button (click)="cargar()" class="icon" style="cursor:pointer" onMouseOver="this.style.background='#e2e2e2'"
+				onMouseOut="this.style.background='#eee'"><i class="material-icons lupa">search</i></button>
+			<button (click)="limpiar()" class="icon" style="cursor:pointer" onMouseOver="this.style.background='#e2e2e2'"
+				onMouseOut="this.style.background='#eee'"><i class="material-icons lupa">clear</i></button>
+		</div><br>
+		</div>
+				<input id="fechadesde"  class="forumulariofecha" [(ngModel)]="fechadesdedocaux" matInput [matDatepicker]="picker" (dateChange)="cargar()"  placeholder="Desde Fecha Envio">
+						<button (click)="resetFormdesde();cargar();" model="fechadesdedocaux"
+				onmouseout="this.style.background='#eee'" onmouseover="this.style.background='#e2e2e2'" class="clearDropdownfecha"><i
+					class="material-icons lupa">clear</i></button>
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+
+				<input id="fechahasta"  class="forumulariofecha" [(ngModel)]="fechahastadocaux" matInput [matDatepicker]="picker1" (dateChange)="cargar()" placeholder="Hasta Fecha Envio">
+				<button (click)="resetFormhasta();cargar();" model="fechahastadocaux"
+				onmouseout="this.style.background='#eee'" onmouseover="this.style.background='#e2e2e2'" class="clearDropdownfecha"><i
+					class="material-icons lupa">clear</i></button>
+				<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+				<mat-datepicker #picker1></mat-datepicker>
+				
+     	<input id="fechadesdevenci"  class="forumulariofecha"  [(ngModel)]="fechadesdevencidocaux" matInput [matDatepicker]="picker2" (dateChange)="cargar()"  placeholder="Desde Fecha Vencimiento">
+						<button (click)="resetFormdesdevenci();cargar();" model="fechadesdevencidocaux"
+				onmouseout="this.style.background='#eee'" onmouseover="this.style.background='#e2e2e2'" class="clearDropdownfecha"><i
+					class="material-icons lupa">clear</i></button>
+				<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+				<mat-datepicker #picker2></mat-datepicker>
+
+				<input id="fechahastavenci" [(ngModel)]="fechahastavencidocaux"  class="forumulariofecha" matInput [matDatepicker]="picker3" (dateChange)="cargar()" placeholder="Hasta Fecha Vencimiento">
+				<button (click)="resetFormhastavenci();cargar();" model="fechahastavencidocaux"
+				onmouseout="this.style.background='#eee'" onmouseover="this.style.background='#e2e2e2'" class="clearDropdownfecha"><i
+					class="material-icons lupa">clear</i></button>
+				<mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+				<mat-datepicker #picker3></mat-datepicker>
+
+							
+
+</div>
+
+<adf-datatable #dataTable [hidden]=" data == undefined"
+[(rows)]="data"
+[columns]="schema"
+actions="true"
+actionsPosition="right"
+contextMenu="true"
+(showRowActionsMenu)="onShowRowActionsMenu($event)"
+(executeRowAction)="onExecuteRowAction($event)">
+    <adf-no-content-template>
+        <!--Add your custom empty template here-->
+        <ng-template>
+            <p>Bandeja vacia</p>
+        </ng-template>
+    </adf-no-content-template>
+	<adf-loading-content-template>
+        <ng-template>
+            <!--Add your custom loading template here-->
+            <mat-progress-spinner
+                class="adf-document-list-loading-margin"
+                [color]="'primary'"
+                [mode]="'indeterminate'">
+            </mat-progress-spinner>
+        </ng-template>
+    </adf-loading-content-template>
+	</adf-datatable>

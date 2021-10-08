@@ -1,0 +1,450 @@
+{
+    "filterWithContains": true,
+    "categories": [
+        {
+            "id": "queryType",
+            "name": "Tipo de Contenido",
+            "enabled": true,
+            "expanded": true,
+            "component": {
+                "selector": "radio",
+                "settings": {
+                    "field": null,
+                    "pageSize": 5,
+                    "options": [
+                        { "name": "Documento", "value": "TYPE:'cm:content'" },
+                        { "name": "Carpeta", "value": "TYPE:'cm:folder'" },  
+                        { "name": "Todos", "value": "TYPE:'cm:folder' OR TYPE:'cm:content'" }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "tipologia",
+            "name": "Tipologia Documento",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "DOCUMENTO INTERNO", "value": "regu:tipologia_doc:'DOCUMENTO INTERNO'" },
+                        { "name": "LEY", "value": "regu:tipologia_doc:'LEY'" },
+                        { "name": "ENTRADA", "value": "regu:tipologia_doc:'ENTRADA'" },
+                        { "name": "SALIDA", "value": "regu:tipologia_doc:'SALIDA'" },
+                        { "name": "OTROS INTERNO", "value": "regu:tipologia_doc:'OTROS INTERNO'" }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "revisado",
+            "name": "Tipología revisado",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "SI", "value": "regu:revisado:'SI'" },
+                        { "name": "NO", "value": "regu:revisado:'NO'" }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "tipoDoc",
+            "name": "Tipo Documento",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "INFORME", "value": "regu:tipo_doc:'INFORME'" },
+                        { "name": "OTROS", "value": "regu:tipo_doc:'OTROS'" },
+                        { "name": "REAL DECRETO", "value": "regu:tipo_doc:'REAL DECRETO'" },
+                        { "name": "LEY", "value": "regu:tipo_doc:'LEY'" },
+                        { "name": "ALEGACIONES", "value": "regu:tipo_doc:'ALEGACIONES'" },
+                        { "name": "CARTA", "value": "regu:tipo_doc:'CARTA'" },
+                        { "name": "RESOLUCION", "value": "regu:tipo_doc:'RESOLUCION'" },
+                        { "name": "SOLICITUD", "value": "regu:tipo_doc:'SOLICITUD'" },
+                        { "name": "RECURSO", "value": "regu:tipo_doc:'RECURSO'" },
+                        { "name": "OFICIO", "value": "regu:tipo_doc:'OFICIO'" },
+                        { "name": "FORMULARIO", "value": "regu:tipo_doc:'FORMULARIO'" },
+                        { "name": "REAL DECRETO - LEY", "value": "regu:tipo_doc:'REAL DECRETO - LEY'" },
+                        { "name": "LIQUIDACION", "value": "regu:tipo_doc:'LIQUIDACION'" },
+                        { "name": "ACTA", "value": "regu:tipo_doc:'ACTA'" },
+                        { "name": "FAX", "value": "regu:tipo_doc:'FAX'" },
+                        { "name": "AUTORIZACION", "value": "regu:tipo_doc:'AUTORIZACION'" },
+                        { "name": "DICTAMEN", "value": "regu:tipo_doc:'DICTAMEN'" },
+                        { "name": "ESTIMACION", "value": "regu:tipo_doc:'ESTIMACION'" },
+                        { "name": "CONTRATO", "value": "regu:tipo_doc:'CONTRATO'" },
+                        { "name": "FACTURA", "value": "regu:tipo_doc:'FACTURA'" },
+                        { "name": "BOLETIN DE ENCUESTA", "value": "regu:tipo_doc:'BOLETIN DE ENCUESTA'" },
+                        { "name": "ENTRADA", "value": "regu:tipo_doc:'ENTRADA'" },
+                        { "name": "ESCRITURA", "value": "regu:tipo_doc:'ESCRITURA'" } 
+                    ]
+                }
+            }
+        },
+        {
+            "id": "numeroPaginas",
+            "name": "Número de páginas",
+            "enabled": true,
+            "component": {
+                "selector": "number-range",
+                "settings": {
+                    "field": "regu:numero_paginas",
+                    "format": "[{FROM} TO {TO}]"
+                }
+            }
+        },
+        {
+            "id": "org_Destino",
+            "name": "Organismo Destino",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "PÚBLICO", "value": "regu:org_destino:'PÚBLICO'" },
+                        { "name": "OTROS", "value": "regu:org_destino:'OTROS'" },
+                        { "name": "E.ON ESPAÑA", "value": "regu:org_destino:'E.ON ESPAÑA'" },
+                        { "name": "UNESA", "value": "regu:org_destino:'UNESA'" },
+                        { "name": "CNE", "value": "regu:org_destino:'CNE'" },
+                        { "name": "RED ELECTRICA DE ESPANA", "value": "regu:org_destino:'RED ELECTRICA DE ESPANA'" },
+                        { "name": "E.ON DISTRIBUCION", "value": "regu:org_destino:'E.ON DISTRIBUCION'" },
+                        { "name": "MINISTERIO DE MEDIO AMBIENTE", "value": "regu:org_destino:'MINISTERIO DE MEDIO AMBIENTE'" },
+                        { "name": "MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO", "value": "regu:org_destino:'MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO'" },
+                        { "name": "E.ON GENERACION", "value": "regu:org_destino:'E.ON GENERACION'" },
+                        { "name": "E.ON ENERGIA", "value": "regu:org_destino:'E.ON ENERGIA'" },
+                        { "name": "CONSEJO DE ESTADO", "value": "regu:org_destino:'CONSEJO DE ESTADO'" },
+                        { "name": "MINISTERIO DE ECONOMIA Y HACIENDA", "value": "regu:org_destino:'MINISTERIO DE ECONOMIA Y HACIENDA'" },
+                        { "name": "GOBIERNO DE CANTABRIA", "value": "regu:org_destino:'GOBIERNO DE CANTABRIA'" },
+                        { "name": "JUNTA DE GALICIA", "value": "regu:org_destino:'JUNTA DE GALICIA'" },
+                        { "name": "GOBIERNO DE ASTURIAS", "value": "regu:org_destino:'GOBIERNO DE ASTURIAS'" },
+                        { "name": "JUNTA DE CASTILLA Y LEON", "value": "regu:org_destino:'JUNTA DE CASTILLA Y LEON'" },
+                        { "name": "E.ON SERVICIOS", "value": "regu:org_destino:'E.ON SERVICIOS'" },
+                        { "name": "COMISION EUROPEA. COMPETITION DG MARGER NETWORK", "value": "regu:org_destino:'COMISION EUROPEA. COMPETITION DG MARGER NETWORK'" },
+                        { "name": "JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA", "value": "regu:org_destino:'JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA'" },
+                        { "name": "CEM", "value": "regu:org_destino:'CEM'" },
+                        { "name": "TRIBUNAL DE DEFENSA DE LA COMPETENCIA", "value": "regu:org_destino:'TRIBUNAL DE DEFENSA DE LA COMPETENCIA'" },
+                        { "name": "OMEL", "value": "regu:org_destino:'OMEL'" } ,
+                        { "name": "CAMARA CANTABRIA", "value": "regu:org_destino:'CAMARA CANTABRIA'" } ,
+                        { "name": "INSTITUTO ARAGONES DE GESTION AMBIENTAL", "value": "regu:org_destino:'INSTITUTO ARAGONES DE GESTION AMBIENTAL'" } ,
+                        { "name": "JUNTA DE ANDALUCIA", "value": "regu:org_destino:'JUNTA DE ANDALUCIA'" } ,
+                        { "name": "GOBIERNO DE ARAGON", "value": "regu:org_destino:'GOBIERNO DE ARAGON'" } ,
+                        { "name": "E.ON", "value": "regu:org_destino:'E.ON'" } ,
+                        { "name": "BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA", "value": "regu:org_destino:'BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA'" } ,
+                        { "name": "E.ON COMERCIALIZADORA ÚLTIMO RECURSO", "value": "regu:org_destino:'E.ON COMERCIALIZADORA ÚLTIMO RECURSO'" } ,
+                        { "name": "ENAGAS", "value": "regu:org_destino:'ENAGAS'" } ,
+                        { "name": "CONFEDERACIONES HIDROGRÁFICAS", "value": "regu:org_destino:'CONFEDERACIONES HIDROGRÁFICAS'" } ,
+                        { "name": "GENERALITAT DE CATALUÑA", "value": "regu:org_destino:'GENERALITAT DE CATALUÑA'" } ,
+                        { "name": "Corporación Reservas Estratégicas", "value": "regu:org_destino:'Corporación Reservas Estratégicas'" } ,
+                        { "name": "ADMINISTRACIÓN GENERAL DEL ESTADO", "value": "regu:org_destino:'ADMINISTRACIÓN GENERAL DEL ESTADO'" } ,
+                        { "name": "DELEGACIÓN DEL GOBIERNO", "value": "regu:org_destino:'DELEGACIÓN DEL GOBIERNO'" } ,
+                        { "name": "VIESGO INFRAESTRUCTURAS ENERGÉTICAS", "value": "regu:org_destino:'VIESGO INFRAESTRUCTURAS ENERGÉTICAS'" } ,
+                        { "name": "VIESGO DISTRIBUCIÓN ELÉCTRICA", "value": "regu:org_destino:'VIESGO DISTRIBUCIÓN ELÉCTRICA'" } ,
+                        { "name": "VIESGO GENERACIÓN", "value": "regu:org_destino:'VIESGO GENERACIÓN'" } ,
+                        { "name": "VIESGO PRODUCCIÓN", "value": "regu:org_destino:'VIESGO PRODUCCIÓN'" } ,
+                        { "name": "VIESGO ENERGÍA", "value": "regu:org_destino:'VIESGO ENERGÍA'" } ,
+                        { "name": "VIESGO COMERCIALIZADORA DE REFERENCIA", "value": "regu:org_destino:'VIESGO COMERCIALIZADORA DE REFERENCIA'" } ,
+                        { "name": "VIESGO RENOVABLES", "value": "regu:org_destino:'VIESGO RENOVABLES'" }                        ]
+                }
+            }
+        },
+        {
+            "id": "cargoEjecutivoDestino",
+            "name": "Cargo Ejecutivo Destino",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_destino:'DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_destino:'DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "SECRETARIO GENERAL DE ENERGIA", "value": "regu:cargo_ejec_destino:'SECRETARIO GENERAL DE ENERGIA'" },
+                        { "name": "CONSEJERO DELEGADO", "value": "regu:cargo_ejec_destino:'CONSEJERO DELEGADO'" },
+                        { "name": "MINISTRO", "value": "regu:cargo_ejec_destino:'MINISTRO'" },
+                        { "name": "DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO", "value": "regu:cargo_ejec_destino:'DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO'" },
+                        { "name": "DIRECTOR DE DESARROLLO DE PROYECTOS", "value": "regu:cargo_ejec_destino:'DIRECTOR DE DESARROLLO DE PROYECTOS'" },
+                        { "name": "DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO", "value": "regu:cargo_ejec_destino:'DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO'" },
+                        { "name": "DIRECTOR DE GENERACION", "value": "regu:cargo_ejec_destino:'DIRECTOR DE GENERACION'" },
+                        { "name": "DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO", "value": "regu:cargo_ejec_destino:'DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO'" },
+                        { "name": "DIRECTOR FINANCIERO", "value": "regu:cargo_ejec_destino:'DIRECTOR FINANCIERO'" },
+                        { "name": "DIRECTOR DE COMPRAS", "value": "regu:cargo_ejec_destino:'DIRECTOR DE COMPRAS'" },
+                        { "name": "DIRECTOR GENERAL", "value": "regu:cargo_ejec_destino:'DIRECTOR GENERAL'" },
+                        { "name": "DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS", "value": "regu:cargo_ejec_destino:'DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS'" },
+                        { "name": "DIRECTOR DE RETAIL", "value": "regu:cargo_ejec_destino:'DIRECTOR DE RETAIL'" },
+                        { "name": "DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_destino:'DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "DIRECTOR DE ENERGIA ELECTRICA", "value": "regu:cargo_ejec_destino:'DIRECTOR DE ENERGIA ELECTRICA'" },
+                        { "name": "SUBDIRECTOR GENERAL", "value": "regu:cargo_ejec_destino:'SUBDIRECTOR GENERAL'" },
+                        { "name": "CONSEJERA DE MEDIO AMBIENTE", "value": "regu:cargo_ejec_destino:'CONSEJERA DE MEDIO AMBIENTE'" },
+                        { "name": "JEFE DEL AREA DE ELECTRICIDAD", "value": "regu:cargo_ejec_destino:'JEFE DEL AREA DE ELECTRICIDAD'" },
+                        { "name": "DIRECTOR DE REGULACION Y COMPETENCIA", "value": "regu:cargo_ejec_destino:'DIRECTOR DE REGULACION Y COMPETENCIA'" },
+                        { "name": "SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA", "value": "regu:cargo_ejec_destino:'SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA'" },
+                        { "name": "PRESIDENTA", "value": "regu:cargo_ejec_destino:'PRESIDENTA'" } ,
+                        { "name": "VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA", "value": "regu:cargo_ejec_destino:'VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA'" } ,
+                        { "name": "PRESIDENTE DEL CONSEJO DE ADMINISTRACION", "value": "regu:cargo_ejec_destino:'PRESIDENTE DEL CONSEJO DE ADMINISTRACIONL'" } ,
+                        { "name": "SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL", "value": "regu:cargo_ejec_destino:'SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL'" } ,
+                        { "name": "SECRETARIO GENERAL", "value": "regu:cargo_ejec_destino:'SECRETARIO GENERAL'" } ,
+                        { "name": "SUBDIRECCION GENERAL PLANIFICACION ENERGETICA", "value": "regu:cargo_ejec_destino:'SUBDIRECCION GENERAL PLANIFICACION ENERGETICA'" } ,
+                        { "name": "JEFE DEL GABINETE DE MINISTRO", "value": "regu:cargo_ejec_destino:'JEFE DEL GABINETE DE MINISTRO'" } ,
+                        { "name": "DIRECTOR GENERAL DE CALIDAD AMBIENTAL", "value": "regu:cargo_ejec_destino:'DIRECTOR GENERAL DE CALIDAD AMBIENTAL'" } ,
+                        { "name": "DIRECTOR LIQUIDACION Y FACTURACION", "value": "regu:cargo_ejec_destino:'DIRECTOR LIQUIDACION Y FACTURACION'" } ,
+                        { "name": "AREA DE INDUSTRIA Y ENERGIA", "value": "regu:cargo_ejec_destino:'AREA DE INDUSTRIA Y ENERGIA'" } ,
+                        { "name": "DIRECTOR DE REDES", "value": "regu:cargo_ejec_destino:'DIRECTOR DE REDES'" } ,
+                        { "name": "JEFE DE LA CENTRAL", "value": "regu:cargo_ejec_destino:'JEFE DE LA CENTRAL'" } ,
+                        { "name": "DEPARTAMENTO JURIDICO", "value": "regu:cargo_ejec_destino:'DEPARTAMENTO JURIDICO'" } ,
+                        { "name": "DIRECTOR GENERAL DE INDUSTRIA", "value": "regu:cargo_ejec_destino:'DIRECTOR GENERAL DE INDUSTRIA'" } ,
+                        { "name": "DIREC.GRAL DE CALIDAD AMBIENTAL", "value": "regu:cargo_ejec_destino:'DIREC.GRAL DE CALIDAD AMBIENTAL'" } ,
+                        { "name": "DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL", "value": "regu:cargo_ejec_destino:'DIRECTOR INSTITUTO ARAGONES GESTION AMBIENTAL'" } ,
+                        { "name": "CONSEJERO DE INDUSTRIA", "value": "regu:cargo_ejec_destino:'CONSEJERO DE INDUSTRIA'" } ,
+                        { "name": "CONSERJERIA MEDIO AMBIENTE", "value": "regu:cargo_ejec_destino:'CONSERJERIA MEDIO AMBIENTE'" } ,
+                        { "name": "SUBDELEGACIÓN CANTABRIA", "value": "regu:cargo_ejec_destino:'SUBDELEGACIÓN CANTABRIA'" } ,
+                        { "name": "CONFEDERACION HIDROGRÁFICA DEL NORTE", "value": "regu:cargo_ejec_destino:'CONFEDERACION HIDROGRÁFICA DEL NORTE'" } ,
+                        { "name": "CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR", "value": "regu:cargo_ejec_destino:'CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR'" } ,
+                        { "name": "CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA", "value": "regu:cargo_ejec_destino:'CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA'" }  ,
+                        { "name": "CONFEDERACIÓN HIDROGRÁFICA DEL DUERO", "value": "regu:cargo_ejec_destino:CONFEDERACIÓN HIDROGRÁFICA DEL DUERO'" }  ,
+                        { "name": "DELGACIÓN GOBIERNO OVIEDO", "value": "regu:cargo_ejec_destino:'DELGACIÓN GOBIERNO OVIEDO'" }  ,
+                        { "name": "SUBDELEGACIÓN LUGO", "value": "regu:cargo_ejec_destino:'SUBDELEGACIÓN LUGO'" }  ,
+                        { "name": "DELEGACIÓN GOBIERNO CASTILLA-LEÓN", "value": "regu:cargo_ejec_destino:'DELEGACIÓN GOBIERNO CASTILLA-LEÓN'" }  ,
+                        { "name": "DELEGACIÓN GOBIERNO CANTABRIA", "value": "regu:cargo_ejec_destino:'DELEGACIÓN GOBIERNO CANTABRIA'" }  ,
+                        { "name": "DIREC.GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_destino:'DIREC.GRAL DE POLITICA ENERGETICA Y MINAS'" }  ,
+                        { "name": "DIRECTOR DE INSPECCION", "value": "regu:cargo_ejec_destino:'DIRECTOR DE INSPECCION'" } ,
+                        { "name": "DIR.GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_destino:'DIR.GRAL DE POLITICA ENERGETICA Y MINAS'" }                         ]
+                }
+            }
+        },
+        {
+            "id": "destinatario",
+            "name": "Destinatario",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "regu:destinatario:'(.*?)'",
+                    "field": "regu:destinatario",
+                    "placeholder": "Escribe el destinatario"
+                }
+            }
+        },
+        {
+            "id": "fechaEntrada",
+            "name": "Fecha Entrada",
+            "enabled": true,
+            "component": {
+                "selector": "date-range",
+                "settings": {
+                    "field": "regu:fecha_entrada"
+                }
+            }
+        },
+        {
+            "id": "remitente",
+            "name": "Remitente",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "regu:remitente:'(.*?)'",
+                    "field": "regu:remitente",
+                    "placeholder": "Escribe el remitente"
+                }
+            }
+        },
+        {
+            "id": "modoEnvio",
+            "name": "Modo de envío",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "fi:sociedad:'(.*?)'",
+                    "field": "fi:sociedad",
+                    "placeholder": "Escribe el modo de envio"
+                }
+            }
+        },
+        {
+            "id": "org_Origen",
+            "name": "Organismo Origen",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "OTROS", "value": "regu:org_origen:'OTROS'" },
+                        { "name": "MINISTERIO DE MEDIO AMBIENTE", "value": "regu:org_origen:'MINISTERIO DE MEDIO AMBIENTE'" },
+                        { "name": "E.ON ESPAÑA", "value": "regu:org_origen:'E.ON ESPAÑA'" },
+                        { "name": "CNE", "value": "regu:org_origen:'CNE'" },
+                        { "name": "E.ON GENERACION", "value": "regu:org_origen:'E.ON GENERACION'" },
+                        { "name": "E.ON DISTRIBUCION", "value": "regu:org_origen:'E.ON DISTRIBUCION'" },
+                        { "name": "GOBIERNO DE CANTABRIA", "value": "regu:org_origen:'GOBIERNO DE CANTABRIA'" },
+                        { "name": "MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO", "value": "regu:org_origen:'MINISTERIO DE INDUSTRIA, TURISMO Y COMERCIO'" },
+                        { "name": "E.ON ENERGIA", "value": "regu:org_origen:'E.ON ENERGIA'" },
+                        { "name": "TRIBUNAL DE DEFENSA DE LA COMPETENCIA", "value": "regu:org_origen:'TRIBUNAL DE DEFENSA DE LA COMPETENCIA'" },
+                        { "name": "BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA", "value": "regu:org_origen:'BARRAS ELECTRICAS GALAICO ASTURIANAS BEGASA'" },
+                        { "name": "E.ON SERVICIOS", "value": "regu:org_origen:'E.ON SERVICIOS'" },
+                        { "name": "E.ON", "value": "regu:org_origen:'E.ON'" },
+                        { "name": "COMISION EUROPEA. COMPETITION DG MARGER NETWORK", "value": "regu:org_origen:'COMISION EUROPEA. COMPETITION DG MARGER NETWORK'" },
+                        { "name": "INSTITUTO ARAGONES DE GESTION AMBIENTAL", "value": "regu:org_origen:'INSTITUTO ARAGONES DE GESTION AMBIENTAL'" },
+                        { "name": "GENERALITAT DE CATALUÑA", "value": "regu:org_origen:'GENERALITAT DE CATALUÑA'" },
+                        { "name": "MINISTERIO DE ECONOMIA Y HACIENDA", "value": "regu:org_origen:'MINISTERIO DE ECONOMIA Y HACIENDA'" },
+                        { "name": "JUNTA DE ANDALUCIA", "value": "regu:org_origen:'JUNTA DE ANDALUCIA'" },
+                        { "name": "JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA", "value": "regu:org_origen:'JUNTA DE LAS COMUNIDADES DE CASTILLA LA MANCHA'" },
+                        { "name": "GOBIERNO DE ARAGON", "value": "regu:org_origen:'GOBIERNO DE ARAGON'" },
+                        { "name": "AYUNTAMIENTO DE STA.PERPETUA DE MOGODA", "value": "regu:org_origen:'AYUNTAMIENTO DE STA.PERPETUA DE MOGODA'" },
+                        { "name": "JUNTA DE GALICIA", "value": "regu:org_origen:'JUNTA DE GALICIA'" },
+                        { "name": "CAMARA CANTABRIA", "value": "regu:org_origen:'CAMARA CANTABRIA'" },
+                        { "name": "CEM", "value": "regu:org_origen:'CEM'" },
+                        { "name": "OMEL", "value": "regu:org_origen:'OMEL'" },
+                        { "name": "AYUNTAMIENTO DE ALCOBENDAS", "value": "regu:org_origen:'AYUNTAMIENTO DE ALCOBENDAS'" },
+                        { "name": "JUNTA DE CASTILLA Y LEON", "value": "regu:org_origen:'JUNTA DE CASTILLA Y LEON'" },
+                        { "name": "GOBIERNO DE ASTURIAS", "value": "regu:org_origen:'GOBIERNO DE ASTURIAS'" },
+                        { "name": "PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA", "value": "regu:org_origen:'PRESIDENCIA DEL GOBIERNO MINISTERIO DE PRESIDENCIA'" },
+                        { "name": "PÚBLICO", "value": "regu:org_origen:'PÚBLICO'" },
+                        { "name": "E.ON COMERCIALIZADORA ÚLTIMO RECURSO", "value": "regu:org_origen:'E.ON COMERCIALIZADORA ÚLTIMO RECURSO'" },
+                        { "name": "Corporación Reservas Estratégicas", "value": "regu:org_origen:'Corporación Reservas Estratégicas'" },
+                        { "name": "ADMINISTRACIÓN GENERAL DEL ESTADO", "value": "regu:org_origen:'ADMINISTRACIÓN GENERAL DEL ESTADO'" },
+                        { "name": "DELEGACIÓN DEL GOBIERNO", "value": "regu:org_origen:'DELEGACIÓN DEL GOBIERNO'" },
+                        { "name": "CONSEJO DE ESTADO", "value": "regu:org_origen:'CONSEJO DE ESTADO'" },
+                        { "name": "CONFEDERACIONES HIDROGRÁFICAS", "value": "regu:org_origen:'CONFEDERACIONES HIDROGRÁFICAS'" },
+                        { "name": "ENAGAS", "value": "regu:org_origen:'ENAGAS'" },
+                        { "name": "AYUNTAMIENTO DE SAGUNTO", "value": "regu:org_origen:'AYUNTAMIENTO DE SAGUNTO'" },
+                        { "name": "RED ELECTRICA DE ESPANA", "value": "regu:org_origen:'RED ELECTRICA DE ESPANA'" },
+                        { "name": "VIESGO INFRAESTRUCTURAS ENERGÉTICAS", "value": "regu:org_origen:'VIESGO INFRAESTRUCTURAS ENERGÉTICAS'" },
+                        { "name": "VIESGO DISTRIBUCIÓN ELÉCTRICA", "value": "regu:org_origen:'VIESGO DISTRIBUCIÓN ELÉCTRICA'" },
+                        { "name": "VIESGO GENERACIÓN", "value": "regu:org_origen:'VIESGO GENERACIÓN'" },
+                        { "name": "VIESGO PRODUCCIÓN", "value": "regu:org_origen:'VIESGO PRODUCCIÓN'" },
+                        { "name": "VIESGO ENERGÍA", "value": "regu:org_origen:'VIESGO ENERGÍA'" },
+                        { "name": "VIESGO COMERCIALIZADORA DE REFERENCIA", "value": "regu:org_origen:'VIESGO COMERCIALIZADORA DE REFERENCIA'" },
+                        { "name": "VIESGO RENOVABLES", "value": "regu:org_origen:'VIESGO RENOVABLES'" }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "cargoOrigen",
+            "name": "Cargo Ejecutivo Origen",
+            "enabled": true,
+            "component": {
+                "selector": "check-list",
+                "settings": {
+                    "pageSize": 70, 
+                    "operator": "OR",
+                    "options": [
+                        { "name": "DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS", "value": "regu:cargo_ejec_origen:'DIRECTOR DE PLANIFICACION REGULACION Y DESARROLLO DE PROYECTOS'" },
+                        { "name": "PRESIDENTE", "value": "regu:cargo_ejec_origen:'PRESIDENTE'" },
+                        { "name": "DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO", "value": "regu:cargo_ejec_origen:'DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO DE NEGOCIO'" },
+                        { "name": "DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO", "value": "regu:cargo_ejec_origen:'DIRECTOR DE PLANIFICACION, REGULACION Y DESARROLLO'" },
+                        { "name": "SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA", "value": "regu:cargo_ejec_origen:'SUBDIRECTOR GENERAL DE ENERGIA ELECTRICA'" },
+                        { "name": "DIRECTOR DE ENERGIA ELECTRICA", "value": "regu:cargo_ejec_origen:'DIRECTOR DE ENERGIA ELECTRICA'" },
+                        { "name": "SECRETARIO DEL CONSEJO DE ADMINISTRACION", "value": "regu:cargo_ejec_origen:'SECRETARIO DEL CONSEJO DE ADMINISTRACION'" },
+                        { "name": "JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE", "value": "regu:cargo_ejec_origen:'JEFA DEL SERVICIO DE VIGILANCIA Y CONTROL DEL AIRE'" },
+                        { "name": "DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_origen:'DIRECTOR GENERAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "VICEPRESIDENTE", "value": "regu:cargo_ejec_origen:'VICEPRESIDENTE'" },
+                        { "name": "SUBDIRECTORA ECONOMICO-FINANCIERA", "value": "regu:cargo_ejec_origen:'SUBDIRECTORA ECONOMICO-FINANCIERA'" },
+                        { "name": "SECRETARIO GENERAL", "value": "regu:cargo_ejec_origen:'SECRETARIO GENERAL'" },
+                        { "name": "VICESECRETARIA", "value": "regu:cargo_ejec_origen:'VICESECRETARIA'" },
+                        { "name": "JEFE PROVINCIAL DE INSPECCION", "value": "regu:cargo_ejec_origen:'JEFE PROVINCIAL DE INSPECCION'" },
+                        { "name": "VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA", "value": "regu:cargo_ejec_origen:'VICESECRETARIO DEL CONSEJO Y DIRECTOR DE LA ASESORIA JURIDICA'" },
+                        { "name": "DIRECTOR GENERAL DE INDUSTRIA", "value": "regu:cargo_ejec_origen:'DIRECTOR GENERAL DE INDUSTRIA'" },
+                        { "name": "DELEGADA PROVINCIAL", "value": "regu:cargo_ejec_origen:'DELEGADA PROVINCIAL'" },
+                        { "name": "DIRECTOR GENERAL DE CALIDAD AMBIENTAL", "value": "regu:cargo_ejec_origen:'DIRECTOR GENERAL DE CALIDAD AMBIENTAL'" },
+                        { "name": "SUBDIRECTOR GENERAL", "value": "regu:cargo_ejec_origen:'SUBDIRECTOR GENERAL'" },
+                        { "name": "DIRECTORA GENERAL DE CALIDAD AMBIENTAL", "value": "regu:cargo_ejec_origen:'DIRECTORA GENERAL DE CALIDAD AMBIENTAL'" },
+                        { "name": "TECNICO DE INSPECCION", "value": "regu:cargo_ejec_origen:'TECNICO DE INSPECCION'" },
+                        { "name": "SECRETARIA GENERAL TECNICA", "value": "regu:cargo_ejec_origen:'SECRETARIA GENERAL TECNICA'" },
+                        { "name": "DIRECTOR DE INSPECCION", "value": "regu:cargo_ejec_origen:'DIRECTOR DE INSPECCION'" },
+                        { "name": "DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL", "value": "regu:cargo_ejec_origen:'DIRECTORA GENERAL DE PREVENCION Y CALIDAD AMBIENTAL'" },
+                        { "name": "JEFE SECCION DE INSPECCION INDUSTRIAL", "value": "regu:cargo_ejec_origen:'JEFE SECCION DE INSPECCION INDUSTRIAL'" },
+                        { "name": "JEFE DE LA CENTRAL", "value": "regu:cargo_ejec_origen:'JEFE DE LA CENTRAL'" },
+                        { "name": "SUBDIRECTOR GENERAL TECNICA", "value": "regu:cargo_ejec_origen:'SUBDIRECTOR GENERAL TECNICA'" },
+                        { "name": "JEFE DE AREA", "value": "regu:cargo_ejec_origen:'JEFE DE AREA'" },
+                        { "name": "DIRECTOR DE REGULACION Y COMPETENCIA", "value": "regu:cargo_ejec_origen:'DIRECTOR DE REGULACION Y COMPETENCIA'" },
+                        { "name": "SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL", "value": "regu:cargo_ejec_origen:'SUBDIRECTOR COMERCIAL Y DE METROLOGIA LEGAL'" },
+                        { "name": "DIRECTOR LIQUIDACION Y FACTURACION", "value": "regu:cargo_ejec_origen:'DIRECTOR LIQUIDACION Y FACTURACION'" },
+                        { "name": "SUBDIRECTOR DE INSPECCION", "value": "regu:cargo_ejec_origen:'SUBDIRECTOR DE INSPECCION'" },
+                        { "name": "SUBDIRECCION GENERAL PLANIFICACION ENERGETICA", "value": "regu:cargo_ejec_origen:'SUBDIRECCION GENERAL PLANIFICACION ENERGETICA'" },
+                        { "name": "DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION", "value": "regu:cargo_ejec_origen:'DIRECTORA DE LA DIVISION DE RECURSOS Y DERECHO DE PETICION'" },
+                        { "name": "DIRECTOR DE GAS", "value": "regu:cargo_ejec_origen:'DIRECTOR DE GAS'" },
+                        { "name": "DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA", "value": "regu:cargo_ejec_origen:'DIRECTOR GENERAL DE INDUSTRIA Y ENERGIA'" },
+                        { "name": "DIRECTOR DEL AREA", "value": "regu:cargo_ejec_origen:'DIRECTOR DEL AREA'" },
+                        { "name": "DIRECTOR GENERAL", "value": "regu:cargo_ejec_origen:'DIRECTOR GENERAL'" },
+                        { "name": "DIRECTORA DE CAMBIO CLIMATICO", "value": "regu:cargo_ejec_origen:'DIRECTORA DE CAMBIO CLIMATICO'" },
+                        { "name": "CONSEJERO DE INDUSTRIA", "value": "regu:cargo_ejec_origen:'CONSEJERO DE INDUSTRIA'" },
+                        { "name": "SECRETARIO GENERAL DE ENERGIA", "value": "regu:cargo_ejec_origen:'SECRETARIO GENERAL DE ENERGIA'" },
+                        { "name": "DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO", "value": "regu:cargo_ejec_origen:'DIRECTOR PLANIFICACION, REGULACION Y DESARROLLO'" },
+                        { "name": "CONSEJERO DELEGADO", "value": "regu:cargo_ejec_origen:'CONSEJERO DELEGADO'" },
+                        { "name": "DIRECTOR DE REDES", "value": "regu:cargo_ejec_origen:'DIRECTOR DE REDES'" },
+                        { "name": "DIRECTOR DE COMPRAS", "value": "regu:cargo_ejec_origen:'DIRECTOR DE COMPRAS'" },
+                        { "name": "DIRECTOR GERENTE", "value": "regu:cargo_ejec_origen:'DIRECTOR GERENTE'" },
+                        { "name": "DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_origen:'DIRECTOR GRAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "SUBDELEGACIÓN CANTABRIA", "value": "regu:cargo_ejec_origen:'SUBDELEGACIÓN CANTABRIA'" },
+                        { "name": "SUBDELEGACIÓN VALLADOLID", "value": "regu:cargo_ejec_origen:'SUBDELEGACIÓN VALLADOLID'" },
+                        { "name": "SUBDIRECCION ECONOMICO FINANCIERA", "value": "regu:cargo_ejec_origen:'SUBDIRECCION ECONOMICO FINANCIERA'" },
+                        { "name": "DIREC. DE ENERGIA ELECTRICA", "value": "regu:cargo_ejec_origen:'DIREC. DE ENERGIA ELECTRICA'" },
+                        { "name": "PRESIDENTA", "value": "regu:cargo_ejec_origen:'PRESIDENTA'" },
+                        { "name": "DIREC.GRAL DE POLITICA ENERGETICA Y MINAS", "value": "regu:cargo_ejec_origen:'DIREC.GRAL DE POLITICA ENERGETICA Y MINAS'" },
+                        { "name": "SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES", "value": "regu:cargo_ejec_origen:'SUBIDRECTOR GRAL DE RECURSOS Y RECLAMACIONES'" },
+                        { "name": "CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA", "value": "regu:cargo_ejec_origen:'CONFEDERACIÓN HIDROGRÁFICA DEL GUADIANA'" },
+                        { "name": "CONFEDERACION HIDROGRÁFICA DEL NORTE", "value": "regu:cargo_ejec_origen:'CONFEDERACION HIDROGRÁFICA DEL NORTE'" },
+                        { "name": "CONFEDERACIÓN HIDROGRÁFICA DEL DUERO", "value": "regu:cargo_ejec_origen:'CONFEDERACIÓN HIDROGRÁFICA DEL DUERO'" },
+                        { "name": "CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR", "value": "regu:cargo_ejec_origen:'CONFEDERACION HIDROGRÁFICA DEL GUADALQUIVIR'" },
+                        { "name": "DIRECTOR DE GENERACION", "value": "regu:cargo_ejec_origen:'DIRECTOR DE GENERACION'" },
+                        { "name": "DEPARTAMENTO JURIDICO", "value": "regu:cargo_ejec_origen:'DEPARTAMENTO JURIDICO'" },
+                        { "name": "JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL", "value": "regu:cargo_ejec_origen:'JEFE DE SERVICIO DE MEDIO AMBIENTE INDUSTRIAL'" },
+                        { "name": "DIRECTOR DEL MERCADO IBERICO", "value": "regu:cargo_ejec_origen:'DIRECTOR DEL MERCADO IBERICO'" }
+                                ]
+                }
+            }
+        },
+        {
+            "id": "feachEscrito",
+            "name": "Fecha Escrito",
+            "enabled": true,
+            "component": {
+                "selector": "date-range",
+                "settings": {
+                    "field": "regu:fecha_escrito"
+                }
+            }
+        },
+        {
+            "id": "fechaSalida",
+            "name": "Fecha Salida",
+            "enabled": true,
+            "component": {
+                "selector": "date-range",
+                "settings": {
+                    "field": "regu:fecha_salida"
+                }
+            }
+        },
+        {
+            "id": "seguimiento",
+            "name": "Modo de envio",
+            "enabled": true,
+            "component": {
+                "selector": "text",
+                "settings": {
+                    "pattern": "regu:modo_envio:'(.*?)'",
+                    "field": "regu:modo_envio",
+                    "placeholder": "Escribe el modo de envio"
+                }
+            }
+        }
+        
+    ]
+}

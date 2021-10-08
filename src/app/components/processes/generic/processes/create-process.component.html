@@ -1,0 +1,28 @@
+<div class="dw-inner-layout">
+    <!-- <mat-progress-spinner
+            *ngIf="loading"
+            class="custom-spinner-loader"
+            color="primary"
+            mode="indeterminate">
+        </mat-progress-spinner> -->
+        
+        <adf-toolbar>
+            <adf-toolbar-title>
+                <apw-breadcrumbs></apw-breadcrumbs>
+            </adf-toolbar-title>
+        </adf-toolbar>
+    <div class="dw-inner-layout__content">
+        <div class="loading-indicator" *ngIf="loading" >
+            <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+          </div>
+        <app-custom-start-process [hidden]="!comprobarStartProcess()"
+            #startProcess
+            [name]="processDefinitionName"
+            [showSelectProcessDropdown]="showSelectProcessDropdown"
+            [processFilterSelector]="processFilterSelector"
+            [processDefinitionName]="processDefinitionName"
+            (start)="backFromProcessCreation($event)"
+            (cancel)="backFromProcessCreation($event)">
+        </app-custom-start-process>
+    </div>
+</div>

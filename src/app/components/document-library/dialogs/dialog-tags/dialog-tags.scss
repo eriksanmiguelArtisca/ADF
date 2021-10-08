@@ -1,0 +1,24 @@
+:host ::ng-deep {
+    .adf-tag-actions-container {
+    width:100%!important;
+    margin-right: 31%;
+    }
+    #add-tag, #anadir{
+    width: 69%;
+    float: right;
+    }
+    #anadir{
+    width: 29%;
+  
+    }
+    #selectanadir{
+    font-size: 16px;
+    width: 60%;  
+    }
+    #contenedor{
+    height:40px;    
+    }
+    #new-tag-text{
+    width: 67%;   
+    }
+}

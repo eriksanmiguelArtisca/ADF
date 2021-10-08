@@ -1,0 +1,8 @@
+  
+         <adf-people-search (searchPeople)="searchUser($event)" (success)="assignTaskToUser($event)" (closeSearch)="onCloseSearch()"
+                [results]="peopleSearch$">
+				  <ng-container people-search-title>{{ 'ADF_TASK_LIST.DETAILS.LABELS.ADD_ASSIGNEE' | translate }}</ng-container>
+                <ng-container (click)="assignTaskToUser($event)" people-search-action-label>{{ 'ADF_TASK_LIST.PEOPLE.ADD_ASSIGNEE' | translate }}</ng-container>	
+            </adf-people-search>
+	    <adf-task-header  [class]="getTaskHeaderViewClass()">
+        </adf-task-header>

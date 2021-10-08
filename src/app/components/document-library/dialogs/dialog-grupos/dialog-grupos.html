@@ -1,0 +1,184 @@
+<style>
+  .formField {
+    width: 100%;
+    float: left;
+    margin-top: 2%;
+  }
+  .formField > label {
+      width: 20%;
+      float: left;
+  }
+  .formField > mat-form-field , .formField > span  {
+      width: 50%;
+      float: right;
+  }
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+::ng-deep mat-select-autocomplete > mat-form-field {
+	width:55%;
+}
+
+::ng-deep mat-select > mat-form-field {
+	width:55%;
+}
+
+</style>
+
+<h1 mat-dialog-title>Gestión de Grupos</h1>
+<div mat-dialog-content>
+  
+<div class="row">
+    <div class="col-25">
+      <label  class="ver" for="lname">Nombre Grupo</label>
+    </div>
+    <div class="col-75">
+
+      <input [(ngModel)]="nombregrupo" class="ver" type="text"  style="width: 200px;">
+      <button (click)="MostarNuevoGrupo()" mat-raised-button color="primary" style="width:140px;float:right;margin-right: 5%;">
+          <span> Nuevo Grupo </span>
+        </button>
+        <button (click)="guardargrupo()" class="ver" mat-raised-button color="primary" style="width:140px;margin-left:10px	;">
+            <span> Añadir Grupo</span>
+          </button>
+    </div>
+
+  </div>
+
+<div class="row">
+  <div class="col-25">
+    <label for="lname">Grupos</label>
+  </div>
+  <div class="col-75">
+
+      <mat-form-field style="width:55%;">
+          <mat-label>Seleccione un grupo</mat-label>
+          <mat-select id="grupos" [(ngModel)]="idgrupos" (selectionChange)="cargarLista()">
+           <mat-option *ngFor="let data of datagrupo"  [value]="data.idgrupo">
+			  {{data.nombregrupo}}
+			</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="BorrarGrupo();" color="primary"   style="width: 140px;margin-left:16%;"  >
+            <span>Eliminar Grupo </span>
+          </button>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-25">
+      <label for="lname">Usuarios</label>
+    </div>
+    <div class="col-75" >
+    <mat-select-autocomplete id="correos" 
+    [placeholder]="'Seleccionar Usuario'"
+    [errorMsg]="errorMessage"
+    [showErrorMsg]="showError"
+    [options]="options"
+    [display]="'display'"
+    [value]="'value'"
+    [multiple]='true'
+    [selectedOptions]="selectedOptions"
+	(selectionChange)="getSelectedOptions($event)">
+  </mat-select-autocomplete>
+          <button (click)="AnadirUsuario()" mat-raised-button color="primary" style="width:140px;margin-left: 16%;">
+                  <span>Añadir Usuario</span>
+                 </button>
+           
+    </div>
+  </div>
+
+
+	
+<adf-datatable #dataTable1 [hidden]="dataAdapter == undefined"
+[(rows)]="dataAdapter"
+[columns]="schema"
+actions="true"
+actionsPosition="right"
+contextMenu="true"
+(showRowActionsMenu)="onShowRowActionsMenu($event)"
+(executeRowAction)="onExecuteRowAction($event)">
+    <adf-no-content-template>
+        <!--Add your custom empty template here-->
+        <ng-template>
+            <p>El grupo no contiene usuarios</p>
+        </ng-template>
+    </adf-no-content-template>
+	<adf-loading-content-template>
+        <ng-template>
+            <!--Add your custom loading template here-->
+            <mat-progress-spinner
+                class="adf-document-list-loading-margin"
+                [color]="'primary'"
+                [mode]="'indeterminate'">
+            </mat-progress-spinner>
+        </ng-template>
+    </adf-loading-content-template>
+</adf-datatable>
+</div>
+<div mat-dialog-actions style="margin-top: 20px;">
+    
+    <button mat-button (click)="onNoClick()">Salir</button>
+</div>

@@ -1,0 +1,28 @@
+<div class="dropdown-editor">
+    <div class="adf-typeahead-widget {{table.field.className}}"
+        [class.is-dirty]="value"
+        [class.adf-readonly]="column.editable"
+        id="typehead-div">
+        <mat-form-field style="width:100%;" >
+            <!-- <label class="adf-label" [attr.for]="column.id">{{table.field.name | translate }}</label> -->
+            <label [attr.for]="column.id">{{column.name}}</label>
+            <input matInput 
+                   class="adf-typeahead-widget"
+                   type="text"
+                   [id]="column.id"
+                   [(ngModel)]="value"
+                   [readonly]="!column.editable"
+                   [disabled]="!column.editable"
+                   (ngModelChange)="validate()"
+                   (keyup)="onKeyUp($event)"
+                   data-automation-id="adf-typeahed-search-input"
+                   [matAutocomplete]="auto"
+>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onItemSelect($event.option.value)">
+                <mat-option *ngFor="let item of options; let i = index" id="adf-typeahed-widget-user-{{i}}" [value]="item">
+                    <span id="adf-typeahed-label-name">{{item.name}}</span>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+</div>

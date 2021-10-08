@@ -1,0 +1,36 @@
+
+/* @import '../form'; */
+
+.adf-typeahead-editor .mat-form-field-infix{
+
+        display: block;
+        position: relative;
+        flex: auto;
+        min-width: 0;
+        width: 505px;
+
+}
+ 
+.adf {
+    
+    &-typeahead-widget-container {
+        width: 100%;
+/*         position: relative;
+        display: block; */
+    }
+
+    &-typeahead-widget {
+        width: 100%;
+    }
+
+  
+}
+
+/* query for Microsoft IE 11*/
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    adf-form-field {
+        .mat-input-element, .mat-select, .mat-form-field {
+            display: block !important;
+        }
+    }
+}

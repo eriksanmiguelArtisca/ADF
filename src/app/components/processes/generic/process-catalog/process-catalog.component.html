@@ -1,0 +1,224 @@
+<style>
+
+/*   .container {
+      width: 100%;
+      margin-top: 2%;
+  } */
+  .process-groups-title {
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  .process-card {
+    padding: 2%;
+    border: solid #828285 1px;
+    margin: 20px;
+  }
+  .process-card > mat-card-header {
+    margin-top: 2%;
+    min-height: 50px;
+  }
+  mat-card-header mat-card-title {
+    font-size: 18px;
+  }
+  .process-card > mat-card-content {
+    margin-top: 2%;
+  }
+  .process-groups-title , mat-card-content p span:nth-of-type(1) , mat-card-content p span:nth-of-type(2) ,  mat-card-header mat-card-title , .red-icon {
+    color:#e10000 ;
+    font-weight:bold;
+  }
+/*   mat-card-content p span:nth-of-type(2) {
+    color:#828285 ;
+    font-weight:bold;
+  } */
+  .custom-card-icon {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .process-link {
+    cursor: pointer;
+  }
+
+/*   .container .process-groups {
+      
+  } */
+
+</style>
+
+<h3  class="process-groups-title">CATÁLOGO DE SERVICIOS</h3>
+<div class="container process-groups" fxLayout="row wrap"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center stretch">
+    <mat-card class="process-card "  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')">
+        <mat-card-header>
+         <!--  <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">desktop_windows</mat-icon>
+          <mat-card-title>Mantenimiento de estructuras de control</mat-card-title>
+        <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+          <!-- *****************************************************************************************************************************
+          **********************              Procesos de prueba         *******************************************************************
+          **********************************************************************************************************************************-->
+            <!-- *****************************************************************************************************************************
+          **********************  FIN   Procesos de prueba         *******************************************************************
+          **********************************************************************************************************************************-->
+          <p class="process-link" (click)="abrirProceso('CSA - CECO',[['Alta','csa_waacc'],['Modificación','csa_wamcc'] ])">
+            <span>Alta </span> / <span>Modificación </span> de CeCo
+          </p>
+          <p class="process-link" (click)="abrirProceso('CSA - CEBE',[['Alta','csa_waacb'],['Modificación','csa_wamcb'] ])">
+            <span>Alta </span> / <span>Modificación </span> de CeBe
+          </p>
+          <p class="process-link" (click)="abrirProceso('CSA - Alta|Modificación de Proyecto|PEPs',[['Alta','csa_waapy_'],['Modificación','csa_wampy']])">
+            <span>Alta </span> / <span>Modificación </span> de Proyecto / Peps / Órdenes
+          </p>
+          <!-- <p class="process-link" (click)="abrirProceso('',[['Alta'],['Modificación']])">
+            <span>Alta </span> / <span>Modificación </span> de Orden de imputación
+          </p> -->
+          <p class="process-link" (click)="abrirProceso('CSA - CECO',[['Alta','csa_waancc'],['Modificación','csa_wamncc'] ])">
+            <span>Alta </span> / <span>Modificación </span> de Nodo de CeCo
+          </p>
+          <p class="process-link" (click)="abrirProceso('CSA - CEBE',[['Alta','csa_waancb'],['Modificación','csa_wamncb'] ])">
+            <span>Alta </span> / <span>Modificación </span> de Nodo de CeBe
+          </p>
+        </mat-card-content>
+      </mat-card>
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%"  *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')">
+      <mat-card-header>
+       <!--  <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">dialpad</mat-icon>
+        <mat-card-title>Cuentas a pagar y cobrar:<br> Facturas emitidas y recibidas</mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('',[['Alta'],['Modificación']])">
+        <span>Alta </span> / <span>Modificación </span> de Proveedor
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Alta'],['Modificación']])">
+        <span>Alta </span> / <span>Modificación </span> de Deudor
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Registro','csa_warpf']])">
+          <span>Registro</span> de Pedido de ventas y emisión de facturas
+        </p>
+       <!-- <p class="process-link" (click)="abrirProceso('',['Registro'])">
+          <span>Registro</span> de Pedido de ventas y emisión de facturas (IC-Intercompany)
+        </p> -->
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%"  *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')">
+      <mat-card-header>
+       <!--  <div mat-card-avatar class="example-header-image"></div> -->
+       <!--  <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">menu_book</mat-icon> -->
+        <img   mat-card-avatar  class="custom-card-icon" src="./assets/apps/menu_book.png">
+        <mat-card-title>Solicitud de documentos financieros</mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('CSA - Solicitud de anticipo a proveedores',[['Solicitud','csa_wasap']])">
+         <span>Solicitud</span> de Anticipo a proveedores
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Registro']])">
+          <span>Registro</span> de Provisiones
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Registro']])">
+          <span>Registro</span> de Asientos contables
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')" >
+      <mat-card-header>
+       <!--  <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">book</mat-icon>
+        <mat-card-title>Solicitud de documentos de compra</mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud']])">
+          <span>Solicitud</span> de Orden de entrega sobre Contrato marco
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud','csa_wascs']])">
+          <span>Solicitud</span> de Compra simplificada
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud']])">
+          <span>Solicitud</span> de Pedido
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud']])">
+          <span>Solicitud</span> de Pedido (Ampliación)
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')">
+      <mat-card-header>
+       <!--  <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">assignment</mat-icon>
+        <mat-card-title>Gestión de presupuestos</mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud']])">
+        <span>Solicitud</span> de Traspaso de presupuesto
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Solicitud']])">
+        <span>Solicitud</span> de Aumento de presupuesto
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')" >
+      <mat-card-header>
+       <!--  <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">people</mat-icon>
+        <mat-card-title>Mantenimiento de usuarios</mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('',[['Alta'],['Baja']])">
+          <span>Alta </span>/ <span>Baja</span> de Suplencia workflow
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Alta'],['Baja']])">
+          <span>Alta </span>/ <span>Baja</span> de Suplencia Interprisa
+        </p>
+        <p class="process-link" (click)="abrirProceso('',[['Alta'],['Modificación']])">
+          <span>Alta </span> / <span>Modificación </span> de Firmantes workflow
+        </p>
+      </mat-card-content>
+    </mat-card>
+   	 <!-- <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')" >
+      <mat-card-header>
+   
+       <img   mat-card-avatar  class="custom-card-icon" src="./assets/apps/menu_book.png">
+        <mat-card-title>Validación de Documentos</mat-card-title>
+  
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('wvdd',[])">
+          <span>Validación</span> de Documento
+        </p>
+
+      </mat-card-content>
+    </mat-card>
+      <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Centro de Servicios Administrativos (CSA)')" >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div> 
+       <img   mat-card-avatar  class="custom-card-icon" src="./assets/apps/menu_book.png">
+        <mat-card-title>Gestión de Notificaciones</mat-card-title>
+  
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('CSA - Gestión notificaciones',[])">
+          <span>Gestión</span> de Notificaciones
+        </p>
+
+      </mat-card-content>
+    </mat-card>-->
+
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('IT')" >
+      <mat-card-header>
+      <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Propuesta DARB">desktop_windows</mat-icon>
+      <mat-card-title>IT - DARB </mat-card-title>
+      <!--   <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('it_widarb',[])">
+          Propuesta  <span>DARB</span> <!-- txt -->
+        </p>
+      </mat-card-content>
+    </mat-card>
+</div>

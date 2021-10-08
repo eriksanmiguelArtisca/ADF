@@ -1,0 +1,53 @@
+/* .adf {
+    &-dropdown-editor-select {
+        width: 100%;
+    }
+} */
+.mat-select-value {
+    color : rgba(0, 0, 0, 0.6);
+}
+.adf {
+    
+    &-dropdown-widget {
+        mat-form-field {
+            width: 100%;
+        }
+        width: 100%;
+        .adf-label {
+            font:400 16px/1.25 Muli, Roboto, "Helvetica Neue", sans-serif;
+            color : rgba(0, 0, 0, 0.87);
+        }
+
+        .adf-select {
+            padding-top: 0 !important;
+            width: 100%;
+        }
+
+        .mat-select-value-text {
+            font-size: 14px;
+        }
+
+        .mat-select-trigger{
+                font-size: 15.75px !important;
+        }
+
+        &-select {
+            width: 100%;
+        }
+    }
+}
+.adf-dropdown-widget .mat-select-value-text{font-size:16px !important;}
+
+// .adf {
+// &-start-process {
+//     .mat-select-trigger {
+//         font-size: 15.75px !important;
+//     }
+// }
+// }
+
+
+/* .dropdown-editor label{
+    font:400 16px/1.25 Muli, Roboto, "Helvetica Neue", sans-serif;
+} */
+

@@ -1,0 +1,98 @@
+<adf-sidenav-layout [sidenavMin]="70" [sidenavMax]="200" [stepOver]="780" [hideSidenav]="false" [expandedSidenav]="true">
+
+<!--     <adf-sidenav-layout-header>
+
+        <ng-template let-toggleMenu="toggleMenu">
+            <mat-toolbar color="primary" class="adf-app-layout-toolbar mat-elevation-z6">
+                <button (click)="toggleMenu()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
+                </button>
+
+                <span fxFlex="1 1 auto" fxShow fxHide.lt-sm="true" routerLink="/documentlist" >VIESGO</span>
+                
+                <div class="adf-toolbar--spacer adf-toolbar-divider"></div>
+
+                <adf-userinfo></adf-userinfo>
+            </mat-toolbar>
+        </ng-template>
+    </adf-sidenav-layout-header> -->
+
+    <adf-sidenav-layout-header>
+        <ng-template let-toggleMenu="toggleMenu">
+            <apw-header [showMenu]="showMenu" (expandMenu)="toggleMenu()"></apw-header>
+        </ng-template>
+    </adf-sidenav-layout-header>
+
+    <adf-sidenav-layout-navigation >
+        <ng-template let-isMenuMinimized="isMenuMinimized">
+    <!--             <adf-sidebar-action-menu id="dw-create-menu-button" [expanded]="true" style="padding: 5px;margin:5px;" title="{{'DW-MENU.BUTTON.CREATE-FOLDER' | translate }}">
+                </adf-sidebar-action-menu> -->
+                <button  mat-raised-button id="dw-create-menu-button"  [ngStyle]="isMenuMinimized() ? {'width':'fit-content','margin': '5px 2px 2px 2px'} : {'width':'157px'} " *ngIf="showCreateFolder()" class="create-folder-button" title="Nueva Carpeta" 
+                    [adf-create-folder]="folderId" (success)="successCreateFolder($event)" (error)="errorCreateFolder($event)" color="primary" >
+                        <mat-icon matListIcon class="sidenav-menu-icon" *ngIf="isMenuMinimized()" >create_new_folder</mat-icon>
+                        <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Crear Carpeta</div>
+                </button>
+            <mat-nav-list class="adf-sidenav-linklist">
+                 
+        <!--    <a mat-list-item class="adf-sidenav-link" routerLink="/login">
+                    <mat-icon matListIcon class="sidenav-menu-icon">vpn_key</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Login</div>
+                </a>  -->
+<!--                 <a mat-list-item class="adf-sidenav-link" routerLink="/apps">
+                    <mat-icon matListIcon class="sidenav-menu-icon">device_hub</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Apps</div>
+                </a> -->
+                <mat-divider *ngIf="showCreateFolder()"></mat-divider>
+<!--                 <a mat-list-item class="adf-sidenav-link" routerLink="/content/documentlist-g" *ngIf="showGeneric()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Documentos</div>
+                </a> -->
+                <a mat-list-item class="adf-sidenav-link"  (click)="navigateDocumentList()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Documentos</div>
+                </a>
+            <!--     <a mat-list-item class="adf-sidenav-link" routerLink="/content/home" *ngIf="!showGeneric()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">search</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Búsqueda</div>
+                </a> -->
+                <a mat-list-item class="adf-sidenav-link" (click)="navigateSearch()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">search</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Búsqueda</div>
+                </a>
+<!--                 <a mat-list-item class="adf-sidenav-link" routerLink="/content/search-polizas" *ngIf="showGeneric()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">search</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Búsqueda polizas</div>
+                </a> -->
+                <a mat-list-item class="adf-sidenav-link" routerLink="/content/trashcan" >
+                    <mat-icon matListIcon class="sidenav-menu-icon">delete</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Eliminados</div>
+                </a>
+<!--                 <a mat-list-item class="adf-sidenav-link" routerLink="/content/shared">
+                    <mat-icon matListIcon class="sidenav-menu-icon">share</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Compartido</div>
+                </a> -->
+                <a mat-list-item class="adf-sidenav-link" routerLink="/content/reminders" *ngIf="!showGeneric()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">notifications</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Alertas</div>
+                </a>
+              <a mat-list-item class="adf-sidenav-link" routerLink="/content/sent" *ngIf="!showGeneric()">
+                    <mat-icon matListIcon class="sidenav-menu-icon">email</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Enviados</div>
+                </a> 
+<!--                 <a mat-list-item adf-logout class="adf-sidenav-link">
+                    <mat-icon matListIcon class="sidenav-menu-icon">exit_to_app</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Cerrar Sesion</div>
+                </a> -->
+            </mat-nav-list>
+        </ng-template>
+    </adf-sidenav-layout-navigation>
+
+
+    <adf-sidenav-layout-content>
+        <ng-template>
+            <router-outlet (activate)="onActivate($event)" ></router-outlet>
+        </ng-template>
+    </adf-sidenav-layout-content>
+
+    
+</adf-sidenav-layout>

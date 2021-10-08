@@ -1,0 +1,115 @@
+:host  {
+
+	::ng-deep .mat-toolbar-single-row{
+		height: 59px !important;
+	}
+
+	.flexcontainer {
+		display: flex;
+		flex-flow: row nowrap;
+		max-width: 100%;
+		width: 100%;
+	  }
+	  .flexcontainer .filtros-avanzados {
+		flex: 0 2 140px !important;
+		width:350px;
+	  }
+	  .flexcontainer .fileview {
+		flex: 4 1 auto;
+		display: block;
+	  }
+	  .flexcontainer .metadatos {
+		flex: 1 2 260px;
+		}
+		
+		.img-wrp {
+			display: inline-block;
+			position: relative;
+			width: 34px;
+		}
+		.top-right-icon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 12px;
+		}
+		.botonrojo { background-color: #e10000;  width: 135px;; height:35px; border-radius: 10px; font-weight: bold; color: white;margin:2%;}
+		.botonrojo-busqueda { background-color: #e10000;  width: 177px; height:35px; border-radius: 10px; font-weight: bold; color: white;margin:2%;}
+
+	  .container-4 input{
+		width: 250px;
+		height: 45px;
+		background: #eee;
+		border: none;
+		font-size: 10pt;
+		float: left;
+		color: #000;
+		margin-left: 15px;
+		padding-left: 15px;
+		font-weight: bold;
+	}
+	
+	.container-4 button.icon{
+		height: 45px;
+		background: #eee;
+		border: none;
+	}
+	
+	.selectipo{
+		padding-left: 19px;
+		display: inline;
+	}
+	
+	.container-4 input:-webkit-input-placeholder {
+		color: #000;
+	}
+	 
+	.container-4 input:-moz-placeholder { /* Firefox 18- */
+		color: #000;  
+	}
+	 
+	.container-4 input:-moz-placeholder {  /* Firefox 19+ */
+		color: #000;  
+	}
+	 
+	.container-4 input:-ms-input-placeholder {  
+		color: #000;  
+	}
+	
+	.filtros-tabla {
+		padding: 0.5%;
+	}
+
+	.filtros-tabla span , .filtros-tabla h4 {
+			margin-left: 1%;
+			margin-right: 1%;
+	}
+
+	.upload-button{
+		margin-top: -20px !important;
+	}	
+	
+	@media all and (max-width: 1024px) {
+	
+		.flexcontainer {
+			flex-flow: row wrap;
+	  }
+	}
+	
+	/* query for Microsoft IE 11*/
+	@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+		::ng-deep .max-cell-row * {
+			display: flex;
+			display: -ms-flexbox;
+			flex-basis: auto;
+		/*     flex-flow: column ; */
+			align-items: center;
+			width: 100% !important;
+			max-height: 56px;
+			min-height: 0px ;
+			height: 55px;
+			overflow: hidden;
+		  } 
+	}
+
+}

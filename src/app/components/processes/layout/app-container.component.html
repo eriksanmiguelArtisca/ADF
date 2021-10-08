@@ -1,0 +1,53 @@
+<adf-sidenav-layout #adfsidenavlayout [sidenavMin]="0" [sidenavMax]="321" [stepOver]="2400" [hideSidenav]="false" [expandedSidenav]="displayMenu">
+    <adf-sidenav-layout-header>
+        <ng-template let-toggleMenu="toggleMenu">
+<!--             <app-process-header [showMenu]="displayMenu" (expandMenu)="diplaySidenav($event)"></app-process-header> -->
+            <app-process-header [showMenu]="displayMenu" (expandMenu)="toggleMenu()"></app-process-header>
+        </ng-template>
+    </adf-sidenav-layout-header>
+
+    <adf-sidenav-layout-navigation >
+    <!--     <ng-template let-toggleMenu="toggleMenu" let-isMenuMinimized="isMenuMinimized">
+            <apw-side-menu [expanded]="!isMenuMinimized()" (minimizeSidenav)="minimizeSidenav()"></apw-side-menu>
+        </ng-template> -->
+
+        <ng-template  let-isMenuMinimized="isMenuMinimized" >
+            <mat-nav-list class="adf-sidenav-linklist">
+                <a mat-list-item class="adf-sidenav-link" (click)="navegar('apps')" >
+                    <mat-icon matListIcon class="sidenav-menu-icon">home</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Home</div>
+                </a>
+                <a mat-list-item class="adf-sidenav-link" (click)="navegar('processes-catalog')">
+                    <mat-icon matListIcon class="sidenav-menu-icon">assignment</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Catalogo de Procesos</div>
+                </a>
+                <a mat-list-item class="adf-sidenav-link" (click)="navegar('tasks')">
+                    <mat-icon matListIcon class="sidenav-menu-icon">account_box</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Tareas</div>
+                </a>
+                <a mat-list-item class="adf-sidenav-link" (click)="navegar('processes')">
+                    <mat-icon matListIcon class="sidenav-menu-icon">brightness_5</mat-icon>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Procesos</div>
+                </a>
+                
+            </mat-nav-list>
+        </ng-template>
+    </adf-sidenav-layout-navigation>
+
+    <adf-sidenav-layout-content>
+        <ng-template>
+            <router-outlet></router-outlet>
+        </ng-template>
+    </adf-sidenav-layout-content>
+</adf-sidenav-layout>
+
+<!-- <div fxLayout="column">
+     <app-process-header [showMenu]="displayMenu" ></app-process-header> 
+    
+
+    <div class="dw-appsgrid-container" fxFlex="1 0 auto">
+        <main >
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div> -->

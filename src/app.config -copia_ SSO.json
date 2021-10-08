@@ -1,0 +1,307 @@
+{
+    "$schema": "../config/schema/schema.json",
+    "ecmHost": "http://{hostname}{:port}",
+    "bpmHost": "http://{hostname}{:port}",
+    "providers": "ALL",
+    "authType" :"OAUTH",
+    "oauth2": {
+      "host": "http://10.113.97.108:8080/auth/realms/alfresco",
+      "clientId": "alfresco",
+      "scope": "openid",
+      "secret": "",
+      "implicitFlow": true,
+      "silentLogin": false,
+      "redirectUri": "/",
+      "redirectUriLogout": "/logout"
+    },
+    "logLevel": "SILENT",
+    "application": {
+        "name": "Viesgo"
+    },
+
+    "pagination": {
+        "size": 25,
+        "supportedPageSizes": [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+    },
+
+    "landing-page": "tasks/1003",
+    "path-logo": "./assets/viesgo-logo-scaled.png",
+    "locale":"es",
+    "languages": [
+        {
+            "key": "en",
+            "label": "English"
+        },
+        {
+            "key": "fr",
+            "label": "Français"
+        },
+        {
+            "key": "de",
+            "label": "Deutsch"
+        },
+        {
+            "key": "it",
+            "label": "Italiano"
+        },
+        {
+            "key": "es",
+            "label": "Español"
+        },
+        {
+            "key": "ja",
+            "label": "日本語"
+        },
+        {
+            "key": "nl",
+            "label": "Nederlands"
+        },
+        {
+            "key": "pt-BR",
+            "label": "Português (Brasil)"
+        },
+        {
+            "key": "nb",
+            "label": "Bokmål"
+        },
+        {
+            "key": "ru",
+            "label": "Русский"
+        },
+        {
+            "key": "zh-CN",
+            "label": "中文简体"
+        },
+        {
+            "key": "ar",
+            "label": "عربى"
+        },
+        {
+          "key": "cz",
+          "label": "Czech"
+        },
+        {
+          "key": "pl",
+          "label": "Polish"
+        },
+        {
+          "key": "fi",
+          "label": "Finnish"
+        },
+        {
+          "key": "da",
+          "label": "Danish"
+        },
+        {
+          "key": "sv",
+          "label": "Swedish"
+        }
+    ],
+    "sidebarBreakpoints": [
+        {
+            "breakpoints": [
+                "xs",
+                "sm"
+            ],
+            "mode": "over",
+            "position": "start",
+            "showMini": false,
+            "isHeaderInside": false
+        },
+        {
+            "breakpoints": [
+                "md",
+                "lg",
+                "xl"
+            ],
+            "mode": "side",
+            "position": "start",
+            "showMini": true,
+            "isHeaderInside": true
+        }
+    ],
+    "content-metadata": {
+        "presets": {
+            "default": {
+                "includeAll": true,
+                "exclude": ["exif:exif","cm:taggable","cm:thumbnailModification","cm:versionable"],
+                "exif:exif": [ "exif:pixelXDimension", "exif:pixelYDimension"]
+            }
+        }
+    },
+    "adf-start-process": {
+        "name": "",
+        "processDefinitionName": ""
+    },
+    "adf-task-list": {
+        "presets": {
+            "dw-task-list": [
+                {
+                    "key": "name",
+                    "type": "text",
+                    "title": "ADF_TASK_LIST.PROPERTIES.NAME",
+                    "cssClass": "adf-data-table-cell--ellipsis adf-data-table-cell--ellipsis__name",
+                    "sortable": true
+                },
+                {
+                    "key": "created",
+                    "type": "date",
+                    "title": "ADF_TASK_LIST.PROPERTIES.CREATED",
+                    "format": "timeAgo",
+                    "sortable": true
+                }
+            ],
+            "dw-process-task-list": [
+                {
+                    "key": "name",
+                    "type": "text",
+                    "title": "ADF_TASK_LIST.PROPERTIES.TASK_NAME",
+                    "cssClass": "adf-data-table-cell--ellipsis adf-data-table-cell--ellipsis__name",
+                    "sortable": true
+                },
+                {
+                    "key": "dueDate",
+                    "type": "date",
+                    "title": "ADF_TASK_LIST.PROPERTIES.DUE_DATE",
+                    "cssClass": "desktop-only",
+                    "format": "timeAgo",
+                    "sortable": true
+                }
+            ]
+        }
+    },
+    "adf-process-list": {
+        "presets": {
+            "running": [
+                {
+                    "key": "name",
+                    "type": "text",
+                    "title": "ADF_PROCESS_LIST.PROPERTIES.NAME",
+                    "cssClass": "adf-data-table-cell--ellipsis adf-data-table-cell--ellipsis__name",
+                    "sortable": true
+                },
+                {
+                    "key": "started",
+                    "type": "date",
+                    "title": "ADF_PROCESS_LIST.PROPERTIES.CREATED",
+                    "format": "timeAgo",
+                    "sortable": true
+                }
+            ],
+            "completed": [
+                {
+                    "key": "name",
+                    "type": "text",
+                    "title": "ADF_PROCESS_LIST.PROPERTIES.NAME",
+                    "cssClass": "adf-data-table-cell--ellipsis adf-data-table-cell--ellipsis__name",
+                    "sortable": true
+                },
+                {
+                    "key": "started",
+                    "type": "date",
+                    "title": "ADF_PROCESS_LIST.PROPERTIES.CREATED",
+                    "format": "timeAgo",
+                    "sortable": true
+                },
+                {
+                    "key": "ended",
+                    "type": "date",
+                    "title": "ADF_PROCESS_LIST.PROPERTIES.END_DATE",
+                    "cssClass": "desktop-only",
+                    "sortable": true
+                }
+            ]
+        }
+    },
+    "search": {
+        "filterWithContains": true,
+        "filterQueries": [
+            {
+              "query": "-TYPE:'cm:thumbnail' AND -TYPE:'cm:failedThumbnail' AND -TYPE:'cm:rating'"
+            },
+            { "query": "-cm:creator:System AND -QNAME:comment" },
+            {
+              "query": "-TYPE:'st:site' AND -ASPECT:'st:siteContainer' AND -ASPECT:'sys:hidden'"
+            },
+            {
+              "query": "-TYPE:'dl:dataList' AND -TYPE:'dl:todoList' AND -TYPE:'dl:issue'"
+            },
+            { "query": "-TYPE:'fm:topic' AND -TYPE:'fm:post'" },
+            { "query": "-TYPE:'lnk:link'" },
+            { "query": "-PNAME:'0/wiki'" }
+          ],
+        "categories": [
+            {
+                "id": "queryType",
+                "name": "TIPO DE CONTENIDO",
+                "enabled": true,
+                "expanded": true,
+                "component": {
+                    "selector": "radio",
+                    "settings": {
+                        "field": null,
+                        "pageSize": 5,
+                        "options": [
+                            { "name": "Documento", "value": "TYPE:'cm:content'" , "checked": true},
+                            { "name": "Carpeta", "value": "TYPE:'cm:folder'" },  
+                            { "name": "Todos", "value": "TYPE:'cm:folder' OR TYPE:'cm:content'" }
+                        ]
+                    }
+                }
+            },
+            {
+                "id": "title",
+                "name": "TÍTULO",
+                "enabled": true,
+                "component": {
+                    "selector": "text",
+                    "settings": {
+                        "pattern": "cm:title:'(.*?)'",
+                        "field": "cm:title",
+                        "placeholder": "Escribe el titulo"
+                    }
+                }
+            },
+            {
+                "id": "description",
+                "name": "DESCRIPCIÓN",
+                "enabled": true,
+                "component": {
+                    "selector": "text",
+                    "settings": {
+                        "pattern": "cm:description:'(.*?)'",
+                        "field": "cm:description",
+                        "placeholder": "Escribe la descripcion"
+                    }
+                }
+            },
+            {
+                "id": "modified",
+                "name": "FECHA MODIFICACIÓN",
+                "enabled": true,
+                "component": {
+                    "selector": "date-range",
+                    "settings": {
+                        "field":  "cm:modified"
+                    }
+                }
+            },
+            {
+                "id": "modificador",
+                "name": "MODIFICADOR",
+                "enabled": true,
+                "component": {
+                    "selector": "text",
+                    "settings": {
+                        "pattern": "cm:modifier:'(.*?)'",
+                        "field": "cm:modifier",
+                        "placeholder": "Escribe el modificador"
+                    }
+                }
+            }
+        ]
+    },
+    "adf-login": {
+        "copyrightText" : "\u00A9 2018 Alfresco Software, Inc. All Rights Reserved."
+    }
+}

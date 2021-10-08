@@ -1,0 +1,12 @@
+<!--LOGIN-->
+
+<adf-login #alfrescologin
+    [backgroundImageUrl]="''"
+    [logoImageUrl]="'./assets/alfresco-logo.svg'"
+    [fieldsValidation]="customValidation"
+    [showLoginActions]="false"
+    [copyrightText]="copyrightText"
+    (executeSubmit)="validateForm($event)"
+    (success)="onLogin($event)"
+    (error)="onError($event)" >           
+</adf-login>

@@ -1,0 +1,18 @@
+<h2>Listado Etiquetas</h2>
+<div id="contenedor">
+<mat-select id="selectanadir" [(ngModel)]="etiselect" placeholder="Listado Etiquetas">	
+        <mat-option value="" disabled>Seleccione Etiqueta</mat-option>
+        <mat-option *ngFor="let etiqueta of etiquetas" [value]="etiqueta.name">
+        {{etiqueta.name }}
+        </mat-option>
+    </mat-select>
+
+    <button id="anadir" (click)="addtag(id)" mat-raised-button color="primary"><span class="mat-button-wrapper">Añadir</span></button>
+</div>
+<adf-tag-node-actions-list 
+    [nodeId]="id">
+</adf-tag-node-actions-list>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+</div>

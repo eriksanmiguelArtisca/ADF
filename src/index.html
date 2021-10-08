@@ -1,13 +1,181 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
+
 <head>
   <meta charset="utf-8">
-  <title>Adf</title>
-  <base href="/">
+  <title>Viesgo</title>
+  <base href="/adf/">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+<!--   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96"> -->
+  <link rel="icon" href="viesgo-favicon.ico" type="image/x-icon" />
+
+  <noscript>
+    <center> Your browser does not support JavaScript or JavaScript is not enabled.
+      Please enable JavaScript or use a browser that supports JavaScript to use the Alfresco Process Services Workspace
+    </center>
+  </noscript>
+  <script>
+    var global = global || window;
+  </script>
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
+
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader-item {
+      max-height: 100px;
+      max-width: 300px;
+    }
+
+    .loader-spinner {
+      max-height: 300px;
+      max-width: 300px;
+    }
+
+    .loader-text {
+      white-space: nowrap;
+      text-align: center;
+      position: relative;
+    }
+
+    .loader {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .circular {
+      animation: rotate 2s linear infinite;
+      height: 100px;
+      position: relative;
+      width: 100px;
+    }
+
+    .path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke: #B6463A;
+      animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+      stroke-linecap: round;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
+      }
+
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+      }
+    }
+
+    @keyframes color {
+
+      100%,
+      0% {
+        stroke: #e10000;
+      }
+
+      40% {
+        stroke: #828285;
+      }
+
+      66% {
+        stroke: #50bab1;
+      }
+
+      80%,
+      90% {
+        stroke: #cbbca6;
+      }
+    }
+
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(assets/fonts/MaterialIcons-Regular.eot);
+      /* For IE6-8 */
+      src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(assets/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+        url(assets/fonts/MaterialIcons-Regular.woff) format('woff'),
+        url(assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
+    }
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      /* Preferred icon size */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Support for IE. */
+      font-feature-settings: 'liga';
+    }
+  </style>
 </head>
-<body>
-  <app-root></app-root>
+
+<body class="adf-background-color">
+  <apw-app-root>
+    <div id="loader-container" class="loader-container">
+      <div class="loader-spinner">
+        <svg class="circular">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
+        </svg>
+      </div>
+      <div class="loader-item">
+        <div id="loader-text" class="loader-text">Cargando...</div>
+      </div>
+    </div>
+  </apw-app-root>
 </body>
+
 </html>

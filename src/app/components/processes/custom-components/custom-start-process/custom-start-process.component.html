@@ -1,0 +1,96 @@
+<div class="adf-start-process">
+  <div class="adf-title" *ngIf="title">{{ title | translate}}</div>
+  <div class="content" *ngIf="isProcessDefinitionEmpty()">
+      <div class="subtitle" id="error-message" *ngIf="errorMessageId">
+          {{errorMessageId|translate}}
+      </div>
+      <mat-form-field class="adf-process-input-container" [floatLabel]="'always'">
+          <mat-label>{{'ADF_PROCESS_LIST.START_PROCESS.FORM.LABEL.TYPE' | translate}}</mat-label>
+          <input
+              type="text"
+              matInput
+              [formControl]="processDefinitionInput"
+              [matAutocomplete]="auto"
+              id="processDefinitionName"
+              #inputAutocomplete>
+          <div class="adf-process-input-autocomplete">
+              <mat-autocomplete
+                  #auto="matAutocomplete"
+                  id="processDefinitionOptions"
+                  [displayWith]="displayFn">
+                  <mat-option *ngFor="let processDef of filteredProcesses | async" [value]="processDef.name"
+                  (click)="processDefinitionSelectionChanged(processDef)">
+                      {{ processDef.name }}
+                  </mat-option>
+              </mat-autocomplete>
+              <button
+                  id="adf-select-process-dropdown"
+                  *ngIf="showSelectProcessDropdown"
+                  mat-icon-button
+                  (click)="displayDropdown($event)">
+                  <mat-icon>arrow_drop_down</mat-icon>
+              </button>
+          </div>
+      </mat-form-field>
+
+      <mat-form-field class="adf-process-input-container" [floatLabel]="'always'">
+          <mat-label>{{'ADF_PROCESS_LIST.START_PROCESS.FORM.LABEL.NAME' | translate}}</mat-label>
+          <input
+              matInput
+              [formControl]="processNameInput"
+              id="processName"
+              required/>
+          <mat-error *ngIf="nameController.hasError('maxlength')">
+              {{ 'ADF_PROCESS_LIST.START_PROCESS.ERROR.MAXIMUM_LENGTH' | translate : { characters : maxProcessNameLength } }}
+          </mat-error>
+          <mat-error *ngIf="nameController.hasError('required')">
+              {{ 'ADF_PROCESS_LIST.START_PROCESS.ERROR.PROCESS_NAME_REQUIRED' | translate }}
+          </mat-error>
+          <mat-error *ngIf="nameController.hasError('pattern')">
+              {{ 'ADF_PROCESS_LIST.START_PROCESS.ERROR.SPACE_VALIDATOR' | translate }}
+          </mat-error>
+      </mat-form-field>
+
+      <custom-start-form
+          #startForm
+          *ngIf="hasStartForm()"
+          [data]="values"
+          [disableStartProcessButton]="processNameInput.invalid"
+          [processDefinitionId]="selectedProcessDef.id"
+          (outcomeClick)="onOutcomeClick($event)"
+          [showRefreshButton]="false">
+          <button
+              adf-form-custom-button
+              mat-button
+              (click)="cancelStartProcess()"
+              id="cancel_process">
+              {{'ADF_PROCESS_LIST.START_PROCESS.FORM.ACTION.CANCEL'| translate | uppercase}}
+          </button>
+      </custom-start-form>
+  </div>
+  <div class="content" *ngIf="hasErrorMessage()">
+      <div class="subtitle" class="error-message" id="no-process-message">
+          {{'ADF_PROCESS_LIST.START_PROCESS.NO_PROCESS_DEFINITIONS' | translate | uppercase}}
+      </div>
+  </div>
+  <div class="mat-content-actions" *ngIf="!hasStartForm()">
+      <button
+          mat-button
+          *ngIf="!hasStartForm()"
+          (click)="cancelStartProcess()"
+          id="cancel_process">
+          {{'ADF_PROCESS_LIST.START_PROCESS.FORM.ACTION.CANCEL'| translate | uppercase}}
+      </button>
+      <button
+          color="primary"
+          mat-button
+          *ngIf="!hasStartForm()"
+          [disabled]="!validateForm()"
+          (click)="startProcess()"
+          data-automation-id="btn-start"
+          id="button-start"
+          class="btn-start">
+          {{'ADF_PROCESS_LIST.START_PROCESS.FORM.ACTION.START' | translate | uppercase}}
+      </button>
+  </div>
+</div>

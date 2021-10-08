@@ -1,0 +1,81 @@
+
+<div class="adf-dynamic-table-scrolling {{field.className}}"
+    [class.adf-invalid]="!isValid()">
+    <div class="adf-label">{{content.name | translate }}<span *ngIf="isRequired()">*</span></div>
+    <br>
+    <div *ngIf="!editMode">
+        <div class="adf-table-container">
+            <table class="adf-full-width adf-dynamic-table" id="dynamic-table-{{content.id}}">
+                <thead>  
+                    <tr>
+                        <th  *ngFor="let column of content.visibleColumns">
+                            {{column.name}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of content.rows; let idx = index" tabindex="0" id="{{content.id}}-row-{{idx}}"
+                        [class.adf-dynamic-table-widget__row-selected]="row.selected" (keyup)="onKeyPressed($event, row)"
+                        [ngStyle]="{'background-color': getColor(row) }">
+                        <td *ngFor="let column of content.visibleColumns"
+                            (click)="onRowClicked(row)">
+                            <span *ngIf="column.type !== 'Boolean' else checkbox">
+                                {{ getCellValue(row, column) }}
+                            </span>
+                            <ng-template #checkbox>
+                                <mat-checkbox disabled [checked]="getCellValue(row, column)">
+                                </mat-checkbox>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="!readOnly">
+            <!--Controlamos que no se puedan añadir o mover filas en las tablas de DARB-->
+            <button *ngIf="content.id !== 'widarb_pre_inversion' && content.id !== 'widarb_pre_costes_operacion_adicionales'"
+                    mat-button
+                    id="upward"
+                    [disabled]="!hasSelection()"
+                    (click)="moveSelectionUp()"
+                    >
+                <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <button *ngIf="content.id !== 'widarb_pre_inversion' && content.id !== 'widarb_pre_costes_operacion_adicionales'" mat-button
+                    id="downward"
+                    [disabled]="!hasSelection()"
+                    (click)="moveSelectionDown()">
+                <mat-icon>arrow_downward</mat-icon>
+            </button>
+            <button *ngIf="content.id !== 'widarb_pre_inversion' && content.id !== 'widarb_pre_costes_operacion_adicionales'" mat-button
+                    id="add"
+                    [disabled]="disableCreate()"
+                    id="{{content.id}}-add-row"
+                    (click)="addNewRow()">
+                <mat-icon>add_circle_outline</mat-icon>
+            </button>
+            <button *ngIf="content.id !== 'widarb_pre_inversion' && content.id !== 'widarb_pre_costes_operacion_adicionales'" mat-button
+                    id="remove"
+                    [disabled]="disableDelete()"
+                    (click)="deleteSelection()">
+                <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+            <button mat-button
+                    id="edit"
+                    [disabled]="disableEdit()"
+                    (click)="editSelection()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+     </div>
+
+     <custom-table-editor *ngIf="editMode"
+        [table]="content"
+        [row]="editRow"
+        (save)="onSaveChanges()"
+        (cancel)="onCancelChanges()">
+     </custom-table-editor>
+    <error-widget style="display: block; margin-top: 30px;" [error]="field.validationSummary" ></error-widget>
+    <error-widget *ngIf="isInvalidFieldRequired()" required="{{ 'FORM.FIELD.REQUIRED' | translate }}"></error-widget>
+</div>

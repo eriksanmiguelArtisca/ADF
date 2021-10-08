@@ -1,0 +1,35 @@
+<mat-card class="dw-tasklist-card">
+    <adf-tasklist *ngIf="this.cookie=='si'"
+        id="dw-tasklist-id"
+        [processInstanceId]="processInstanceDetails?.id"
+        [presetColumn]="presetColoum"
+        [state]="'all'"
+        [sort]="'created-desc'"
+        [selectionMode]="'single'">
+        <!--(row-dblclick)="onTaskRowDoubleCLick($event)"-->
+        <data-columns>
+		    <data-column key="processDefinitionName" type="location" [sortable]="false" title="ADF_PROCESS_LIST.PROPERTIES.PROCESS_NAME" class="desktop-only">
+				<ng-template let-entry="$implicit">
+					<div title="{{entry.row.obj.processDefinitionName }}"> {{entry.row.obj.name.split('|')[0] + '|'}} {{entry.row.obj.name.split('|')[2]}}</div>
+				</ng-template>
+			</data-column>
+            <data-column key="endDate" type="date" title="ADF_TASK_LIST.PROPERTIES.STATUS" [sortable]="true">
+                <ng-template let-entry="$implicit">
+                    <div title="{{getTaskStatus(entry.row.obj)}}">{{getTaskStatus(entry.row.obj)}}</div>
+                </ng-template>
+            </data-column>
+            <data-column key="assignee" title="ADF_TASK_LIST.PROPERTIES.ASSIGNEE" [sortable]="false" class= "desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+                    <div title="{{entry.row.obj.assignee | fullName}}">{{entry.row.obj.assignee | fullName}}</div>
+                </ng-template>
+            </data-column>
+            <data-column key="id" [sortable]="false" class= "desktop-only adf-data-table-cell--ellipsis">
+                <ng-template let-entry="$implicit">
+					<button mat-raised-button color="primary" (click)="onTaskRowDoubleCLick(entry.row.obj.id)">Ver Tarea</button>
+                </ng-template>
+            </data-column>
+        </data-columns>
+    </adf-tasklist>
+<br>
+<adf-diagram id="dw-diagram-id" *ngIf="this.cookie=='no'" fxHide.xs [processInstanceId]="processInstanceDetails.id"></adf-diagram>
+</mat-card>

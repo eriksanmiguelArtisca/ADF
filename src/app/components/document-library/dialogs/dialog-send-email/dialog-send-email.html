@@ -1,0 +1,191 @@
+<style>
+  .formField {
+    width: 100%;
+    float: left;
+    margin-top: 2%;
+  }
+  .formField > label {
+      width: 20%;
+      float: left;
+  }
+  .formField > mat-form-field , .formField > span  {
+      width: 50%;
+      float: right;
+  }
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+::ng-deep mat-select-autocomplete > mat-form-field {
+	width:100%;
+}
+.mat-dialog-content{
+max-height:none !important;
+}
+
+</style>
+
+<h1 mat-dialog-title>Envío Comunicaciones</h1>
+<div mat-dialog-content>
+  
+  <div class="row">
+      <div class="col-25">
+        <label for="fname">Fichero</label>
+      </div>
+      <div class="col-75">
+          <label for="lname">{{data.name}}</label>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="lname">Usuarios LDAP</label>
+        </div>
+        <div class="col-75">
+  
+  <mat-select-autocomplete id="correos" class="grid-7-11"
+    [placeholder]="'Seleccionar destinatario'"
+    [errorMsg]="errorMessage"
+    [showErrorMsg]="showError"
+    [options]="options"
+    [display]="'display'"
+    [value]="'value'"
+    [multiple]='true'
+    [selectedOptions]="selectedOptions"
+    (selectionChange)="getSelectedOptions($event)">
+  </mat-select-autocomplete>
+  
+
+  
+  <!-- <div> Emails: -->
+    <!-- <span  *ngFor="let option of selected; let index = index">{{option}}<span *ngIf="index !== selectedOptions.length-1">, </span></span> -->
+  <!-- </div> -->
+        </div>
+      </div>
+	        <div class="row">
+        <div class="col-25">
+          <label for="lname">Grupos</label>
+        </div>
+        <div class="col-75">
+  
+
+      <mat-form-field style="width:69%;">
+          <mat-label>Grupos</mat-label>
+          <mat-select multiple id="grupos" [(ngModel)]="idgrupos" (selectionChange)="cargarLista()">
+           <mat-option *ngFor="let data of datagrupocorreo"  [value]="data.idgrupo">
+			  {{data.nombregrupo}}
+			</mat-option>
+          </mat-select>
+        </mat-form-field>
+				<button (click)="AbrirGrupos()" mat-raised-button color="primary"  style="margin-left:7%;">
+                  <!-- <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">file_upload</mat-icon> -->
+                  <span>Editar Grupos </span>
+                 </button>
+        </div>
+      </div>
+	  
+	  	        <div class="row">
+        <div class="col-25">
+          <label for="lname">Destinatarios</label>
+        </div>
+        <div class="col-75">
+        <mat-chip-list #chipList>
+        <mat-chip *ngFor="let ponente of ponentes" [selectable]="selectable" [removable]="removable"
+          (removed)="remove(ponente)">
+          {{ponente.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Nuevo email..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+        </div>
+      </div>
+ 
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Asunto</label>
+      </div>
+      <div class="col-75">
+        <input id="ruta"  hidden type="text"  [(ngModel)]="data.path">
+		  <input id="vencimiento"  hidden type="text"  [(ngModel)]="data.vencimiento">
+        <input id="asunto" type="text"  [(ngModel)]="data.asunto">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Mensaje </label>
+      </div>
+      <div class="col-75">
+	   <p-editor  required [(ngModel)]="subject" [style]="{'height':'320px'}"></p-editor>
+        <!-- <textarea id="subject" name="subject" style="height:200px"></textarea> -->
+      </div>
+    </div>
+
+  
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="send()" cdkFocusInitial>Enviar</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+</div>

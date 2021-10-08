@@ -1,0 +1,78 @@
+
+<adf-layout-header  id="adf-header"
+                    [color]="color"
+                    placeholder="firstSite"
+                    [logo]="logoPath"
+                    [redirectUrl]="'/apps'"
+                    position="start"
+                    [showSidenavToggle]="showMenu"
+                    (clicked)=toggleMenu() >
+
+    <button [fxHide.xs]="true" [fxHide.sm]="true" *ngIf="this.router.url.search('/apps/') != -1" matTooltip="Home"  mat-menu-item class="white-element" (click)="navegar('apps')" >
+        <mat-icon >home</mat-icon>
+        <span  [fxHide.xs]="true" [fxHide.sm]="true" >Home</span>
+    </button>
+    <button [fxHide.xs]="true" [fxHide.sm]="true" *ngIf="this.router.url.search('/apps/') != -1" matTooltip="Catálogo de Servicios"  mat-menu-item class="white-element" (click)="navegar('processes-catalog')">
+        <mat-icon >assignment</mat-icon>
+        <span [fxHide.xs]="true" [fxHide.sm]="true" >Catálogo de Servicios</span>
+    </button>
+    <button [fxHide.xs]="true" [fxHide.sm]="true" *ngIf="this.router.url.search('/apps/') != -1" matTooltip="Tareas"  mat-menu-item class="white-element" (click)="navegar('tasks')">
+        <mat-icon >account_box</mat-icon>
+        <span [fxHide.xs]="true" [fxHide.sm]="true"  >Tareas</span>
+    </button>
+    <button [fxHide.xs]="true" [fxHide.sm]="true" *ngIf="this.router.url.search('/apps/') != -1" matTooltip="Procesos"  mat-menu-item class="white-element" (click)="navegar('processes')">
+            <mat-icon >brightness_5</mat-icon> 
+            <span [fxHide.xs]="true" [fxHide.sm]="true"   >Procesos</span>
+    </button>
+    <button [fxHide.xs]="true" [fxHide.sm]="true" matTooltip="Biblioteca Documentos" mat-menu-item class="white-element" (click)="navegar('documents')">
+        <mat-icon >description</mat-icon>
+        <span [fxHide.xs]="true" [fxHide.sm]="true"   >Biblioteca de Documentos</span>
+    </button>
+    <button [fxHide.xs]="true" [fxHide.sm]="true" matTooltip="Panel Descargas" *ngIf="showDownloadsPanel"  mat-menu-item class="white-element" [matMenuTriggerFor]="appMenu" #menuTrigger="matMenuTrigger" (mouseenter)="openSubMenu()"><!-- (click)="navegar('downloads')"> -->
+        <mat-icon >archive</mat-icon>
+        <span [fxHide.xs]="true" [fxHide.sm]="true" >Panel de Descargas</span>
+    </button>
+    <mat-menu #appMenu="matMenu" [overlapTrigger]="false" >
+        <span (mouseleave)="closeSubMenu()">
+        <button class="matSubmenu" matTooltip="Panel Descargas" mat-menu-item (click)="navegar('downloads','file')" > Documento Excel</button>
+        <button class="matSubmenu" matTooltip="Panel Descargas" mat-menu-item (click)="navegar('downloads','filters')" >Filtro Metadatos </button>
+    </span>
+      </mat-menu>
+      
+    <div class="adf-app-layout-menu-spacer"></div>
+
+    <button mat-menu-item id="header-app-button" (click)="showCarousel()" *ngIf="bpmUserService.selected_app.icon != null" [disabled]="this.router.url.search('/new') != -1 " >
+         <span>  {{bpmUserService.selected_app.name.toUpperCase()}}</span>
+    </button>
+
+    <adf-userinfo fxHide.xs
+        class="adf-app-layout-user-profile"
+        [menuPositionX]="'before'"
+        [menuPositionY]="'above'"
+        [showName]="false">
+    </adf-userinfo>  
+
+    <apw-user-profile-menu (onMenuClick)="onUserMenuSelect($event)"></apw-user-profile-menu>
+</adf-layout-header >
+
+
+<div  class="scroll-container" *ngIf="(this.router.url.search('processes-catalog') != -1 && this.apps.length > 1)|| showCarouselMenu" >
+    <div *ngIf="showScrollButtons()">
+        <button mat-mini-fab aria-label="Example icon-button with a heart icon" color="#e10000" (click)="scrollLeft()" [disabled]="!activeScrollLeft" [ngStyle]="!activeScrollLeft ? {'color': 'grey'}:{'color': '#e10000'}" style="margin-right: 5px;">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div class="scrolling-wrapper" #carouselOptions fxLayout="row-reverse nowrap">
+            <button mat-raised-button  (click)="seleccionarApp(app)" class="scrolling-button"  *ngFor="let app of apps;" fxFlex.xs="0 0 45%" fxFlex="0 0 15%"  >
+                <!-- <mat-icon style="color:#828285 ;" aria-hidden="false" aria-label="Mantenimiento de estructuras de control">people</mat-icon> -->
+                <img class="scrolling-button-img" src="./assets/apps/{{app.icon}}_32x32_grey.png"  > 
+                <span class="scrolling-button-span" >{{app.name}}</span>
+            </button>
+        
+    </div>
+    <div *ngIf="showScrollButtons()">
+        <button mat-mini-fab aria-label="Example icon-button with a heart icon" color="#e10000" (click)="scrollRight()" [disabled]="!activeScrollRight" [ngStyle]="!activeScrollRight ? {'color': 'grey'}:{'color': '#e10000'}">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+    </div>
+</div>

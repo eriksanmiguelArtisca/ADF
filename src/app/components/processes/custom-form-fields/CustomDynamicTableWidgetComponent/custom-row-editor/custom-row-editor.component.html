@@ -1,0 +1,83 @@
+  
+<div class="row-editor mdl-shadow--2dp"
+[class.row-editor__invalid]="!validationSummary.isValid"  >
+<div class="mdl-grid" [ngStyle]="getWidthOfDivs(column)" *ngFor="let column of table.columns">
+   <div class="mdl-cell mdl-cell--6-col"  [ngSwitch]="column.type" [ngStyle]="getWidthOfInput(column)">
+    <div *ngSwitchCase="'typehead'">
+        <custom-typehead-editor
+            [table]="table"
+            [row]="row"
+            [column]="column"
+            (onAutocompleteValueChange)="onAutocompleteValueChange($event)">
+        </custom-typehead-editor>
+    </div>
+       <div *ngSwitchCase="'Dropdown'"  >
+           <custom-dropdown-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+            </custom-dropdown-editor>
+          
+         <!--   <adf-dropdown-editor 
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-dropdown-editor> -->
+       </div>
+       <div *ngSwitchCase="'dynamic-dropdown'"  >
+        <dynamic-dropdown-editor
+            [table]="table"
+            [row]="row"
+            [column]="column"
+            (onAutocompleteValueChange)="onAutocompleteValueChange($event)">
+         </dynamic-dropdown-editor>
+        </div>
+       
+       <div *ngSwitchCase="'Date'">
+           <custom-date-editor
+                [table]="table"
+                [row]="row"
+                [column]="column">
+            </custom-date-editor>
+<!--            <adf-date-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-date-editor> -->
+       </div>
+       <div *ngSwitchCase="'Datetime'">
+           <adf-datetime-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-datetime-editor>
+       </div>
+       <div *ngSwitchCase="'Boolean'" >
+           <adf-boolean-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-boolean-editor>
+       </div>
+       <div *ngSwitchCase="'Amount'">
+           <adf-amount-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-amount-editor>
+       </div>
+       <div *ngSwitchDefault>
+           <adf-text-editor
+               [table]="table"
+               [row]="row"
+               [column]="column">
+           </adf-text-editor>
+       </div>
+   </div>
+</div>
+<error-widget [error]="validationSummary" style="width:52%; margin:5px 0 10px;"></error-widget>
+<div id="buttons">
+   <button mat-button (click)="onCancelChanges()">Cancelar</button>
+   <button mat-button (click)="onSaveChanges()" [disabled]="table.type === 'readonly'">Guardar</button> 
+</div>
+</div>

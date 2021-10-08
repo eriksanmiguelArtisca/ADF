@@ -1,0 +1,79 @@
+<!-- <style>
+        .process-buttons > button{
+            color: #828285;
+            background: white;
+            border-radius: 2px;
+            font-weight: bold;
+            border: solid gray 1px;
+            margin-right: 1%;
+        }
+
+        .process-buttons {
+            padding: 1%;
+        }
+    
+        .process-title > h3{
+            color: #e10000;
+            margin-left: 2%;
+            font-weight: bold;
+        }
+        .active {
+            background: #e10000 !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px){
+            .process-buttons > button{
+                margin-bottom: 2%;
+            }
+            .process-title {
+                max-width: 100%;
+                place-content: center center;
+            }
+        }
+    
+</style> -->
+
+ <div fxLayout="column">
+    <div fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="20%" fxFlex.xs="100%" fxLayoutAlign="start center" fxLayoutAlign.xs="center center" class="process-title">
+            <h3>LISTADO DE PROCESOS</h3>
+        </div>
+        <div fxFlex="80%" fxFlex.xs="100%" fxLayout.xs="column" fxLayoutAlign="end center" fxLayoutAlign.xs="center center" class="process-buttons">
+                <button mat-raised-button *ngFor="let button of buttons; let i = index" [ngClass]="{'active':isClicked[i]}" (click)="filtrarProcesos(i)">
+                        <span >{{ button[0] }}</span>
+                </button>
+        </div>
+    </div>
+    <adf-toolbar>
+ <!--        <adf-toolbar-title>
+            <apw-breadcrumbs></apw-breadcrumbs>
+        </adf-toolbar-title> -->
+        <div class="adf-toolbar--spacer"></div>
+        <apw-breadcrumb-actions fxHide.xs *ngIf="processContent$ | async" [selectedAction]="getBreadcrumbActionName()" (infoClick)="toggleInfoDrawer()"></apw-breadcrumb-actions>
+    </adf-toolbar>
+
+    <div class="dw-template-content-container" >
+        <div class="dw-template-content" fxFlex="0 1 100%">
+                <div class="dw-template-fixed-content">
+                    <apw-processlist-paginator *ngIf="processFilter?.filter"
+                        [currentFilter]="processFilter"
+                        (success)="onSuccessProcessList($event)"
+                        (rowClick)="onProcessRowSelect($event)"
+                        (rowDoubleClick)="onProcessRowDoubleClick($event)">
+                    </apw-processlist-paginator>
+            </div>
+        </div>
+        <ng-container *ngIf="showSidebar">
+            <div id="dw-processlist-sidebar-id" class="dw-template__sidebar">
+                <apw-process-sidebar
+                    [processInstanceDetails]="processInstanceDetails">
+                    <div>
+                        <mat-icon data-automation-id="expand" id="dw-processlist-sidebar-open-new-id" (click)="openProcessForm()">open_in_new</mat-icon>
+                        <mat-icon data-automation-id="close" (click)="closeProcessDetailsLayout()">close</mat-icon>
+                    </div>
+                </apw-process-sidebar>
+            </div>
+        </ng-container>
+    </div>
+</div>

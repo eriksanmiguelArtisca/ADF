@@ -1,0 +1,41 @@
+@mixin apw-header-menu-theme($theme) {
+    $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+
+    .adf-layout-header .mat-toolbar {
+        background: mat-color($primary, default);
+
+        a {
+            height: 30px;
+        }
+
+        .adf-app-layout {
+            &-menu-spacer {
+                flex: 1 1 auto;
+            }
+        }
+
+    }
+
+    .adf-layout-header .mat-toolbar-single-row .adf-app-logo {
+        position: relative;
+        height: 38px;
+        width: 100px;
+        vertical-align: middle;
+        margin-left: 6px;
+        margin-top: -3px;
+    }
+}
+
+.white-element-header>* {
+    color: white;
+}
+
+.mat-menu-item .mat-icon {
+    margin-right: 6px;
+}
+button.mat-menu-item {
+    width:auto!important;
+}

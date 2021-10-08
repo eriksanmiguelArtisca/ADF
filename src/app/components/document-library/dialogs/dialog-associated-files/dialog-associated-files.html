@@ -1,0 +1,96 @@
+<style>
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+
+      ::ng-deep .max-cell-row * {
+        display: flex;
+        display: -ms-flexbox;
+        flex-basis: auto;
+    /*     flex-flow: column ; */
+        align-items: center;
+        width: 100% !important;
+        max-height: 56px;
+        min-height: 0px ;
+        height: 55px;
+        overflow: hidden;
+      } 
+
+      .img-wrp {
+        margin-top: 50%;
+	    } 
+  }
+
+  .img-wrp {
+		display: inline-block;
+		position: relative;
+    width: 34px;
+	} 
+	.top-right-icon {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 12px;
+	}
+
+span {
+  font-weight: bold;
+}
+
+</style>
+
+
+<h1 mat-dialog-title>Ficheros Asociados al fichero :  <span>  {{data.nombreFichero}} </span> </h1>
+
+<div mat-dialog-content>
+
+    <button mat-raised-button color="primary" style="width: 150px; margin-bottom: 10px;" (click)="anadirAsociados()" >
+      <span>Añadir Asociado </span>
+     </button>
+  
+    <adf-datatable #dataTable 
+        [(rows)]="data.nodosAsociaciones.entries"
+        (row-dblclick)="showPreview($event)"
+        rowStyleClass="max-height-row"
+        actions="true"
+        actionsPosition="right"
+        contextMenu="true"
+        (showRowActionsMenu)="onShowRowActionsMenu($event)"
+        (executeRowAction)="onExecuteRowAction($event)">
+          <data-columns >
+            <data-column
+                    key="$thumbnail"
+                    type="image"
+                    [sortable]="false">
+                    <ng-template let-context="$implicit">
+                      <div  class="img-wrp">
+                        <img src="{{ context.row.getValue('entry.content.mimeType') | adfMimeTypeIcon }}" class="imgResponsiveMax" />
+                      </div>
+                    </ng-template>
+                    
+              </data-column>
+              <data-column key="entry.name" title="Nombre" type="text" class="max-cell-row"></data-column>
+            <data-column title="Tamaño" key="entry.content.sizeInBytes" type="fileSize" class="max-cell-row"></data-column> 
+            <data-column title="Creador" key="entry.createdByUser.displayName" type="text"  class="max-cell-row" ></data-column>
+          </data-columns>
+
+      </adf-datatable>
+  
+</div>
+
+<ng-container *ngIf="nodeId">
+  <ng-template let-node="node" #sidebarTemplate>
+      <adf-info-drawer [title]="'Metadatos'">
+          <adf-info-drawer-tab [label]="'Propiedades'">
+              <adf-content-metadata-card [node]="node"></adf-content-metadata-card>
+          </adf-info-drawer-tab>
+      </adf-info-drawer>
+  </ng-template>
+  <adf-viewer [showViewer]="show" (showViewerChange)="vaciar()" [nodeId]="nodeId" [allowRightSidebar]="true" [sidebarRightTemplate]="sidebarTemplate" [overlayMode]="true">
+  </adf-viewer>
+</ng-container>
+<!-- <adf-viewer [nodeId]="nodeId" [overlayMode]="true" [allowRightSidebar]="true" [sidebarRightTemplate]="sidebarTemplate"></adf-viewer> -->
+
+
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Cerrar</button>
+</div>
+
