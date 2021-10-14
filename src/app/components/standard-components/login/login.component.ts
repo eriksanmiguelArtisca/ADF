@@ -181,7 +181,7 @@ export class LoginComponent implements OnInit,AfterViewInit {
                         group.entry.id === "csa" ||
                         group.entry.id === "polizas" ||
                         group.entry.id === "financiero" ||
-                        group.entry.id === "it"
+                        group.entry.id === "it" 
                     );
                 if( site.length > 0 ){
                     this.loginECM = true;

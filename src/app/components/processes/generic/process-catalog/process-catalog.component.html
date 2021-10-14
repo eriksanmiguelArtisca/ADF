@@ -221,4 +221,19 @@
         </p>
       </mat-card-content>
     </mat-card>
+
+    
+
+    <mat-card class="process-card process-groups"  fxFlex="29%" fxFlex.sm="41%" fxFlex.xs="85%" *ngIf="mostrarGrupoProcesos('Accesos físicos')" >
+      <mat-card-header>
+      <mat-icon mat-card-avatar class="red-icon" aria-hidden="false" aria-label="Solicitud de Accesos físicos">desktop_windows</mat-icon>
+      <mat-card-title>ACCESOS FÍSICOS</mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content>
+        <p class="process-link" (click)="abrirProceso('wsaf',[])">
+          Solicitud de <span>Accesos físicos</span> <!-- txt -->
+        </p>
+      </mat-card-content>
+    </mat-card>
 </div>

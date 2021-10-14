@@ -179,6 +179,7 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                 CSA_WAMPY.formLoaded(e, fields, this.treeService);
             }
 
+
             // Una vez carga el formulario ya podemos suscribirnos a los cambios del formulario
             formService.formFieldValueChanged.pipe(takeUntil(this.onDestroy$)).subscribe(
 	            (e: FormFieldEvent) => {

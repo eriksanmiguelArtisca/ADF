@@ -78,8 +78,6 @@ export class CreateNodeComponent implements OnInit, AfterViewInit {
     ];
 
 
-
-
     constructor(
         private route: ActivatedRoute,
         private metadataService: MetadataService,

@@ -239,7 +239,7 @@ export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy { //C
         TreeComponent,
         CustomStartProcessComponent,
         CustomStartFormComponent,
-        CustomLoginComponent
+        CustomLoginComponent,
     ],
     providers: [
         {

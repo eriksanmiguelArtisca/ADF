@@ -6,7 +6,7 @@ export class BpmAppsService {
     apps: any[] = [];
     selected_app = { name: '', icon: null, id: null };
     processName : string;
-    validApps : string [] = ["CSA","IT"];
+    validApps : string [] = ["CSA","IT", "Accesos físicos"];
 
     constructor(public bpmUserService: BpmUserService,public appsProcessService : AppsProcessService) {
        /*  this.bpmUserService.getCurrentUserInfo().subscribe(success => {
