@@ -29,4 +29,4 @@ export * from '../../../workflows/csa/wampy/CSA_WAMPY';
 export * from './it/IT_DARB';
 
 //exports ACCESOS
-//export * from '../../../workflows/csa/wampy/CSA_WAMPY';
+export * from '../../../workflows/edp/WSAF';

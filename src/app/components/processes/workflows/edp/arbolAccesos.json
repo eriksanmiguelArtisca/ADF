@@ -1,0 +1,103 @@
+{
+    "edificio": {
+        "NumeroItem": "010000",
+        "denominacion": "Edificio Social Oviedo",
+        "children":[
+            {
+                "NumeroItem": "010100",
+                "denominacion": "Entrada General al Edificio", 
+                "children":[
+                    {
+                        "NumeroItem": "010101",
+                        "denominacion": "Tornos del Hall", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    },
+                    {
+                        "NumeroItem": "010102",
+                        "denominacion": "Muelle de Carga", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    },
+                    {
+                        "NumeroItem": "010103",
+                        "denominacion": "Acceso Parking", 
+                        "Franjas_Horarias":"24H-365D",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    },
+                    {
+                        "NumeroItem": "010104",
+                        "denominacion": "Acceso Parking", 
+                        "Franjas_Horarias":"16H -L-V",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    }
+                ]},
+            {
+                "NumeroItem": "010200",
+                "denominacion": "Sala CPD",
+                "children":[
+                    {
+                        "NumeroItem": "010201",
+                        "denominacion": "Comunicaciones", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E342020",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    },
+                    {
+                        "NumeroItem": "010202",
+                        "denominacion": "Servidores", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E343032",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    },
+                    {
+                        "NumeroItem": "010203",
+                        "denominacion": "Seguridad Fisica", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    }
+                ]},
+            {
+                "NumeroItem": "010300",
+                "denominacion": "Despacho DGE",
+                "children":[
+                    {
+                        "NumeroItem": "010301",
+                        "denominacion": "Acceso Despacho", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E345445",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    }
+                ]},
+            {
+                "NumeroItem": "010400",
+                "denominacion": "Centro de control SF",
+                "children":[
+                    {
+                        "NumeroItem": "010401",
+                        "denominacion": "Acceso Centro de Control", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E344445",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    }
+                ]},
+            {
+                "NumeroItem": "010500",
+                "denominacion": "Entrada Peatonal Nocturna",
+                "children":[
+                    {
+                        "NumeroItem": "010501",
+                        "denominacion": "Acceso Peatonal", 
+                        "Franjas_Horarias":"",
+                        "Responsable_Ruta": "E341178",
+                        "Responsable_Ejecucion_Solicitud": "E351220"
+                    }
+                ]}
+            ]
+    }
+}

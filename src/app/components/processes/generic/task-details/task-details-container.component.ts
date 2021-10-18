@@ -32,7 +32,7 @@ import { LightUserRepresentation } from '@alfresco/js-api';
 import { APWProperties} from '../../../../models';
 
 import {  CSA_ALTA_CEBE ,CSA_ALTA_CECO ,CSA_ALTA_NODO_CEBE ,CSA_ALTA_NODO_CECO ,CSA_MOFICACION_NODO_CEBE,CSA_MOFICACION_NODO_CECO ,CSA_WASAP ,CSA_MODIFICACION_CEBE, CSA_MODIFICACION_CECO,CSA_WAAPY,
-    IT_DARB,CSA_WASCS,CSA_WARPF, CSA_WAMPY} from '../task-details/workflows-logic/index';
+    IT_DARB,CSA_WASCS,CSA_WARPF, CSA_WAMPY, WSAF} from '../task-details/workflows-logic/index';
 import { HttpClient } from '@angular/common/http';
 import { PreviewService } from '../../../../services/preview.service';
 import { TreePepsService } from '../../../../services/tree-peps.service';
@@ -179,6 +179,11 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                 CSA_WAMPY.formLoaded(e, fields, this.treeService);
             }
 
+            //formulario ACCESOS
+            if(e.form.json.processDefinitionKey== "wsaf"){	
+                WSAF.formLoaded(e,fields);
+            }
+
 
             // Una vez carga el formulario ya podemos suscribirnos a los cambios del formulario
             formService.formFieldValueChanged.pipe(takeUntil(this.onDestroy$)).subscribe(
@@ -240,6 +245,11 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                         //formulario Modificacion WAMPY
                         if (e.form.json.processDefinitionKey == 'csa_wampy') {
                             CSA_WAMPY.formFieldValueChanged(e, fields, this.treeService,visibilityService );
+                        }
+
+                        //formulario ACCESOS
+                        if(e.form.json.processDefinitionKey== "wsaf"){	
+                            WSAF.formLoaded(e,fields);
                         }
                     } catch (error) {
                         console.error(error);
