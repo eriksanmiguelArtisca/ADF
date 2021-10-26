@@ -3,7 +3,7 @@ import { FieldValidatorWARPF } from "./fieldValidatorWARPF";
 import { isNullOrUndefined, isUndefined } from "util";
 import { FormValueRepresentation } from "@alfresco/js-api";
 import { HttpClient } from "@angular/common/http";
-import * as moment from "moment";
+import moment from "moment";
 
 // declare var $: any;
 

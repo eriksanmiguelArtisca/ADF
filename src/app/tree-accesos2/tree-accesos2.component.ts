@@ -1,19 +1,27 @@
 import { Component, ViewEncapsulation, SimpleChanges, OnChanges, Input, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import {
-/*   DynamicTableRow,
-  FormFieldModel, */
+  FormFieldModel,
+/*DynamicTableRow,
+  FormFieldModel,
+  ValidateDynamicTableRowEvent, */
   FormService,
-  /* ValidateDynamicTableRowEvent, */
   WidgetComponent,
   WidgetVisibilityService
 } from '@alfresco/adf-core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTree, MatTreeNestedDataSource } from '@angular/material/tree';
-/* import { isUndefined } from 'util'; */
 import { Subject } from 'rxjs';
-//import { WSAF } from '../components/processes/generic/task-details/workflows-logic';
 import { ArbolAccesos, TreeAccesos2Service } from '../services/tree-accesos2.service';
-/* import { takeUntil } from 'rxjs/operators'; */
+import { HttpClient } from '@angular/common/http';
+import { isNullOrUndefined } from 'util';
+
+/*import { isUndefined } from 'util'; 
+import { DialogConfirmacionAction } from '../components/processes/workflows/edp/dialogs/dialogs-Confirmacion.component';
+import { BpmAppsService } from '../services/bpm-apps.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+/*import { takeUntil } from 'rxjs/operators'; 
+import { WSAF } from '../components/processes/generic/task-details/workflows-logic';*/
 
 
 @Component({
@@ -36,7 +44,7 @@ import { ArbolAccesos, TreeAccesos2Service } from '../services/tree-accesos2.ser
 export class TreeAccesos2Component extends WidgetComponent implements OnChanges,AfterViewInit {
   @Input() treeControl = new NestedTreeControl<ArbolAccesos>(node => node.children);
   @Input() dataSource = new MatTreeNestedDataSource<ArbolAccesos>();
-  /** field. */
+  
   @Input()
   selectproject: string = "";
 
@@ -46,10 +54,11 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
   @ViewChild('treeAccesos2Component')
   treeAccesos2Component: MatTree<ArbolAccesos>;
 
-  arbol : ArbolAccesos[] =  /* null; */[ { NumeroItem : "",denominacion: "" ,checked: false, children : null}] ;
+  arbol : ArbolAccesos[] =[ {tipo:"", numeroItem : "",denominacion: "" ,checked: false, children : null}] ;
   private onDestroy$ = new Subject<boolean>();
 
-  constructor(formService: FormService, cd : ChangeDetectorRef,private treeAccesos2Service : TreeAccesos2Service,visibilityService : WidgetVisibilityService,) {
+  constructor(formService: FormService, cd : ChangeDetectorRef,private treeAccesos2Service : TreeAccesos2Service,visibilityService : WidgetVisibilityService,
+    /*private router : Router, private bpmAppsService : BpmAppsService,private dialog: MatDialog,*/private http:HttpClient) {
     super(formService);
     //this.treeFormService = formService;
     /* this.dataSource.data = TREE_DATA; */
@@ -60,26 +69,25 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
       this.treeAccesos2Component.treeControl.collapseAll();
       this.treeAccesos2Service.currentPep = null;
     });
- 
+    
     /* formService.validateDynamicTableRow.pipe(takeUntil(this.onDestroy$)).subscribe(
     ); */
 
   }
 
   ngAfterViewInit(){
-    console.log("!!");
-    //console.log(this.treeControl);
-    //console.log(JSON.parse(this.field.value));
     try {  
-      /*if(!Array.isArray(this.field.value) ){
-        this.arbol = [JSON.parse(this.field.value)];
-      }else {
-        this.arbol = JSON.parse(this.field.value);
-      }*/
-      this.arbol = this.field.value;
-      console.log( this.arbol);
-      this.dataSource.data =  this.arbol;
-      this.treeAccesos2Service.rootPep = this.dataSource.data;
+      /*(async () => {
+        this.arbol = await this.field.value;
+        this.dataSource.data = await this.arbol;
+        this.treeAccesos2Service.rootPep = await this.dataSource.data;
+        console.log("-----");
+        console.log(await this.arbol);
+      })();*/
+        
+        /*this.treeAccesos2Service.rootPep = await this.cargaDatos().then(data => this.treeAccesos2Service.rootPep = data);
+        console.log(this.treeAccesos2Service.rootPep);*/
+        this.cargaDatos();
     }catch(E){
       console.log(E);
     }
@@ -115,6 +123,42 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
     this.treeAccesos2Service.rootPep = this.dataSource.data;
   }*/
 
+  llamadaRecursiva(arbolDeAccesos){
+    for (let a = 0; a <arbolDeAccesos.length; a++){
+      if(arbolDeAccesos[a].children){
+        arbolDeAccesos[a].checked==false;
+        return (this.llamadaRecursiva(arbolDeAccesos[a].children));
+      }else{
+        arbolDeAccesos[a].checked==false;
+      }
+    }
+  }
+
+  async cargaDatos(){
+    await this.http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').toPromise();
+    this.arbol=this.field.value;
+    if(!isNullOrUndefined(this.arbol)){ 
+        for (let i = 0; i < this.arbol.length; i++){
+            for(let j=0;j<this.arbol[i].children.length;j++){
+                for(let k=0;k<this.arbol[i].children[j].children.length;k++){
+                    this.arbol[i].children[j].children[k].checked=false;
+                }
+            }
+        }
+        //this.llamadaRecursiva(this.arbol);
+    }
+
+    this.dataSource.data = this.arbol;
+    this.treeAccesos2Service.rootPep = this.dataSource.data;
+
+    //getSpeedClass = () => (this.currentSpeed < this.getThreshold() ? 'good' : 'warning');
+    //private getThreshold = () => this.topSpeed * 0.8;
+  }
+
+  onFieldChanged(field: FormFieldModel) {
+    super.onFieldChanged(field);
+    this.cargaDatos();
+  }
   replaceCharacters(textString , replaceValues){
     replaceValues.forEach(replaceValue => {
       let searchRegExp = new RegExp(replaceValue[0], 'g');
@@ -138,7 +182,6 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
   valueChanged() {
     //let nivel = this.treeAccesos2Service.searchTreeLevel(this.arbol[0],this.selectedNode,0);
     //this.selectedNode.tipoPep = nivel;
-    console.log(this.selectedNode);
     this.treeAccesos2Service.selectPep(this.selectedNode);
     this.onFieldChanged(this.field);
   }
@@ -147,11 +190,12 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
     for (let i = 0; i < this.arbol.length; i++){
       for(let j=0;j<this.arbol[i].children.length;j++){
         for(let k=0;k<this.arbol[i].children[j].children.length;k++){
-          if(this.arbol[i].children[j].children[k].NumeroItem==seleccionado){
-            if (!this.arbol[i].children[j].children[k].checked){
+          if(this.arbol[i].children[j].children[k].numeroItem==seleccionado){
+            if ((this.arbol[i].children[j].children[k].checked==false)){
               this.arbol[i].children[j].children[k].checked = true;
             }else{
               this.arbol[i].children[j].children[k].checked = false;
+              this.arbol[i].children[j].checked=false;
             }
             console.log(this.arbol[i].children[j].children[k]);
           }
@@ -160,6 +204,54 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
     }
   }
 
-  hasChild = (_: number, node: ArbolAccesos) => !!node.children && node.children.length > 0;
+  allComplete(numero){
+    for (let i = 0; i < this.arbol.length; i++){  
+      for(let j=0;j<this.arbol[i].children.length;j++){
+        if(this.arbol[i].children[j].numeroItem==numero){
+          if (!this.arbol[i].children[j].checked){
+            this.arbol[i].children[j].checked = true;
+            for(let k=0;k<this.arbol[i].children[j].children.length;k++){
+              this.arbol[i].children[j].children[k].checked = true;
+            }
+          }else{
+            this.arbol[i].children[j].checked = false;
+            for(let k=0;k<this.arbol[i].children[j].children.length;k++){
+              this.arbol[i].children[j].children[k].checked = false;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*abrirProceso(proceso,opciones){
+    this.abrirDialog(proceso,opciones);
+  }
+
+  abrirDialog(proceso,opciones:Array<any> ){
+    const appId = this.bpmAppsService.selected_app.id ? this.bpmAppsService.selected_app.id : 0;
+    if(opciones.length > 0){
+      const dialogRef = this.dialog.open(DialogConfirmacionAction, {
+        data: {
+            options: opciones,
+            selectedOption: null
+        },
+        minWidth: '250px'
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if( !isUndefined(result) ){
+          this.navegarStartForm(result, appId);
+        }
+      });
+    }else {
+      this.navegarStartForm(proceso, appId);
+    }
+  }
+
+  navegarStartForm(proceso: any, appId: any) {
+    this.router.navigate([`apps/${appId}/processes/new/${proceso}` ] );
+  }*/
+
+  hasChild = (_: number, node: ArbolAccesos) => node.tipo=="C" || node.tipo=="R";
 }
 

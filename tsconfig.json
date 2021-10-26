@@ -27,6 +27,7 @@
       ]
     },
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "module": "es2015"
   }
 }

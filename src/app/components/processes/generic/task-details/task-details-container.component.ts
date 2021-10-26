@@ -181,7 +181,7 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
 
             //formulario ACCESOS
             if(e.form.json.processDefinitionKey== "wsaf"){	
-                WSAF.formLoaded(e,fields);
+                WSAF.formLoaded(e,fields,http);
             }
 
 
@@ -249,7 +249,7 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
 
                         //formulario ACCESOS
                         if(e.form.json.processDefinitionKey== "wsaf"){	
-                            WSAF.formLoaded(e,fields);
+                            WSAF.formFieldValueChanged(e,fields,http);
                         }
                     } catch (error) {
                         console.error(error);

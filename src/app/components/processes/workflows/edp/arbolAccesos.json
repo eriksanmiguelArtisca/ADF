@@ -1,103 +1,1114 @@
-{
-    "edificio": {
-        "NumeroItem": "010000",
-        "denominacion": "Edificio Social Oviedo",
-        "children":[
-            {
-                "NumeroItem": "010100",
-                "denominacion": "Entrada General al Edificio", 
-                "children":[
-                    {
-                        "NumeroItem": "010101",
-                        "denominacion": "Tornos del Hall", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    },
-                    {
-                        "NumeroItem": "010102",
-                        "denominacion": "Muelle de Carga", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    },
-                    {
-                        "NumeroItem": "010103",
-                        "denominacion": "Acceso Parking", 
-                        "Franjas_Horarias":"24H-365D",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    },
-                    {
-                        "NumeroItem": "010104",
-                        "denominacion": "Acceso Parking", 
-                        "Franjas_Horarias":"16H -L-V",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    }
-                ]},
-            {
-                "NumeroItem": "010200",
-                "denominacion": "Sala CPD",
-                "children":[
-                    {
-                        "NumeroItem": "010201",
-                        "denominacion": "Comunicaciones", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E342020",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    },
-                    {
-                        "NumeroItem": "010202",
-                        "denominacion": "Servidores", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E343032",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    },
-                    {
-                        "NumeroItem": "010203",
-                        "denominacion": "Seguridad Fisica", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    }
-                ]},
-            {
-                "NumeroItem": "010300",
-                "denominacion": "Despacho DGE",
-                "children":[
-                    {
-                        "NumeroItem": "010301",
-                        "denominacion": "Acceso Despacho", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E345445",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    }
-                ]},
-            {
-                "NumeroItem": "010400",
-                "denominacion": "Centro de control SF",
-                "children":[
-                    {
-                        "NumeroItem": "010401",
-                        "denominacion": "Acceso Centro de Control", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E344445",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    }
-                ]},
-            {
-                "NumeroItem": "010500",
-                "denominacion": "Entrada Peatonal Nocturna",
-                "children":[
-                    {
-                        "NumeroItem": "010501",
-                        "denominacion": "Acceso Peatonal", 
-                        "Franjas_Horarias":"",
-                        "Responsable_Ruta": "E341178",
-                        "Responsable_Ejecucion_Solicitud": "E351220"
-                    }
-                ]}
+[{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
             ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},
+{
+"NumeroItem": "020000",
+"denominacion": "Edificio Corporativo Madrid",
+"checked": false,
+"children": [
+    {
+        "NumeroItem": "020100",
+        "denominacion": "Entrada Principal al Edificio",
+        "checked": false,
+        "children": [
+            {
+                "NumeroItem": "020101",
+                "denominacion": "Recepcion",
+                "checked": false,
+                "Franjas_Horarias": "9:00 a 14:00 L-V",
+                "Responsable_Ruta": "E659553",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            },
+            {
+                "NumeroItem": "020102",
+                "denominacion": "Almacen",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "E659553",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            },
+            {
+                "NumeroItem": "020103",
+                "denominacion": "Parking",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "E659553",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            }
+        ]
+    },
+    {
+        "NumeroItem": "020200",
+        "denominacion": "Zona Polivalente",
+        "checked": false,
+        "children": [
+            {
+                "NumeroItem": "020201",
+                "denominacion": "Garaje",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "F255476",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            },
+            {
+                "NumeroItem": "020202",
+                "denominacion": "Taller",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "F255476",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            },
+            {
+                "NumeroItem": "020203",
+                "denominacion": "Zona de riesgo",
+                "checked": false,
+                "Franjas_Horarias": "9:00 a 11:30",
+                "Responsable_Ruta": "F255476",
+                "Responsable_Ejecucion_Solicitud": "D963429"
+            }
+        ]
     }
+]       
+},
+{
+"NumeroItem": "030000",
+"denominacion": "Edificio Administrativo Barcelona",
+"checked": false,
+"children": [
+    {
+        "NumeroItem": "030100",
+        "denominacion": "Primer Piso",
+        "checked": false,
+        "children": [
+            {
+                "NumeroItem": "030101",
+                "denominacion": "Oficinas",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "J816668",
+                "Responsable_Ejecucion_Solicitud": "F899753"
+            },
+            {
+                "NumeroItem": "030102",
+                "denominacion": "Despacho",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "J816668",
+                "Responsable_Ejecucion_Solicitud": "F899753"
+            },
+            {
+                "NumeroItem": "030103",
+                "denominacion": "Sala de espera",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "J816668",
+                "Responsable_Ejecucion_Solicitud": "F899753"
+            }
+        ]
+    },
+    {
+        "NumeroItem": "030200",
+        "denominacion": "Segundo Piso",
+        "checked": false,
+        "children": [
+            {
+                "NumeroItem": "030201",
+                "denominacion": "Sala de reunion",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "A964444",
+                "Responsable_Ejecucion_Solicitud": "F899753"
+            },
+            {
+                "NumeroItem": "030202",
+                "denominacion": "Aula Informatica",
+                "checked": false,
+                "Franjas_Horarias": "",
+                "Responsable_Ruta": "A964444",
+                "Responsable_Ejecucion_Solicitud": "F899753"
+            }
+        ]
+    }
+]       
+},
+{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},
+{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
+},{
+    "NumeroItem": "010000",
+    "denominacion": "Edificio Social Oviedo",
+    "checked": false,
+    "children": [
+        {
+            "NumeroItem": "010100",
+            "denominacion": "Entrada General al Edificio",
+            "checked": false,
+            "seleccionable":true,
+            "children": [
+                {
+                    "NumeroItem": "010101",
+                    "denominacion": "Tornos del Hall",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010102",
+                    "denominacion": "Muelle de Carga",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010103",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "24H-365D",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010104",
+                    "denominacion": "Acceso Parking",
+                    "checked": false,
+                    "Franjas_Horarias": "16H -L-V",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010200",
+            "denominacion": "Sala CPD",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010201",
+                    "denominacion": "Comunicaciones",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E342020",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010202",
+                    "denominacion": "Servidores",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E343032",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                },
+                {
+                    "NumeroItem": "010203",
+                    "denominacion": "Seguridad Fisica",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010300",
+            "denominacion": "Despacho DGE",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010301",
+                    "denominacion": "Acceso Despacho",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E345445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010400",
+            "denominacion": "Centro de control SF",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010401",
+                    "denominacion": "Acceso Centro de Control",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E344445",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        },
+        {
+            "NumeroItem": "010500",
+            "denominacion": "Entrada Peatonal Nocturna",
+            "checked": false,
+            "children": [
+                {
+                    "NumeroItem": "010501",
+                    "denominacion": "Acceso Peatonal",
+                    "checked": false,
+                    "Franjas_Horarias": "",
+                    "Responsable_Ruta": "E341178",
+                    "Responsable_Ejecucion_Solicitud": "E351220"
+                }
+            ]
+        }
+    ]       
 }
+]

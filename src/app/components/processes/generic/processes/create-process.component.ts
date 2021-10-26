@@ -145,7 +145,7 @@ export class CreateProcessComponent implements OnInit, OnDestroy {
 
 				//formulario ACCESOS
 				if(e.form.json.processDefinitionKey== "wsaf"){	
-					WSAF.formLoaded(e,fields);
+					WSAF.formLoaded(e,fields,http);
 				}
 
 				
@@ -207,7 +207,7 @@ export class CreateProcessComponent implements OnInit, OnDestroy {
 
 					//formulario ACCESOS
 					if(e.form.json.processDefinitionKey== "wsaf"){	
-						WSAF.formLoaded(e,fields);
+						WSAF.formFieldValueChanged(e,fields,http);
 					}
 
 				});

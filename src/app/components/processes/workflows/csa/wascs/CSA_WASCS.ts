@@ -4,7 +4,7 @@ import { isUndefined, isNullOrUndefined } from "util";
 import { TreePepsService } from '../../../../../services/tree-peps.service';
 import { HttpClient } from "@angular/common/http";
 import { FormValueRepresentation } from "@alfresco/js-api";
-import * as moment from "moment";
+import moment from "moment";
 
 export const CSA_WASCS = {
 

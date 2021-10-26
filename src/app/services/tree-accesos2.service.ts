@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface ArbolAccesos {
-    NumeroItem: string;
+    tipo:string;
+    numeroItem: string;
     denominacion: string;
     checked: boolean;
-    Franjas_Horarias? : string;
-    Responsable_Ruta?: string;
-    Responsable_Ejecucion_Solicitud? : string;
+    franjasHorarias? : string;
+    respRuta?: string;
+    respEjec? : string;
     children? : ArbolAccesos[];
 }
 
@@ -52,7 +53,7 @@ export class TreeAccesos2Service {
       deleteTreeElementByMask(element :ArbolAccesos, mascaraBusqueda ,arrayPosition){
         // Como normalmente Proyecto y pep1 tienen la misma mascara comprobamos que no sea el mismo objeto
         // (element.mascara === "" && element["waapy_orden_nodo_superior"])
-        if(element.NumeroItem === mascaraBusqueda && JSON.stringify(element) !== JSON.stringify(this.rootPep[0])){
+        if(element.numeroItem === mascaraBusqueda && JSON.stringify(element) !== JSON.stringify(this.rootPep[0])){
             return true;
         }else if (element.children != null){
              var i;
@@ -157,8 +158,8 @@ export class TreeAccesos2Service {
     if (lastEditMascara !== null || lastEditMascara !== undefined) {
       if ((this.rootPep[0].children !== null || this.rootPep[0].children !== undefined) && this.rootPep[0].children) {
         for (let i = 0; i < this.rootPep[0].children.length; i++) { //recorrer todos los hijos del arbol
-          if (this.rootPep[0].children[i] !== null && lastEditMascara === this.rootPep[0].children[i].NumeroItem) {
-            mascaraPep1 =this.rootPep[0].children[i].NumeroItem; //mascara recien editada
+          if (this.rootPep[0].children[i] !== null && lastEditMascara === this.rootPep[0].children[i].numeroItem) {
+            mascaraPep1 =this.rootPep[0].children[i].numeroItem; //mascara recien editada
             arrayMascarasHijas.push(mascaraPep1);
             if ((this.rootPep[0].children[i].children !== null || this.rootPep[0].children[i].children !== undefined) && this.rootPep[0].children[i].children) {
               for (let j = 0; j < this.rootPep[0].children[i].children.length; j++) { //recorrer los hijos del hijo que se ha editado
