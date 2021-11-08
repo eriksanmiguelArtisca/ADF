@@ -136,7 +136,7 @@ import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY } from '@angular/material';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import { CustomLoginComponent } from './components/standard-components/login-custom/custom-login/custom-login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TreeAccesos2Component } from './tree-accesos2/tree-accesos2.component';
+import { TreeAccesos2Component } from './components/processes/custom-components/tree-accesos2/tree-accesos2.component';
 
 /* import { TreeComponent } from "./components/processes/custom-components/tree-component/treeComponent"; */
 

@@ -32,7 +32,7 @@ import { LightUserRepresentation } from '@alfresco/js-api';
 import { APWProperties} from '../../../../models';
 
 import {  CSA_ALTA_CEBE ,CSA_ALTA_CECO ,CSA_ALTA_NODO_CEBE ,CSA_ALTA_NODO_CECO ,CSA_MOFICACION_NODO_CEBE,CSA_MOFICACION_NODO_CECO ,CSA_WASAP ,CSA_MODIFICACION_CEBE, CSA_MODIFICACION_CECO,CSA_WAAPY,
-    IT_DARB,CSA_WASCS,CSA_WARPF, CSA_WAMPY, WSAF} from '../task-details/workflows-logic/index';
+    IT_DARB,CSA_WASCS,CSA_WARPF, CSA_WAMPY, WSAF, CSA_WASP} from '../task-details/workflows-logic/index';
 import { HttpClient } from '@angular/common/http';
 import { PreviewService } from '../../../../services/preview.service';
 import { TreePepsService } from '../../../../services/tree-peps.service';
@@ -247,6 +247,11 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                             CSA_WAMPY.formFieldValueChanged(e, fields, this.treeService,visibilityService );
                         }
 
+                        //formulario Solitud de pedido
+                        if (e.form.json.processDefinitionKey == 'csa_wasp') {
+                            CSA_WASP.formFieldValueChanged(e, fields, http, this.notificationService);
+                        }
+
                         //formulario ACCESOS
                         if(e.form.json.processDefinitionKey== "wsaf"){	
                             WSAF.formFieldValueChanged(e,fields,http);
@@ -283,6 +288,9 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                 }
                 if (e.field.id === "csa_wampy"){
                     CSA_WAMPY.validateDynamicTableRow(row , e, fields, this.treeService, formService , this.visibilityService);
+                }
+                if (e.field.id === "wasp_solicitudes"){
+                    CSA_WASP.validateDynamicTableRow(row , e, fields, formService , this.visibilityService);
                 }
 
 

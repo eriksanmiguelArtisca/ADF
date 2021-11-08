@@ -25,9 +25,14 @@ export class TreeAccesos2Service {
     public currentPep :  ArbolAccesos = null;
     public rootPep :  ArbolAccesos [] = null;
 
+    public tipoOperacion :string="prueba";
+
     lastEditRow: DynamicTableRow = null;
 
-    constructor() { 
+    constructor() {}
+
+    getTipo(): string {
+      return this.tipoOperacion;
     }
     
     selectPep(selectedPep : ArbolAccesos){
@@ -35,7 +40,6 @@ export class TreeAccesos2Service {
         this.currentPep = selectedPep;
     }
 
-    
     searchTreeLevel(element, elementBusqueda, level){
         if(JSON.stringify(element) === JSON.stringify(elementBusqueda)){
              return level;

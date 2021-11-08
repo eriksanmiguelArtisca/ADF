@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, SimpleChanges, OnChanges, Input, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import {
+  //FormFieldEvent,
   FormFieldModel,
 /*DynamicTableRow,
   FormFieldModel,
@@ -11,7 +12,7 @@ import {
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTree, MatTreeNestedDataSource } from '@angular/material/tree';
 import { Subject } from 'rxjs';
-import { ArbolAccesos, TreeAccesos2Service } from '../services/tree-accesos2.service';
+import { ArbolAccesos, TreeAccesos2Service } from '../../../../services/tree-accesos2.service';
 import { HttpClient } from '@angular/common/http';
 import { isNullOrUndefined } from 'util';
 
@@ -57,6 +58,14 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
   arbol : ArbolAccesos[] =[ {tipo:"", numeroItem : "",denominacion: "" ,checked: false, children : null}] ;
   private onDestroy$ = new Subject<boolean>();
 
+  
+  tipoOperacion: string= this.treeAccesos2Service.getTipo();
+
+    /*constructor(private sidebarService: SidebarService) {
+        this.asideVisible = sidebarService.isSidebarVisible;
+    }*/
+
+
   constructor(formService: FormService, cd : ChangeDetectorRef,private treeAccesos2Service : TreeAccesos2Service,visibilityService : WidgetVisibilityService,
     /*private router : Router, private bpmAppsService : BpmAppsService,private dialog: MatDialog,*/private http:HttpClient) {
     super(formService);
@@ -73,21 +82,18 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
     /* formService.validateDynamicTableRow.pipe(takeUntil(this.onDestroy$)).subscribe(
     ); */
 
-  }
+    }
 
   ngAfterViewInit(){
     try {  
-      /*(async () => {
-        this.arbol = await this.field.value;
-        this.dataSource.data = await this.arbol;
-        this.treeAccesos2Service.rootPep = await this.dataSource.data;
-        console.log("-----");
-        console.log(await this.arbol);
-      })();*/
+        if( isNullOrUndefined(this.field.value) ){
+          this.cargaDatos();
+        } else {
+          this.arbol = JSON.parse(this.field.value); 
+          this.dataSource.data = this.arbol;
+          this.treeAccesos2Service.rootPep = this.dataSource.data;
+        }
         
-        /*this.treeAccesos2Service.rootPep = await this.cargaDatos().then(data => this.treeAccesos2Service.rootPep = data);
-        console.log(this.treeAccesos2Service.rootPep);*/
-        this.cargaDatos();
     }catch(E){
       console.log(E);
     }
@@ -124,35 +130,27 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
   }*/
 
   llamadaRecursiva(arbolDeAccesos){
-    for (let a = 0; a <arbolDeAccesos.length; a++){
-      if(arbolDeAccesos[a].children){
-        arbolDeAccesos[a].checked==false;
-        return (this.llamadaRecursiva(arbolDeAccesos[a].children));
-      }else{
-        arbolDeAccesos[a].checked==false;
+    for (let i = 0; i < arbolDeAccesos.length; i++){
+      for(let j=0;j<arbolDeAccesos[i].children.length;j++){
+          for(let k=0;k<arbolDeAccesos[i].children[j].children.length;k++){
+              arbolDeAccesos[i].children[j].children[k].checked=false;
+          }
       }
     }
   }
 
   async cargaDatos(){
-    await this.http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').toPromise();
-    this.arbol=this.field.value;
+    await this.http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').toPromise().then( (data:any) => {
+      this.field.value = JSON.stringify(data);
+      this.arbol = data;
+    })
+    
     if(!isNullOrUndefined(this.arbol)){ 
-        for (let i = 0; i < this.arbol.length; i++){
-            for(let j=0;j<this.arbol[i].children.length;j++){
-                for(let k=0;k<this.arbol[i].children[j].children.length;k++){
-                    this.arbol[i].children[j].children[k].checked=false;
-                }
-            }
-        }
-        //this.llamadaRecursiva(this.arbol);
+        this.llamadaRecursiva(this.arbol);
     }
 
     this.dataSource.data = this.arbol;
     this.treeAccesos2Service.rootPep = this.dataSource.data;
-
-    //getSpeedClass = () => (this.currentSpeed < this.getThreshold() ? 'good' : 'warning');
-    //private getThreshold = () => this.topSpeed * 0.8;
   }
 
   onFieldChanged(field: FormFieldModel) {
@@ -197,11 +195,11 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
               this.arbol[i].children[j].children[k].checked = false;
               this.arbol[i].children[j].checked=false;
             }
-            console.log(this.arbol[i].children[j].children[k]);
           }
         }
       }
     }
+    this.field.value = this.arbol;
   }
 
   allComplete(numero){
@@ -222,6 +220,7 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
         }
       }
     }
+    this.field.value = this.arbol;
   }
 
   /*abrirProceso(proceso,opciones){

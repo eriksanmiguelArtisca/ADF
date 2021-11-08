@@ -22,6 +22,7 @@ export * from '../../../workflows/csa/waapy/CSA_WAAPY';
 export * from '../../../workflows/csa/wascs/CSA_WASCS';
 export * from '../../../workflows/csa/warpf/CSA_WARPF';
 export * from '../../../workflows/csa/wampy/CSA_WAMPY';
+export * from '../../../workflows/csa/wasp/CSA_WASP'; //Solicitud de pedido
 
 
 

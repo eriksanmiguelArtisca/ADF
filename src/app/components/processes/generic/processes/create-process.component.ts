@@ -16,7 +16,7 @@ import { BpmAppsService } from '../../../../services/bpm-apps.service';
 import {  isNullOrUndefined, isUndefined } from 'util';
 
 import {  CSA_ALTA_CEBE ,CSA_ALTA_NODO_CEBE ,CSA_ALTA_NODO_CECO ,CSA_MOFICACION_NODO_CEBE,CSA_MOFICACION_NODO_CECO ,CSA_ALTA_CECO ,CSA_WASAP ,CSA_MODIFICACION_CEBE, CSA_MODIFICACION_CECO,CSA_WAAPY,
-	IT_DARB,CSA_WASCS,CSA_WARPF,CSA_WAMPY, WSAF } from '../task-details/workflows-logic/index';
+	IT_DARB,CSA_WASCS,CSA_WARPF,CSA_WAMPY, WSAF, CSA_WASP } from '../task-details/workflows-logic/index';
 import { HttpClient } from '@angular/common/http';
 import { TreePepsService } from '../../../../services/tree-peps.service';
 import { CustomProcessFormRenderingService } from '../../../../services/custom-process-form-rendering.service';
@@ -133,6 +133,11 @@ export class CreateProcessComponent implements OnInit, OnDestroy {
 					CSA_WASCS.formLoaded(e,fields,http);
 				}
 
+				//formulario compra simplificada
+				if(e.form.json.processDefinitionKey== "csa_wasp"){	
+					CSA_WASP.formLoaded(e,fields,http);
+				}
+
 				//formulario WARPF
 				if(e.form.json.processDefinitionKey== "csa_warpf"){	
 					CSA_WARPF.formLoaded(e,fields,http);
@@ -195,6 +200,11 @@ export class CreateProcessComponent implements OnInit, OnDestroy {
 						CSA_WASCS.formFieldValueChanged(e, fields, http, this.notificationService);
 					}
 
+					//formulario solicitud de pedido
+					if (e.form.json.processDefinitionKey == "csa_wasp") {
+						CSA_WASP.formFieldValueChanged(e, fields, http, this.notificationService);
+					}
+
 					//formulario WARPF
 					if (e.form.json.processDefinitionKey == "csa_warpf") {
 						CSA_WARPF.formFieldValueChanged(e, fields, http, this.notificationService);
@@ -223,6 +233,9 @@ export class CreateProcessComponent implements OnInit, OnDestroy {
 					}
 					if (e.field.id === "warpf_solicitudes") {
 						CSA_WARPF.validateDynamicTableRow(row, e, fields, formService, "");
+					}
+					if (e.field.id === "wasp_solicitudes") {
+						CSA_WASP.validateDynamicTableRow(row, e, fields, formService, "");
 					}
 				});
 				

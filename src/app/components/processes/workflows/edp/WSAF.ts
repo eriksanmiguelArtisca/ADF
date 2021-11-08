@@ -1,31 +1,30 @@
-//import { FormFieldModel, FormFieldEvent, DynamicTableRow, ValidateDynamicTableRowEvent, FormService, FORM_FIELD_VALIDATORS, NotificationService} from "@alfresco/adf-core"; 
-import { FormFieldModel, FormFieldEvent} from "@alfresco/adf-core"; 
-//import {default as datos} from "./arbolAccesos.json , NotificationService";
+//import { DynamicTableRow, ValidateDynamicTableRowEvent, FormService, FORM_FIELD_VALIDATORS, NotificationService} from "@alfresco/adf-core"; 
+
 import { HttpClient } from "@angular/common/http";
-import { share } from "rxjs/operators";
-import { ArbolAccesos } from "src/app/services/tree-accesos2.service";
+import {  ArbolAccesos/*, TreeAccesos2Service*/} from "src/app/services/tree-accesos2.service";
 import _ from 'lodash';
-//import { SyncLogEntryRepresentation } from "alfresco-js-api-node";
-//import { debounceTime } from "rxjs/operators";
+import { isUndefined, isNullOrUndefined } from "util"; 
+import { isString } from "util";
+import { FormFieldModel, FormFieldEvent} from "@alfresco/adf-core"; 
 
 //import { Observable } from "rxjs";
-//import { getTreeNoValidDataSourceError } from "@angular/cdk/tree";
 //import { completedTaskDetailsMock } from "src/app/test-mock";
 //import { FieldValidatorWASCS } from "./fieldValidatorWASCS";
-import { isUndefined, isNullOrUndefined } from "util"; 
 //import { TreePepsService } from '../../../../../services/tree-peps.service';
 //import { HttpClient } from "@angular/common/http";
-//import { FormValueRepresentation } from "@alfresco/js-api";
-//import * as moment from "moment";
+
+
 
 export const WSAF = {
-    async formLoaded(e: FormFieldEvent, fields: FormFieldModel[],http:HttpClient) {
+    async formLoaded(e: FormFieldEvent, fields: FormFieldModel[],http:HttpClient/*, treeAccesos2Service ?: TreeAccesos2Service*/) {
         let tree = fields.find(f => f.id === 'wsaf_tree');
-        if(!isNullOrUndefined(tree) && isNullOrUndefined(tree.value)){ 
+       /*  if(!isNullOrUndefined(tree) && isNullOrUndefined(tree.value)){ 
             tree.value = http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').pipe( share() ).subscribe(data => {
                 tree.value = data;
-                //console.log(tree);
+                console.log(tree.value);
+                //console.log(typeof tree.value); Aqui tree value se devuelve como un objeto
             });
+            
             for (let i = 0; i < tree.value.length; i++){
                 for(let j=0;j<tree.value[i].children.length;j++){
                     for(let k=0;k<tree.value[i].children[j].children.length;k++){
@@ -37,128 +36,82 @@ export const WSAF = {
                     }
                 }
             }
-        }
+        } */
         
-
         let taskDefinitionKey = e.form.json.taskDefinitionKey;
         if (!isUndefined(taskDefinitionKey)) {
+
+            console.log(taskDefinitionKey);
+            //treeAccesos2Service.tipoOperacion=taskDefinitionKey;
+            //console.log(treeAccesos2Service.getTipo());
+            
             if (taskDefinitionKey === "undefined"){
-                if(!isNullOrUndefined(tree) && isNullOrUndefined(tree.value)){ 
-                    tree.value = http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').pipe( share() ).subscribe(data => {
-                        tree.value = data;
-                        //console.log(tree);
-                    });
-                    for (let i = 0; i < tree.value.length; i++){
-                        for(let j=0;j<tree.value[i].children.length;j++){
-                            for(let k=0;k<tree.value[i].children[j].children.length;k++){
-                                if(tree.value[i].children[j].children[k].checked=="true"){
-                                    tree.value[i].children[j].children[k].checked=true;
-                                }else{
-                                    tree.value[i].children[j].children[k].checked=false;
-                                }
-                            }
-                        }
-                    }
-                }
             }
     
             if (taskDefinitionKey === "wsaf_t1"){
-                //Arbol con checked en true
-                /*let ex:ArbolAccesos[]=[];
-                let aux:ArbolAccesos[]=[];
-                let posiciones:any[];*/
-                let nivel1:ArbolAccesos[]=[];
-                let nivel2:ArbolAccesos[]=[];
-                let nivel1Aux:ArbolAccesos[]=[];
-                let nivel2Aux:ArbolAccesos[]=[];
+                let aux=JSON.parse(tree.value);
+                let rutas:ArbolAccesos[]=[];
+                let recintos:ArbolAccesos[]=[];
+                let edificios:ArbolAccesos[]=[];
+                let final:ArbolAccesos[]=[];
+                let resp:boolean=false;
 
-                for (let i = 0; i < tree.value.length; i++){    
-                    nivel1=JSON.parse(JSON.stringify(tree.value[i]));
-                    for(let j=0;j<tree.value[i].children.length;j++){
-                        nivel2 = JSON.parse(JSON.stringify(tree.value[i].children[j]));
-                        //console.log(nivel2);
-                        for(let k=0;k<tree.value[i].children[j].children.length;k++){
-                            if(tree.value[i].children[j].children[k].checked){
-                                console.log(nivel1['numeroItem']);
-                                console.log(nivel1Aux['numeroItem']);
-                                if(nivel1['numeroItem']!=nivel1Aux['numeroItem']){
-                                    
-                                    console.log('entra 1');
-                                    nivel1['children'] = null;
-                                    nivel2['children'] = null; 
-                                    nivel2['children'] = tree.value[i].children[j].children[k]; 
-                                    nivel1['children'] = nivel2;
-                                    console.log(nivel1);    
-                                }else if (nivel2["numeroItem"]!=nivel2Aux["numeroItem"]){
-                                    nivel2['children'] = null; 
-                                    nivel2['children'] = tree.value[i].children[j].children[k];
-
-                                    //nivel2['children'].push(nivel1.chlidren);
-                                    //nivel1['children']=nivel1['children']+nivel2;
-                                    console.log(nivel1);
-                                }else{
-                                    /*nivel2['children'].push(tree.value[i].children[j].children[k]);
-                                    nivel1['children'] = nivel2;*/
-
-                                }
-                                nivel1Aux = nivel1;
-                                nivel2Aux = nivel2;
+                for(let i = 0; i < aux.length; i++){
+                    for(let j=0;j<aux[i].children.length;j++){
+                        for(let k=0;k<aux[i].children[j].children.length;k++){
+                            if(aux[i].children[j].children[k].checked){
+                                rutas.push(aux[i].children[j].children[k]);
                             }
-                        }  
+                        }
+                        if(rutas.length>0){
+                            recintos.push(JSON.parse(JSON.stringify(aux[i].children[j])));
+                            let con=recintos.length-1;
+                            recintos[con].children=rutas;
+                            resp=true;
+                        }
+                        rutas=[];
                     }
+    
+                    if(resp){
+                        edificios=JSON.parse(JSON.stringify(aux[i]));
+                        edificios['children']=recintos;
+                        final.push(JSON.parse(JSON.stringify(edificios)));
+                        resp=false;
+                    }
+
+                    recintos = [];
+                    edificios = [];
                 }
-
-
-                /*for (let i = 0; i < tree.value.length; i++){
-                    console.log("nivel 1");
-                    for(let j=0;j<tree.value[i].children.length;j++){
-                        console.log("nivel 2");
-                        for(let k=0;k<tree.value[i].children[j].children.length;k++){
-                            console.log("nivel 3");
-                            if(tree.value[i].children[j].children[k].checked){
-                                ex.push(tree.value[i].children[j].children[k]);
-
-                                let n1=tree.value[i];
-                                n1.children=null;
-                                posiciones.push(n1);
-                                let n2=tree.value[i].children[j];
-                                n2.children=null;
-                                posiciones.push(n2);
-
-                                for (let x = 0; x < posiciones.length; x++) {
-                                    if (posiciones[x + 1] === posiciones[i]) {
-                                        posiciones.splice(x+1,1);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }*/
-
-                //tree.value = aux;
-                //if(!isNullOrUndefined(tree)){
-                  //  tree.value = http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').pipe( share() ).subscribe(data => {
-                     //   console.log(data);
-                        //tree.value = data;
-                        //console.log(tree);
-                  /*  });
-                    /*let aux:ArbolAccesos[]=[ {tipo:"", numeroItem : "",denominacion: "" ,checked: false, children : null}];
-                    for (let i = 0; i < tree.value.length; i++){
-                        for(let j=0;j<tree.value[i].children.length;j++){
-                            for(let k=0;k<tree.value[i].children[j].children.length;k++){
-                                if(tree.value[i].children[j].children[k].checked){
-                                    aux.push(tree.value[i].children[j].children[k]);
-                                }
-                            }
-                        }
-                    }
-                    console.log(aux);*/
-                //}
+                tree.value = JSON.stringify(final);
             }
+            
+
+            //     tree.value = aux;
+            //     if(!isNullOrUndefined(tree)){
+            //         tree.value = http.get('/WS_BPM_REST/jcmouse/restapi/get_accesosTree').pipe( share() ).subscribe(data => {
+            //             console.log(data);
+            //             tree.value = data;
+            //             console.log(tree);
+            //         });
+            //         let aux:ArbolAccesos[]=[ {tipo:"", numeroItem : "",denominacion: "" ,checked: false, children : null}];
+            //         for (let i = 0; i < tree.value.length; i++){
+            //             for(let j=0;j<tree.value[i].children.length;j++){
+            //                 for(let k=0;k<tree.value[i].children[j].children.length;k++){
+            //                     if(tree.value[i].children[j].children[k].checked){
+            //                         aux.push(tree.value[i].children[j].children[k]);
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //         console.log(aux);
+            //     }
+            // }
     
             if (taskDefinitionKey === "wsaf_t2" || taskDefinitionKey === "wsaf_t3") {
                 //Misma ruta en la que se encuentren
             }
+        }else{
+            
         }
         
         /*if (taskDefinitionKey === "wsaf_t2" || taskDefinitionKey === "wsaf_t3") {
@@ -174,6 +127,7 @@ export const WSAF = {
         }*/
 
         if (!isUndefined(taskDefinitionKey)) {
+            console.log(fields.find(f => f.id === 'wsaf_tree'));
             if (taskDefinitionKey.includes('wsaf_t1')) {
                 fields.forEach(field => {
                     if (field.id == 'wsaf_correction' || field.id == 'wsaf_borrador') {
@@ -218,10 +172,23 @@ export const WSAF = {
     }
 },
     
+    /*taskCompleted(e: FormEvent, fields: FormFieldModel[]){
+        console.log("COMPLETED");
+    },
+    taskCompletedError(e: FormErrorEvent, fields: FormFieldModel[]){
+        console.log("COMPLETED ERROR");
+    },*/
+
     formFieldValueChanged(e: FormFieldEvent, fields: FormFieldModel[],http:HttpClient ) {     
         
         if (e.field.id === 'wsaf_resp') {
             //console.log(e.field.value);
+            //var idResp = fields.find(f => f.id === 'wsaf_id_resp');
+        }
+
+        if (e.field.id === 'wsaf_tree' && !isNullOrUndefined(e.field.value) && !isString(e.field.value) ) {
+            //console.log("CAMBIO");
+            e.field.value = JSON.stringify(e.field.value);
             //var idResp = fields.find(f => f.id === 'wsaf_id_resp');
         }
     },

@@ -204,7 +204,8 @@ export class CustomFormComponent extends FormComponent implements OnInit, OnDest
           taskDefinitionKey.includes('wamcb_t2') || taskDefinitionKey.includes('wamcb_t3') ||
           taskDefinitionKey.includes('wascs_t2') || taskDefinitionKey.includes('wascs_t3') ||
           taskDefinitionKey.includes('warpf_t2') || taskDefinitionKey.includes('warpf_t3') ||
-          taskDefinitionKey.includes('wampy_t2') || taskDefinitionKey.includes('wampy_t3')
+          taskDefinitionKey.includes('wampy_t2') || taskDefinitionKey.includes('wampy_t3') ||
+          taskDefinitionKey.includes('wasp_t2') || taskDefinitionKey.includes('wasp_t3')
         )) {
                 
             const dialogRef = this.dialog.open(ConfirmDialogComponent, {

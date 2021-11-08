@@ -342,6 +342,15 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
           });
           return false;
         } 
+    }else if (this.field.id.includes("wasp_solicitudes")){
+      if (!this.field.form.values.wasp_posiciones || !this.field.form.values.wasp_sociedad.id || !this.field.form.values.wasp_tipo_pedido.id){
+        this.notificationService.openSnackMessageAction("Para crear una solicitud es necesario que selecciones la sociedad, el nº de posiciones y el tipo de pedido primero","Aceptar",{
+          duration: 25000,
+          horizontalPosition: "center",
+          verticalPosition: "top"
+        });
+        return false;
+      }
     }
     return super.addNewRow();
   }

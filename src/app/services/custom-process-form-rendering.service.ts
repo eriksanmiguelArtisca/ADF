@@ -4,7 +4,7 @@ import { AttachFileWidgetComponent, AttachFolderWidgetComponent } from '@alfresc
 import { CustomDynamicTableWidgetComponentComponent } from '../components/processes/custom-form-fields/CustomDynamicTableWidgetComponent/CustomDynamicTableWidgetComponent.component';
 import { CustomPeopleWidgetComponentComponent } from '../components/processes/custom-form-fields/CustomPeopleWidgetComponent/CustomPeopleWidgetComponent.component';
 import { TreeComponent } from '../components/processes/custom-components/tree-component/tree.component';
-import { TreeAccesos2Component } from '../tree-accesos2/tree-accesos2.component';
+import { TreeAccesos2Component } from '../components/processes/custom-components/tree-accesos2/tree-accesos2.component';
 //import { TreeAccesosComponent } from '../tree-accesos/tree-accesos.component';
 
 

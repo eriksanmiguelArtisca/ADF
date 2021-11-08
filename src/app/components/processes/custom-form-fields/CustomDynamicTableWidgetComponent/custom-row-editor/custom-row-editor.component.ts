@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { CSA_WASCS_EDITOR } from '../../../workflows/csa/wascs/CSA_WASCS_row-editor';
 import { CSA_WARPF_EDITOR } from '../../../workflows/csa/warpf/CSA_WARPF_row-editor';
 import { CSA_WAAPY_EDITOR } from '../../../workflows/csa/waapy/CSA_WAAPY_row-editor';
+import { CSA_WASP_EDITOR } from '../../../workflows/csa/wasp/CSA_WASP_row-editor';
+
 
 /* import { HttpClient, HttpHeaders } from '@angular/common/http'; */
 
@@ -102,6 +104,9 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
       if (this.table.id.includes("waapy")) {
         CSA_WAAPY_EDITOR.heritage(this);
       }
+      if (this.table.id === "wasp_solicitudes"){
+        CSA_WASP_EDITOR.heritage(this.row,this.table, this,taskDef);
+      }
     }
 
   }
@@ -116,6 +121,9 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
     if (event.id.includes("warpf")) {
       CSA_WARPF_EDITOR.inputListener(event,this);
     }
+    if ((event.id.includes("wasp")) || event.id.includes("")) {
+      CSA_WASP_EDITOR.inputListener(event, this);
+    }
   }    
     
 //función que en base a unos campos del form rellena otros
@@ -127,7 +135,6 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
   }
 
   ngAfterViewInit(): void {
-
     var taskDef = this.table.form.json.taskDefinitionKey;
    
     if (this.table.id === "wascs_solicitudes"){
@@ -140,6 +147,10 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
 
     if(this.table.id.includes("waapy_") ){
       CSA_WAAPY_EDITOR.fieldsConfig(taskDef, this);
+    }
+
+    if(this.table.id.includes("wasp_") ){
+      CSA_WASP_EDITOR.fieldsConfig(taskDef, this);
     }
   }
 
@@ -190,6 +201,11 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
       }
       else if (this.table.id.includes("waapy_tabla")) {
         CSA_WAAPY_EDITOR.validateSave(this);
+        }else if (this.table.id.includes("wasp_solicitudes")) {
+          this.validateRow();
+          if (this.isValidRow()) {
+            await CSA_WASP_EDITOR.validateSave(this);
+          }
         } else {
           this.validateRowAndSave();
         }
