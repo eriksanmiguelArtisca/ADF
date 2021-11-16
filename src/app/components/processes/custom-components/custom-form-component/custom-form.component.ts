@@ -116,6 +116,7 @@ export class CustomFormComponent extends FormComponent implements OnInit, OnDest
               .subscribe(
                   () => {
                       this.onTaskCompleted(this.form);
+                      console.log("entra");
                       this.storeFormAsMetadata();
                   },
                   (error) => this.onTaskCompletedError(this.form, error)

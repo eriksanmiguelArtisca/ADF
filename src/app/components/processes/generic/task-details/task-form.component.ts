@@ -285,7 +285,7 @@ export class TaskFromComponent implements OnInit, OnDestroy {
                             (outcome.form.values['waancb_accion_solicitante'] && outcome.form.values.waancb_accion_solicitante.id ==='CANCELAR')  ||
                             (outcome.form.values['waancc_accion_solicitante'] && outcome.form.values.waancc_accion_solicitante.id ==='CANCELAR')  ||
                             (outcome.form.values['wamcb_accion_solicitante'] && outcome.form.values.wamcb_accion_solicitante.id ==='CANCELAR')  
-                        )  ) {
+                        )) {
                     return true;
                 }
                 if (outcome.name === FormOutcomeModel.SAVE_ACTION ) {

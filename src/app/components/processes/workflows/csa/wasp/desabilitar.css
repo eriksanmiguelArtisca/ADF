@@ -1,0 +1,9 @@
+.isDisabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    display: none;
+}
+  
+.isDisabled:hover {
+    cursor: not-allowed;
+}

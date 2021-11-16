@@ -179,6 +179,11 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                 CSA_WAMPY.formLoaded(e, fields, this.treeService);
             }
 
+            //formulario WASP
+            if (e.form.json.processDefinitionKey == 'csa_wasp') {
+                CSA_WASP.formLoaded(e, fields, http);
+            }
+
             //formulario ACCESOS
             if(e.form.json.processDefinitionKey== "wsaf"){	
                 WSAF.formLoaded(e,fields,http);
@@ -247,7 +252,7 @@ export class TaskDetailsContainerComponent implements OnInit, OnDestroy {
                             CSA_WAMPY.formFieldValueChanged(e, fields, this.treeService,visibilityService );
                         }
 
-                        //formulario Solitud de pedido
+                        //formulario Solicitud de pedido
                         if (e.form.json.processDefinitionKey == 'csa_wasp') {
                             CSA_WASP.formFieldValueChanged(e, fields, http, this.notificationService);
                         }

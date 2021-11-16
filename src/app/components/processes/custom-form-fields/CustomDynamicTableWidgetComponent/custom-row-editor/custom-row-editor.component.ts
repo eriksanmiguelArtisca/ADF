@@ -40,6 +40,8 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
     "waapy_orden_desglose1"]; //waapy_orden_centro, 
     let wascsValoresTypeHead = ["wascs_unidad","wascs_indicativo_iva","wascs_grupo_articulos"];
     let warpfValoresTypehead = ["warpf_unidad","warpf_concepto_facturable"];
+    let waspValoresTypehead = ["wasp_ceco","wasp_grupo_articulos"];
+    //Añadir arr
     let dynamicColumnsInversion : string[]  = this.table.json.params.customProperties && this.table.json.params.customProperties.columndynamic  ? JSON.parse(this.table.json.params.customProperties.columndynamic)[0].fields.map( dynamicColumns => {return dynamicColumns.name}) : [] ;
     let dynamicColumnsGasto : string[]  = this.table.json.params.customProperties && this.table.json.params.customProperties.columndynamic  ? JSON.parse(this.table.json.params.customProperties.columndynamic)[1].fields.map( dynamicColumns => {return dynamicColumns.name}) : [] ;
     for (let i = 0; i < this.table.columns.length; i++) {
@@ -55,7 +57,10 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
         this.table.columns[i].type = "typehead";
       } else if ((this.table.id.includes("warpf_solicitudes") && (warpfValoresTypehead.includes(this.table.columns[i].id)))) {
         this.table.columns[i].type = "typehead";
+      } else if ((this.table.id.includes("wasp_solicitudes") && (waspValoresTypehead.includes(this.table.columns[i].id)))) {
+        this.table.columns[i].type = "typehead";
       }
+      //añadir elseif wasp
       if (dynamicColumnsInversion.includes(this.table.columns[i].id) && (this.treeService && this.treeService.rootPep && this.treeService.rootPep[0] 
         && this.treeService.rootPep[0].clase_objeto === "Inversión")) {
         this.table.columns[i].type = "dynamic-dropdown";
@@ -91,6 +96,10 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
       // }
       if (this.table.id === "wascs_solicitudes"){
         CSA_WASCS_EDITOR.heritage(this.row,this.table, this,taskDef);
+      }
+
+      if (this.table.id === "wasp_solicitudes"){
+        CSA_WASP_EDITOR.heritage(this.row,this.table, this,taskDef);
       }
     }
 
@@ -177,8 +186,22 @@ export class CustomRowEditorComponent extends RowEditorComponent implements Afte
     if(this.table.id.includes("waapy_")){
       CSA_WAAPY_EDITOR.onCancelChanges();
     }
+
+    if(this.table.id.includes("wasp_")){
+      CSA_WASP_EDITOR.onCancelChanges(this);
+    }
     super.onCancelChanges();
   }
+
+  /*onCancelSave(){
+    if(this.table.id.includes("wasp_")){
+      this.validateRow();
+      if (this.isValidRow()) {
+        CSA_WASP_EDITOR.onCancelSave(this);
+      }
+    }
+    super.onCancelSave();
+  }*/
 
   //función que se ejecuta cuando el usuario da al botón de guardar comprobando datos duplicados
   async onSaveChanges() {

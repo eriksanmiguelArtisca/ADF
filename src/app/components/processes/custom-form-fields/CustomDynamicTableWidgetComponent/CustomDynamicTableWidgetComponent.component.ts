@@ -47,6 +47,7 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
     }
 
   ngOnInit() {
+
     this.treeService.currentPep = null;
     if (this.field) {
       if(this.field.id == 'widarb_pre_inversion'  && this.field.json.value === null){
@@ -64,6 +65,7 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
           this.field.json.value.push({"title":title,"year1":0,"year2":0,"year3":0,"year4":0,"year5":0,"year6":0});
         }); 
       } 
+      
 
       super.ngOnInit();
     }
@@ -140,6 +142,18 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
       }
     }
 
+    if (this.field.id.includes("wasp_solicitudes")) {
+      if (this.field.form.values.wasp_posiciones && this.field.value && this.field.value.length) {
+        if (this.field.value.length >= this.field.form.values.wasp_posiciones) {
+          return true;
+        }else{
+          return false;
+        }
+      }else if (this.field.form.json.taskDefinitionKey && (this.field.form.json.taskDefinitionKey === "wasp_t2")){
+        return true;
+      }
+    }
+
     if (this.field.form.json.taskDefinitionKey && (this.field.form.json.taskDefinitionKey === "wascs_t2" || this.field.form.json.taskDefinitionKey === "wascs_t3"
      || this.field.form.json.taskDefinitionKey === "wascs_t4" || this.field.form.json.taskDefinitionKey === "wascs_t5")){
       return true;
@@ -192,6 +206,14 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
 
     if (this.field.id.includes("warpf_solicitudes") && this.field.form.json.taskDefinitionKey &&
       this.field.form.json.taskDefinitionKey === "warpf_t1_correction" && this.content.selectedRow && this.content.selectedRow.value.warpf_correcto) {
+      return true;
+    }
+
+    if (this.field.id.includes("wasp_solicitudes") && this.field.form.json.taskDefinitionKey === "wasp_t2") {
+      return true;
+    }
+
+    if (this.field.form.json.taskDefinitionKey === "wsaf_t2") {
       return true;
     }
     
@@ -282,6 +304,19 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
       }
       return true;
     }
+
+    if (this.content && this.content.id.includes("wasp_solicitudes") && this.content.rows && this.content.rows.length) {
+      this.content.deleteRow(this.content.selectedRow);
+      for (let i = 0; i < this.content.rows.length; i++) {
+        if (i == 0) {
+          this.content.rows[i].value.wasp_posicion = 10;
+        } else {
+          this.content.rows[i].value.wasp_posicion = (i + 1) * 10;
+        }
+      }
+      return true;
+    }
+
 
     return false;
   }
@@ -375,6 +410,7 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
     let accionT2Peps = this.field.form.values.waapy_accion_controller;
     let accionT2Wascs = this.field.form.values.wascs_accion_csa;
     let accionT2Warpf = this.field.form.values.warpf_accion_csa;
+    let accionT2Wasp = this.field.form.values.wasp_accion_csa;
     let color = "";
 
     //VALIDACIONES PEPS
@@ -417,7 +453,19 @@ export class CustomDynamicTableWidgetComponentComponent extends DynamicTableWidg
         }
       }
       return color;
-    } else {
+    } else if (row && row.value && (taskDefinitionKey && taskDefinitionKey !== 'wasp_t1' && taskDefinitionKey !== 'wasp_borrador' && taskDefinitionKey.includes('wasp_'))) { //VALIDACIONES WASP
+      if (row.value.wasp_correcto !== true) {
+        color = "#ffbfaa"; //color red=>incorrecto
+      } else {
+        color = "lightgreen";
+      }
+      if (accionT2Wasp && accionT2Wasp.id === "RECHAZAR") {
+        if (!row.value.wasp_corregir && row.value.wasp_correcto !== true) {
+          color = "#ffc107"; //color orange =>rechazo 
+        }
+      }
+      return color;
+    }else {
       return null;
     }
   }

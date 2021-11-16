@@ -16,15 +16,6 @@ import { ArbolAccesos, TreeAccesos2Service } from '../../../../services/tree-acc
 import { HttpClient } from '@angular/common/http';
 import { isNullOrUndefined } from 'util';
 
-/*import { isUndefined } from 'util'; 
-import { DialogConfirmacionAction } from '../components/processes/workflows/edp/dialogs/dialogs-Confirmacion.component';
-import { BpmAppsService } from '../services/bpm-apps.service';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-/*import { takeUntil } from 'rxjs/operators'; 
-import { WSAF } from '../components/processes/generic/task-details/workflows-logic';*/
-
-
 @Component({
   selector: 'apa-tree-accesos',
   templateUrl: './tree-accesos2.component.html',
@@ -222,34 +213,6 @@ export class TreeAccesos2Component extends WidgetComponent implements OnChanges,
     }
     this.field.value = this.arbol;
   }
-
-  /*abrirProceso(proceso,opciones){
-    this.abrirDialog(proceso,opciones);
-  }
-
-  abrirDialog(proceso,opciones:Array<any> ){
-    const appId = this.bpmAppsService.selected_app.id ? this.bpmAppsService.selected_app.id : 0;
-    if(opciones.length > 0){
-      const dialogRef = this.dialog.open(DialogConfirmacionAction, {
-        data: {
-            options: opciones,
-            selectedOption: null
-        },
-        minWidth: '250px'
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        if( !isUndefined(result) ){
-          this.navegarStartForm(result, appId);
-        }
-      });
-    }else {
-      this.navegarStartForm(proceso, appId);
-    }
-  }
-
-  navegarStartForm(proceso: any, appId: any) {
-    this.router.navigate([`apps/${appId}/processes/new/${proceso}` ] );
-  }*/
 
   hasChild = (_: number, node: ArbolAccesos) => node.tipo=="C" || node.tipo=="R";
 }

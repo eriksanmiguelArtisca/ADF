@@ -1,7 +1,7 @@
 //import { DynamicTableRow, ValidateDynamicTableRowEvent, FormService, FORM_FIELD_VALIDATORS, NotificationService} from "@alfresco/adf-core"; 
 
 import { HttpClient } from "@angular/common/http";
-import {  ArbolAccesos/*, TreeAccesos2Service*/} from "src/app/services/tree-accesos2.service";
+import {  ArbolAccesos/*, TreeAccesos2Service*/} from "../../../../../../src/app/services/tree-accesos2.service";
 import _ from 'lodash';
 import { isUndefined, isNullOrUndefined } from "util"; 
 import { isString } from "util";
@@ -41,7 +41,6 @@ export const WSAF = {
         let taskDefinitionKey = e.form.json.taskDefinitionKey;
         if (!isUndefined(taskDefinitionKey)) {
 
-            console.log(taskDefinitionKey);
             //treeAccesos2Service.tipoOperacion=taskDefinitionKey;
             //console.log(treeAccesos2Service.getTipo());
             
@@ -169,6 +168,18 @@ export const WSAF = {
                     radioBtn.readOnly = true;
                 }
             }
+
+            fields.forEach(field => {
+                if ((field.id == 'wsaf_routeList') || (field.id == "wsaf_treeAux")) {
+                    field.readOnly = true;
+                    let visibility: any = {
+                        leftFormFieldId: field.id,
+                        leftType: "field",
+                        leftValue: field.id
+                    };
+                    field.visibilityCondition = visibility;
+                }
+            });
     }
 },
     

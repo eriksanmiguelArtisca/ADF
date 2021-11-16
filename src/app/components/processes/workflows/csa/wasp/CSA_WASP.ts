@@ -14,33 +14,34 @@ export const CSA_WASP = {
         e.form.fieldValidators = [
             ...FORM_FIELD_VALIDATORS,
             new FieldValidatorWASP()
-        ]
+        ];
 
         let taskDefinitionKey = e.form.json.taskDefinitionKey;
-        if (taskDefinitionKey === "wasp_t2" || taskDefinitionKey === "wasp_t3") {
-            var wasp_motivo_rechazo = fields.find(f => f.id === 'wasp_rechazo');
+
+        if (!isUndefined(taskDefinitionKey) && taskDefinitionKey === "wasp_t2"){
+
+            var wasp_motivo_rechazo = fields.find(f => f.id === 'wasp_motivo_rechazo');
             var wasp_correcto = fields.find(f => f.id === 'wasp_correcto');
+            var wasp_grupo_compras = fields.find(f => f.id === 'wasp_grupo_compras');
+            var wasp_datos_corregir = fields.find(f => f.id === 'wasp_datos_corregir');
+            wasp_datos_corregir.value = "";
+            wasp_grupo_compras.readOnly = true; 
             if (wasp_correcto) wasp_correcto.value = "SI";
             if (!isUndefined(wasp_motivo_rechazo)) {
                 var wasp_accion_csa = fields.find(f => f.id === 'wasp_accion_csa');
-                if (wasp_accion_csa) wasp_accion_csa.value = "ACEPTAR";
+                if (wasp_accion_csa) wasp_accion_csa.value = "SI";
                 wasp_motivo_rechazo.value = "";
             }
         }
+
         let required_fields = ["wasp_solicitudes", "wasp_accion_solicitante", "wasp_sociedad", "wasp_area", "wasp_num_solicitante", "wasp_posiciones",
-            "wasp_posicion", "wasp_texto_breve", "wasp_cantidad", "wasp_unidad", "wasp_precio", "wasp_condiciones_pago", "wasp_fecha_entrega", 
-            "wasp_orden_imputacion, wasp_tipo_compra"]; //wasp_tipo_compra -> calc automatico
+            "wasp_posicion", "wasp_texto_breve", "wasp_cantidad", "wasp_unidad", "wasp_precio", "wasp_condiciones_pago", "wasp_fecha_entrega", "wasp_tipo_pedido",
+            "wasp_nota_cabecera"]; //wasp_tipo_compra -> calc automatico Si, pero aqui se declaran las de la pagina en general, se tienen que controlar a la hora de guardar las lineas de la solicitud
         fields.forEach(field => { //"wasp_moneda", "wasp_indicativo_iva"
             if (required_fields.includes(field.id)) {
                 field.required = true;
             }
         });
-
-        /*let tipoMoneda = fields.find(f => f.id === 'wasp_moneda');
-        if (tipoMoneda === null || !isNullOrUndefined(tipoMoneda)){
-            console.log(tipoMoneda);
-
-        }*/
         
         let fechaInicioSolicitud = fields.find(f => f.id === 'wasp_fecha_inicio_solicitud');
         if (fechaInicioSolicitud === null || !isNullOrUndefined(fechaInicioSolicitud)) {
@@ -51,7 +52,6 @@ export const CSA_WASP = {
             }
         }
         
-
         let grupo_tarea = fields.find(f => f.id === 'wasp_grupo_tareas');
         if (!isNullOrUndefined(grupo_tarea)) {
             grupo_tarea.value = 'Solicitud de documentos de compra';
@@ -64,25 +64,39 @@ export const CSA_WASP = {
             tarea.readOnly = true;
         }
 
-        let clasePedido = fields.find(f => f.id === 'wasp_clase_pedido');
-        if (!isNullOrUndefined(clasePedido)) {
-            if (clasePedido.value == 'empty') clasePedido.value = 'ZSIM';
-            clasePedido.readOnly = true;
+        let wasp_historico = fields.find(f => f.id ===  'wasp_historico');
+        if(!isUndefined(wasp_historico) ){
+            /*if (wasp_historico.readOnly != true){
+                wasp_historico.readOnly = true;
+            }*/
+            if(wasp_historico.value == null) wasp_historico.value = '';
+
+            if (taskDefinitionKey.includes('wasp_t1') || taskDefinitionKey.includes('wasp_borrador') || taskDefinitionKey.includes('wasp_t1_correction')) {
+                var wasp_comentarios_csa = fields.find(f => f.id === 'wasp_comentarios_csa');
+                this.valueComentarios(wasp_comentarios_csa,wasp_historico,"\n- CSA : ");
+                wasp_comentarios_csa.value = "";
+            } else if (taskDefinitionKey.includes('wasp_t2')) {
+                var comentariosSolicitante = fields.find(f => f.id === 'wasp_comentarios_solicitante');
+                this.valueComentarios(comentariosSolicitante,wasp_historico,"\n- Solicitante : ");
+                comentariosSolicitante.value = "";
+            }
+            wasp_historico.readOnly = true;
         }
 
-        let grupoCompras = fields.find(f => f.id === 'wasp_grupo_compras');
-        if (!isNullOrUndefined(grupoCompras)) {
-            if (grupoCompras.value == 'empty') grupoCompras.value = 'VVS';
-            grupoCompras.readOnly = true;
-        }
+        fields.forEach(field => {
+            if ((field.id == 'wasp_comentarios_csa') && (taskDefinitionKey == "wasp_t1_correction")) {
+                field.readOnly = true;
+                let visibility: any = {
+                    leftFormFieldId: field.id,
+                    leftType: "field",
+                    leftValue: field.id,
+                    operator: "empty"
+                };
+                field.visibilityCondition = visibility;
+            }
+        });
 
-        let orgCompras = fields.find(f => f.id === 'wasp_organizacion_compras');
-        if (!isNullOrUndefined(orgCompras)) {
-            if (orgCompras.value == 'empty') orgCompras.value = 'VD01';
-            orgCompras.readOnly = true;
-        }
-
-        if (!isNullOrUndefined(taskDefinitionKey) && taskDefinitionKey.includes('wasp_t1_correction')) {
+        /*if (!isNullOrUndefined(taskDefinitionKey) && taskDefinitionKey.includes('wasp_t1_correction')) {
             var wasp_rechazo = fields.find(f => f.id === 'wasp_rechazo');
             var wasp_datos_corregir = fields.find(f => f.id === 'wasp_datos_corregir');
             if (!isNullOrUndefined(wasp_rechazo) && !isNullOrUndefined(wasp_datos_corregir)) {
@@ -122,7 +136,7 @@ export const CSA_WASP = {
                 wasp_accion_correcto.value = "VIABLE";
                 wasp_datos_corregir.value = "";
             }
-        }
+        }*/
         // var waapy_motivo_rechazo = fields.find(f => f.id ===  'waapy_motivo_rechazo');
         // if( !isUndefined(waapy_motivo_rechazo) ){
         //     // Limpiamos los radio buttons que sirven para indicar es correcto y el campo de rechazo
@@ -150,67 +164,10 @@ export const CSA_WASP = {
             }
         }
 
-        let wasp_historico = fields.find(f => f.id ===  'wasp_historico');
-        if( !isUndefined(wasp_historico) ){
-            wasp_historico.readOnly = true;
-            if(wasp_historico.value == null) wasp_historico.value = '';
-                if (taskDefinitionKey.includes('wasp_t1') || taskDefinitionKey.includes('wasp_borrador')  || (taskDefinitionKey.includes('wasp_t3')) || (taskDefinitionKey.includes('wasp_t4'))  ) {
-                    var wasp_comentarios_csa = fields.find(f => f.id === 'wasp_comentarios_csa');
-                    this.valueComentarios(wasp_comentarios_csa,wasp_historico,"\n- CSA : ");
-                } else if (taskDefinitionKey.includes('wasp_t2')) {
-                    var comentariosSolicitante = fields.find(f => f.id === 'wasp_comentarios_solicitante');
-                    this.valueComentarios(comentariosSolicitante,wasp_historico,"\n- Solicitante : ");
-                }
-        }
-
-        //textareaResultadoSap
-        let respuestaSap = fields.find(f => f.id === "wasp_sap_result");
-        if(!isNullOrUndefined(respuestaSap)) respuestaSap.readOnly = true;
-        if ((!isNullOrUndefined(respuestaSap) && (respuestaSap.value !== "CREACION CORRECTA"))) {
-            let radioBtn = fields.find(f => f.id === "wasp_correcto");
-            radioBtn.value = "NO";
-            radioBtn.readOnly = true;
-        }
-
-        // //check resultadoSAP
-        // let resultadoSap = fields.find(f => f.id === "resultadodesap");
-        // if ((!isNullOrUndefined(resultadoSap) && (resultadoSap.value !== "CREACION CORRECTA"))) {
-        //     let radioBtn = fields.find(f => f.id === "wasp_correcto");
-        //     radioBtn.value = "NO";
-        //     radioBtn.readOnly = true;
-        // }
-
-        //estadoautorizacinwf
-        /* let estadoAutorizacinwf = fields.find(f => f.id === 'estadoautorizacinwf');
-        if (!isUndefined(estadoAutorizacinwf)) {
-            let wasp_sap_ndoc = fields.find(f => f.id === 'nmerodedocumento');
-            if (!isNullOrUndefined(wasp_sap_ndoc) && wasp_sap_ndoc.value !== "") {
-                http.get(
-                    '/WS_BPM_REST/jcmouse/restapi/sap_pi/CONSULTA_ESTADO_COMPRA/COMPRA_SIMPLIFICADA/N_DOC/' + wasp_sap_ndoc.value, { observe: 'response' })
-                    .subscribe(response => {
-                        let resultado = response.body["MT_HUBCOM_RES"]["RESULTADO"].item["TEXTO"];
-                        estadoAutorizacinwf.value = resultado;
-                        if (resultado === "Aprobada" || resultado === "Rechazada") {
-                            let comentAutorizacion = fields.find(f => f.id === 'comentariosautorizacinwf');
-                            if (!isNullOrUndefined(comentAutorizacion)) {
-                                comentAutorizacion.value = "";
-                            }
-                        }
-                    });
-            }
-        } */
-
-        /*if (isUndefined(taskDefinitionKey)){
-            var wasp_tipo_contrato = fields.find(f => f.id === 'wasp_tipo_contrato');
-            console.log("entra en el undeufned");
-            wasp_tipo_contrato.readOnly = true; 
-        }*/
-
         if( !isUndefined(taskDefinitionKey)  && !taskDefinitionKey.includes('wasp_t1')  ){
                 var wasp_tabla = fields.find(f => f.id ===  'wasp_solicitudes');
                 loadTable(wasp_tabla);
         }
-
         
         function loadTable(wasp_tabla: FormFieldModel) {
             if (wasp_tabla.value) {
@@ -224,14 +181,20 @@ export const CSA_WASP = {
             }
         }
 
-
         var fechadesolicitud = fields.find(f => f.id ===  'fechadesolicitud');
         formatFechasTareasCompletadas(fechadesolicitud);
 
     },
 
     formFieldValueChanged(e: FormFieldEvent, fields: FormFieldModel[], http:HttpClient, notificationService:NotificationService ) {
-
+        let taskDefinitionKey = e.form.json.taskDefinitionKey;
+        if (e.field.id === 'wasp_tipo_pedido'){
+            if(!isNullOrUndefined(taskDefinitionKey) && taskDefinitionKey == "wasp_t2"){
+                var wasp_tipo_pedido = fields.find(f => f.id === 'wasp_tipo_pedido');
+                wasp_tipo_pedido.readOnly = true;
+            }
+        }
+        
         if (e.field.id === 'wasp_num_solicitante'){
             if(!e.field.isValid) e.field.validationSummary.message = "El campo solicitante tiene que ser un valor entre 900000 y 999999";
         }
@@ -291,31 +254,11 @@ export const CSA_WASP = {
                 activitiwasp_sociedad_co.readOnly = true;
             }
         }
-
-        if (e.field.id === 'wasp_tipo_pedido') {
-            var estado = e.field.value;
-            //var ceco = fields.find(f => f.id === "wasp_ceco");
-            //var imputacion = fields.find(f => f.id === "wasp_orden_imputacion");
-            if (estado === "abierto"){
-                console.log("mostrar Ceco y ocultar orden");
-                //ceco.isVisible = true;
-                //imputacion.isVisible = false;
-            }else if (estado === "cerrado"){
-                console.log("mostrar orden y ocultar Ceco");
-                //ceco.isVisible = false;
-                //imputacion.isVisible = true;
-            }else{
-                console.log("ocultar los dos");
-                //ceco.isVisible = false;
-                //imputacion.isVisible = false;
-            }
-            //console.log(e);
-        }
     },
+
     validateDynamicTableRow(row: DynamicTableRow, e: ValidateDynamicTableRowEvent, fields: FormFieldModel[], /*treeService: TreePepsService,*/ formService: FormService, visibilityService) {
         let regex = null;
         let taskDefinitionKey = e.form.json.taskDefinitionKey;
-        console.log(taskDefinitionKey);
         if( !taskDefinitionKey || taskDefinitionKey.includes("wasp_t1") ||  taskDefinitionKey.includes("wasp_borrador") ){
             if (!isNullOrUndefined(row.value.wasp_precio)) {
                 let stringMascara = "^[0-9]{1,12}([,]{1}[0-9]{1,2})?$";
@@ -329,6 +272,14 @@ export const CSA_WASP = {
             if ( (!isNullOrUndefined(row.value.wasp_cantidad) && isNaN(row.value.wasp_cantidad) ) || (row.value.wasp_cantidad.includes(".") ) ){
                     e.summary.isValid = false;
                     e.summary.message = "El campo Cantidad debe ser un número entero";
+            }
+
+
+            let tipo_p = fields.find(f => f.id === 'wasp_tipo_pedido');
+            if(tipo_p.value == "abierto"){
+                row.value.wasp_orden_imputacion = undefined;
+            }else if(tipo_p.value == "cerrado"){
+                row.value.wasp_ceco = undefined;
             }
 
             //campo fecha validación mismo día o posterior
@@ -358,7 +309,6 @@ export const CSA_WASP = {
             if (!isNullOrUndefined(row.value.wasp_fecha_entrega)) {
                 let momentFechaIntroducida = moment(row.value.wasp_fecha_entrega);
                 let momentFechaActual = moment();
-                console.log(momentFechaIntroducida);
                 if (momentFechaIntroducida.format('YYYY-MM-DD') < momentFechaActual.format('YYYY-MM-DD')) {
                     e.summary.isValid = false;
                     e.summary.message = "La fecha de entrega debe ser la fecha actual o posterior";

@@ -12,27 +12,28 @@ export const CSA_WASP_EDITOR = {
      * @param taskDef - taskDefinitionKey identificador de la tarea actual
      * @param rowEditor - Componente customRowEditor, con acceso a todos los valores
      */
+    
     fieldsConfig(taskDef, rowEditor : CustomRowEditorComponent) {
         //Ocultar Ceco u orden en funcion del tipo de contrato
         /*let ids = [];
         let tipoPedido = $("#wasp_tipo_pedido").attr('ng-reflect-model');
-        //console.log(tipoPedido);
-        if (tipoPedido === "abierto"){
-            ids = ["#wasp_orden_imputacion"]
-        }else if(tipoPedido === "cerrado"){
-            ids = ["#wasp_ceco"]
-        }else{
-            ids = ["#wasp_ceco,#wasp_orden_imputacion"]
-        }
-        rowEditor.hideDivs(ids);*/
+        //console.log(tipoPedido);*/
+
+        //Aqui se decide el valor de la moneda
+        //rowEditor.row.value.wasp_moneda = { id: "EUR", name: "[EUR] Euro" };
+
+        let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido") ;//rowEditor.table.form.fields[1].field.fields[1][0] ;
         
-        //MaxLength
+        if (!isNullOrUndefined(tipo_contrato) && (tipo_contrato.readOnly != true)) {
+            tipo_contrato.readOnly = true;
+        }
+
         $("#wasp_texto_breve").attr('maxlength', 40);
         $("#wasp_cantidad").attr('maxlength', 17);
         $("#wasp_orden_imputacion").attr('maxlength', 12);
         $("#wasp_precio").attr('maxlength', 15); //maxLength 12, con 2 decimales y "," 15
         //Visibilidad campos correccion tablas
-        if (taskDef == "wasp_t2" || taskDef == "wasp_t3" || taskDef == "wasp_t4") {
+        if (taskDef == "wasp_t2") {
             if ($("#wasp_correcto-input").is(":checked") == true) {
                 $("#wasp_corregir").parents(".row-editor > div").hide();
             } else {
@@ -53,33 +54,11 @@ export const CSA_WASP_EDITOR = {
         this.visibility(taskDef, ["#wasp_tipo_imputacion", "#wasp_centro_logistico", "#wasp_grupo_articulos"]);
 
         //Ocultar Ceco u orden segun el contrato
-        let ids = [];
         let tipoPedido = $("#wasp_tipo_pedido");
-        /*tipoPedido.attr('ariaReadOnly', 'readonly');
-        tipoPedido.attr('aria-readOnly','readonly');
-        tipoPedido.attr('ariareadonly', true);
-        tipoPedido.attr('onpause', true);*/
-        tipoPedido.attr('ng-readonly', true);
-        console.log("---------------");
-        console.log(tipoPedido);
-        
-        //tipoPedido.attr('ng-reflect-disabled', true);
-        //tipoPedido.attr('ng-reflect-is-disabled', true);
-        //tipoPedido.attr('aria-disabled', true);
-        //tipoPedido.attr('ng-disabled', true");
-        //tipoPedido.disabled=true;
-        //tipoPedido.disableCreate;
+        let ids = []; 
 
-        /*let en=document.createAttribute('disabled');
-        en.value="disabled";
-        tipoPedido.setAttributeNode(en);*/
-
-        //tipoPedido.setAttribute("disabled","disabled");
-        
-        console.log($("#wasp_tipo_pedido"));
         if (tipoPedido.attr('ng-reflect-model') === "abierto"){
             ids = ["#wasp_orden_imputacion"];
-
         }else if(tipoPedido.attr('ng-reflect-model') === "cerrado"){
             ids = ["#wasp_ceco"];
         }else{
@@ -99,8 +78,20 @@ export const CSA_WASP_EDITOR = {
      */
     heritage(row, table, rowEditor: CustomRowEditorComponent, taskDefinitionKey) {
         if (!row.isNew) {
-            if (taskDefinitionKey === "wasp_t2" || taskDefinitionKey === "wasp_t3") {
+            if (taskDefinitionKey === "wasp_t2") {
+                let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido") ;//rowEditor.table.form.fields[1].field.fields[1][0] ;
+                if (!isNullOrUndefined(tipo_contrato)) {
+                    tipo_contrato.readOnly = true;
+                }
+
+                //let pasarCECO=rowEditor.table.form.getFieldById("wasp_ceco");
+                /*if(!isNullOrUndefined(pasarCECO)){
+                    alert(pasarCECO);
+                    let row.value.wasp_ceco = pasarCECO;
+                }*/
                 let columnPaymentConditions = table.columns.find(f => f.id === 'wasp_condiciones_pago');
+                console.log(columnPaymentConditions);
+
                 if (isNullOrUndefined(row.value.wasp_comentarios_pago) || row.value.wasp_comentarios_pago == "") {
                     if (!isNullOrUndefined(columnPaymentConditions)) columnPaymentConditions.editable = false;
                 } else {
@@ -131,7 +122,7 @@ export const CSA_WASP_EDITOR = {
      */
     disabledMoreOneRow(row, table, taskDef) {
         let esPrimeraPosicion = true;
-        if (isNullOrUndefined(taskDef) || taskDef === "wasp_t1_correction" || taskDef === "wasp_borrador" || taskDef === "wasp_t2" || taskDef === "wasp_t3") { 
+        if (isNullOrUndefined(taskDef) || taskDef === "wasp_t1_correction" || taskDef === "wasp_borrador" || taskDef === "wasp_t2") { 
             if (table.rows && table.rows.length >= 0 && !isNullOrUndefined(table.rows[0]) && JSON.stringify(row.value) === JSON.stringify(table.rows[0].value)) {
                 esPrimeraPosicion = true; // Si es la 1º posicion se puede editar
             } else if (table.rows && table.rows.length > 0) {
@@ -191,45 +182,58 @@ export const CSA_WASP_EDITOR = {
             totalImportOrden += currenImport;
             // Quitamos el importe de la fila seleccionada en caso de que sea una modificacion
             // Ya se ha sumado el nuevo valor de la fila correspondiente 
-            if( !rowEditor.row.isNew ) {
+            if( !rowEditor.row.isNew && !isNullOrUndefined(rowEditor.table.selectedRow) && !isNullOrUndefined(rowEditor.table.selectedRow.value["wasp_precio"])) {
                 let selectedRowImport =parseFloat(rowEditor.table.selectedRow.value["wasp_precio"].replace(",",".")) * parseInt(rowEditor.table.selectedRow.value["wasp_cantidad"]);
                 totalImport -= selectedRowImport;
                 totalImportOrden -= selectedRowImport;
+
             }
             totalImport = totalImport.toFixed(2);
             totalImportOrden = totalImportOrden.toFixed(2);
 
-            rowEditor.http.get('/WS_BPM_REST/jcmouse/restapi/check_order/' +
+
+            // Emitimos el evento de guardado para pruebas
+            let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido");
+            tipo_contrato.readOnly = false;
+            rowEditor.emitSaveEvent();
+   /*          rowEditor.http.get('/WS_BPM_REST/jcmouse/restapi/check_order/' +
                 rowEditor.row.value["wasp_orden_imputacion"] , { observe: 'response' }).toPromise()
                 .then(response => {
                     let correct = response.body["MT_HUBCOM_RES"]["CORRECTO"];
-                    if ((correct == "X") || ($("#wasp_tipo_pedido").attr('ng-reflect-model') === "abierto")) {
+                    if ((correct == "X") || (($("#wasp_tipo_pedido").attr('ng-reflect-model') === "abierto") && !isNullOrUndefined(($("#wasp_ceco").attr('ng-reflect-model'))))) {
+                        let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido");
+                        tipo_contrato.readOnly = false;
                         rowEditor.emitSaveEvent();
-                    }else{
+                    }else if ((correct !== "X") && ($("#wasp_tipo_pedido").attr('ng-reflect-model') === "cerrado")){
                         rowEditor.errorValidacion("Orden de imputación incorrecta"); 
+                    }else if (isNullOrUndefined($("#wasp_ceco").attr('ng-reflect-model'))){
+                        rowEditor.errorValidacion("Debe rellenar el campo CeCo"); 
                     }
-                });
-
-            //rowEditor.emitSaveEvent();
-            /*if(totalImport > 1000){
-                rowEditor.errorValidacion("El importe total de todas las lineas del pedido  es superior a 1.000")  ;
-            }else {
-                await rowEditor.http.get('/WS_BPM_REST/jcmouse/restapi/sap_pi/VALIDACION_ORDEN/COMPRA_SIMPLIFICADA/N_ORDEN,IMPORTE/' +
-                rowEditor.row.value["wasp_orden_imputacion"] + ',' + totalImportOrden, { observe: 'response' }).toPromise()
-                .then(response => {
-                    let correct = response.body["MT_HUBCOM_RES"]["CORRECTO"];
-                    if (correct == "X") {
-                        rowEditor.row.value["wasp_tipo_imputacion"] = response.body["MT_HUBCOM_RES"]["RESULTADO"].item["VALOR"];
-                        rowEditor.emitSaveEvent();
-                    } else {
-                        rowEditor.errorValidacion(response.body["MT_HUBCOM_RES"]["MENSAJE"]);
-                    }
-                }, error => rowEditor.errorValidacion("Error durante la consulta del presupuesto de la orden"));
-            }*/
+                }).catch ( error => {
+                    //rowEditor.errorValidacion("Error comprobacion  check_order"); 
+                    rowEditor.emitSaveEvent();
+                }); */
         }else {
+            let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido");
+            if (taskDefinitionKey == "wasp_t2"){
+                tipo_contrato.readOnly = false;
+            }
             rowEditor.emitSaveEvent();
         }
     },
+    async onCancelChanges(rowEditor : CustomRowEditorComponent){
+        let taskDefinitionKey = rowEditor.table.form.json.taskDefinitionKey;
+        let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido");
+        if (taskDefinitionKey !== "wasp_t2"){
+            tipo_contrato.readOnly = false;
+        }
+    },
+    
+    /*async onCancelSave(rowEditor : CustomRowEditorComponent){
+        let tipo_contrato = rowEditor.table.form.getFieldById("wasp_tipo_pedido") ;
+        tipo_contrato.readOnly = false;
+    },*/
+    
      /** 
      * Método para calcular el importe total (precio_unitario * cantidad)
      * @param table - Acceso a la tabla actual y sus valores (ej: el número de posiciones que se han creado)
@@ -288,7 +292,7 @@ export const CSA_WASP_EDITOR = {
      * @param rowEditor - Componente customRowEditor, con acceso a todos los valores
      */
     inputListener(event,rowEditor) {
-        console.log(event.id);
+        //console.log(event.id);
         if (event.id == "wasp_precio" && (event.value.includes(",") || event.value.includes(".") ) ) {
             this.quitarDecimales(event,rowEditor);
         } else if(event.id == "wasp_orden_imputacion") {
@@ -335,7 +339,8 @@ export const CSA_WASP_EDITOR = {
  * @param taskDef - taskDefinitionKey identificador de la tarea actual
  */
 function editarFilas(array, table, taskDef) {
-    console.log(taskDef);
+    let tipo_contrato = table.form.getFieldById("wasp_tipo_pedido") ;
+    tipo_contrato.readOnly = true;
     let numeroFilas = table.rows.length;
     let monedaDistinta = false;
 
@@ -348,6 +353,7 @@ function editarFilas(array, table, taskDef) {
         }
     }
 }
+
 
 
 
